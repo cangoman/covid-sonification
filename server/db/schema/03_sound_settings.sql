@@ -1,0 +1,6 @@
+DROP TABLE IF EXISTS sound_settings CASCADE;
+
+CREATE TABLE sound_settings (
+  id SERIAL PRIMARY KEY NOT NULL
+
+)
