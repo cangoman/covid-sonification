@@ -3,7 +3,7 @@ import { Navbar, Nav } from 'react-bootstrap';
 
 function TopNav() {
 	return (
-		<Navbar bg='light' expand='lg'>
+		<Navbar bg='dark' variant='dark' expand='lg'>
 			<Navbar.Brand href='#home'>Covid-Sonification</Navbar.Brand>
 			<Navbar.Toggle aria-controls='basic-navbar-nav' />
 			<Navbar.Collapse id='basic-navbar-nav'>

@@ -3,7 +3,11 @@ import './App.css';
 
 import MapWrapper from './components/MapWrapper';
 import useApplicationData from './hooks/useApplicationData';
+
 import TopNav from './components/TopNav';
+import Sidebar from './components/Sidebar';
+
+import { Container, Row, Col } from 'react-bootstrap';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -19,7 +23,16 @@ function App() {
 	return (
 		<div className='App'>
 			<TopNav />
-			<MapWrapper />
+			<Container className='app-container' fluid>
+				<Row>
+					<Col xl={10}>
+						<MapWrapper />
+					</Col>
+					<Col xl={2}>
+						<Sidebar />
+					</Col>
+				</Row>
+			</Container>
 		</div>
 	);
 }
