@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Row, Col, Card } from 'react-bootstrap'
 
 import WorldMap from '../d3/WorldMap'
+// import countryData from '../d3/dummyData'
 
 
 function MapWrapper(props) {
@@ -10,16 +11,27 @@ function MapWrapper(props) {
   const svgRef = useRef();
   const [map, setMap] = useState(null);
 
+  const [countryData, setCountryData] = useState([]);
+
   //data will come from the top level, we'll format it and pass it to both visual and sound components
-  const dummyData = [1,2,3,4,5];
+  
+  useEffect( () => {
+    async function fetchData() {
+      const response = await fetch('https://corona.lmao.ninja/v2/countries');
+      const data = await response.json();
+      setCountryData(data)
+    }
+    fetchData();
+  }, []) 
+
 
   useEffect(() => {
     // DrawWorldMap(svgRef.current);
     if (!map)
       setMap(new WorldMap(svgRef.current))
     else
-      map.update(dummyData)
-  }, [map, dummyData] ) 
+      map.update(countryData)
+  }, [map, countryData] ) 
 
   return (
     <Row>

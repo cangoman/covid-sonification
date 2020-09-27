@@ -1,4 +1,4 @@
-import { select, json, geoPath, geoNaturalEarth1, tsv, max, scaleSqrt, selectAll /*, format , zoom, event */} from 'd3';
+import { select, json, geoPath, geoNaturalEarth1, tsv, max, scaleSqrt, selectAll,  zoom, format, event } from 'd3';
 import { feature } from 'topojson'
 
 const HEIGHT = 500;
@@ -35,9 +35,9 @@ export default class WorldMap {
       .attr("fill", "none")
       .attr("stroke", "lightgrey")
   
-    //We can figure out zoom later, ideally we want to be able to set the limit of the zoom out
-    // svg.call(zoom().on("zoom", () => {
-    //   g.attr("transform", event.transform)
+    //We can figure out zoom later, ideally we want to be able to set the limit of the zoom out to 100%, but i'm not sure how to do that yet. Alternatively, we can consider clicking on a country to zoom into it
+    // vis.svg.call(zoom().on("zoom", () => {
+    //   vis.g.attr("transform", event.transform)
     // }));
   
     //Fetch and load geographic data. May be a good idea to download this files and fetch from directory. maybe check out npm package world-atlas
@@ -64,34 +64,36 @@ export default class WorldMap {
           .text(d => countryName[d.id])
     })
 
-
-
-    // this.update([1,2,3,4])
+    this.update([])
   }
 
+  //We could potentially modularize this code, add another module that handles the update of data
   update(data) {
-    console.log("in update function")
-    console.log(data)
+    console.log("in update function. data: ", data)
+
     let vis = this;
   
     selectAll("circle").remove()
     //select the map visualization element and append a group for our data points at the end
+    //important step... renders last items on top, so if you dont have a group appended at the end, points will be under the map
     vis.circles = select(".map-vis").append("g")
 
     //This is to figure out the radius of the circles based on # of cases. Need to figure out how data is going to be coming in
-    // const radiusValue = 2 //We need to figure this one out
-    // const sizeScale = scaleSqrt()
+    const radiusValue = d => d.deaths
+    const sizeScale = scaleSqrt()
+      .domain([0, max(data, d => d.deaths), radiusValue])
+      .range([0,20])
 
     vis.circles.selectAll('circle')
       .data(data)
       .enter()
       .append('circle')
       .attr("class", "country-circle")
-      .attr("transform", d => `translate(${PROJECTION([-72, 4])})`) //hardcoded, but this is latitude and longitude of the circle position
-      .attr("r", d => 3)
-      .attr("fill", "black")
-
-
+      .attr("transform", d => `translate(${PROJECTION([d.countryInfo.long, d.countryInfo.lat])})`) // projection takes an array [longitude, latitude]
+      .transition().duration([2000])
+      .attr("r", d => sizeScale(radiusValue(d)))
+      .attr("fill", "#B37055")
+      .attr("opacity", 0.3)
 
   }
 }
