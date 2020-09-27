@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Row, Col, Card } from 'react-bootstrap'
+
 import WorldMap from '../d3/WorldMap'
 
 
-import { Row, Col, Card } from 'react-bootstrap'
-import WorldMap from '../d3/DrawWorldMap';
-
-function WorldMapWrapper(props) {
+function MapWrapper(props) {
   
   // create a hook to refer to our svg element and set the map
   const svgRef = useRef();
@@ -33,7 +32,7 @@ function WorldMapWrapper(props) {
   )
 }
 
-export default WorldMapWrapper;
+export default MapWrapper;
 
 
 
