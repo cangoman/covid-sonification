@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-// import { Row, Col, Card } from 'react-bootstrap';
 
 import WorldMap from '../d3/WorldMap';
-// import countryData from '../d3/dummyData'
+import './MapWrapper.css'
 
 function MapWrapper(props) {
 	// create a hook to refer to our svg element and set the map

@@ -2,6 +2,8 @@ import React from 'react';
 
 import DataCard from './DataCard';
 
+import "./SideBar.css"
+
 function Sidebar() {
 	return (
 		<div>

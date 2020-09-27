@@ -1,9 +1,11 @@
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 
+import './TopNav.css'
+
 function TopNav() {
 	return (
-		<Navbar bg='dark' variant='dark' expand='lg'>
+		<Navbar className="top-nav" bg='dark' variant='dark' expand='lg'>
 			<Navbar.Brand href='#home'>Covid-Sonification</Navbar.Brand>
 			<Navbar.Toggle aria-controls='basic-navbar-nav' />
 			<Navbar.Collapse id='basic-navbar-nav'>

@@ -4,8 +4,8 @@ import './App.css';
 import MapWrapper from './components/MapWrapper';
 import useApplicationData from './hooks/useApplicationData';
 
-import TopNav from './components/TopNav';
-import Sidebar from './components/Sidebar';
+import TopNav from './components/TopNav/TopNav';
+import Sidebar from './components/SideBar/Sidebar';
 
 import { Container, Row, Col } from 'react-bootstrap';
 
