@@ -2,7 +2,7 @@ import React from 'react';
 
 import DataCard from './DataCard';
 
-import "./SideBar.css"
+import './SideBar.scss';
 
 function Sidebar() {
 	return (

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 import WorldMap from '../d3/WorldMap';
-import './MapWrapper.css'
+import './MapWrapper.scss';
 
 function MapWrapper(props) {
 	// create a hook to refer to our svg element and set the map
