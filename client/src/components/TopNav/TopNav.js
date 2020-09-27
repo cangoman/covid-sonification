@@ -1,7 +1,10 @@
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 
+import VolumeSlider from './VolumeSlider'
+
 import './TopNav.css'
+import LoginMenu from './LoginMenu';
 
 function TopNav() {
 	return (
@@ -14,6 +17,10 @@ function TopNav() {
 					<Nav.Link href='#link'>Link</Nav.Link>
 				</Nav>
 			</Navbar.Collapse>
+			<Nav>
+				<VolumeSlider />
+				<LoginMenu/>
+			</Nav>
 		</Navbar>
 	);
 }
