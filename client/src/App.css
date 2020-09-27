@@ -1,39 +1,36 @@
 svg {
-  border: solid 1px lightgrey;
-  border-radius: 15px;
+	border: solid 1px lightgrey;
+	border-radius: 15px;
 }
 
 svg .country:hover {
-  stroke: black;
-  stroke-width: 1px;
-  cursor: pointer;
+	stroke: black;
+	stroke-width: 1px;
+	cursor: pointer;
 }
 
 #root {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: center;
-  /* height: 100vh; */
-  padding: 0 50px 150px;
-  text-align: center;
-  box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	justify-content: center;
+	/* height: 100vh; */
+	text-align: center;
+	box-sizing: border-box;
 }
 
 button {
-  width: 100px;
-  border: 1px solid black;
-  margin: 0 auto 5px;
+	width: 100px;
+	border: 1px solid black;
+	margin: 0 auto 5px;
 }
 
 .card {
-  margin-bottom: 1em;
-  margin-top: 2em;
+	margin-bottom: 1em;
+	margin-top: 2em;
 }
 
 .map-container {
-  position: relative;
-  top: 50px;
+	position: relative;
+	top: 50px;
 }
-
-
