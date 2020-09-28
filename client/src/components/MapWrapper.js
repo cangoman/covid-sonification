@@ -9,56 +9,48 @@ function MapWrapper(props) {
 	const svgRef = useRef();
 	const [map, setMap] = useState(null);
 	
+	//This is what we could save to out database to save a composition
 	const [countryData, setCountryData] = useState([]);
+	
+	
+	const [counter, setCounter] = useState(5);
+	
+	
+	//this needs to come from the top, cause the same counter should control audio and visuals, and the delay is the same for both
+	const [play, setPlay] = useState(true)
+	let delay = 1500;
+	
+	useInterval(() => {
+		if (play) {
+			const data = props.data.map( element => {
+				return { 
+					countryInfo: {
+						lat: element.countryInfo.latlng[0],
+						long: element.countryInfo.latlng[1]
+					},
+					data: element.data[counter]
+				}
+			})
+			setCountryData(data);
+			setCounter(oldCount => oldCount - 1)
+			if (counter === 1) {
+				// console.log("danger");
+				setPlay(false)
+			}
+			// console.log(data, counter, play)
 
-	// useInterval(callback, delay)
-	// if (props.data) {
-	// 	const keys = Object.keys(props.data.timeline.deaths)
-	// }
-	// 	console.log("MW: ", keys)
-		let index = 0;
-
-
-	// useInterval( () => {
-	// 	const data = {
-	// 		countryInfo: {
-	// 			lat: 4.6,
-	// 			long: -74.1
-	// 		},
-	// 		deaths: Math.floor( Math.random() * 10000)
-	// 	}
-	// 	setCountryData([data]);
-	// 	console.log(countryData)
-	// 	}, 1500)
-
-
-	// console.log("MW, data coming down as props:", props.data)
-
-	//data will come from the top level, we'll format it and pass it to both visual and sound components
-
-	// useEffect(() => {
-	// 	async function fetchData() {
-	// 		const response = await fetch('https://corona.lmao.ninja/v2/countries');
-	// 		const data = await response.json();
-	// 		setCountryData(data);
-	// 	}
-	// 	fetchData();
-	// }, []);
+		}	
+	}, play ? delay : null) 
 
 	useEffect(() => {
-		// DrawWorldMap(svgRef.current);
 		if (!map) setMap(new WorldMap(svgRef.current));
 		else map.update(countryData);
 	}, [map, countryData]);
 
 	return (
-		// <Row>
-		//   <Col sm="12" md="9" lg="9" xl="9" >
 		<div className='map-container'>
 			<svg ref={svgRef} className='map-vis'></svg>
 		</div>
-		//   </Col>
-		// </Row>
 	);
 }
 
