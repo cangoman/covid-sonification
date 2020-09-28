@@ -3,7 +3,6 @@ module.exports = (db) => {
 		const query = {
 			text: 'SELECT * FROM users',
 		};
-
 		return db
 			.query(query)
 			.then((result) => result.rows)
@@ -14,7 +13,6 @@ module.exports = (db) => {
 		const query = {
 			text: 'SELECT * FROM tests',
 		};
-
 		return db
 			.query(query)
 			.then((result) => result.rows)
@@ -26,7 +24,6 @@ module.exports = (db) => {
 			text:
 				'INSERT INTO users (first_name, last_name, email, password) VALUES ($1, $2, $3, $4) RETURNING *',
 		};
-
 		return db
 			.query(query, [
 				newUser.first_name,
@@ -40,6 +37,8 @@ module.exports = (db) => {
 			})
 			.catch((err) => console.error('query error', err.stack));
 	};
+
+	const loginUser = (user) => {};
 
 	return {
 		getUsers,
