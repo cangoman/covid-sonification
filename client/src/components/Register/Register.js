@@ -1,19 +1,17 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-
 import { Form, Button } from 'react-bootstrap';
 
 import { register } from './UserFunctions';
 
 function Register() {
+	const history = useHistory();
 	const [state, setState] = useState({
 		first_name: '',
 		last_name: '',
 		email: '',
 		password: '',
 	});
-
-	const history = useHistory();
 
 	const onSubmit = (e) => {
 		e.preventDefault();
@@ -25,12 +23,10 @@ function Register() {
 			password: state.password,
 		};
 
-		// console.log('newUser:', newUser);
-
 		register(newUser)
 			.then((result) => {
 				console.log('client side register.js result:', result);
-
+				localStorage.setItem('username', result.data.first_name);
 				history.push('/');
 			})
 			.catch((error) => console.log(error));

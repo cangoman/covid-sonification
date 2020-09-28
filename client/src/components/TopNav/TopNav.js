@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 
 import VolumeSlider from './VolumeSlider';
-import LoginMenu from './LoginMenu';
 
 import './TopNav.css';
 
 function TopNav() {
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+	useEffect(() => {
+		let user = localStorage.getItem('username');
+		console.log('user from useEffect', user);
+
+		if (user) setIsLoggedIn(true);
+	}, []);
+
 	return (
 		<Navbar className='top-nav' bg='dark' variant='dark' expand='lg'>
 			<Navbar.Brand href='#home'>Covid-Sonification</Navbar.Brand>
@@ -18,9 +26,11 @@ function TopNav() {
 				</Nav>
 				<Nav>
 					<VolumeSlider />
-					<Button href='/login' variant='outline-light'>
-						Login
-					</Button>
+					{!isLoggedIn && (
+						<Button href='/login' variant='outline-light'>
+							Login
+						</Button>
+					)}
 				</Nav>
 			</Navbar.Collapse>
 		</Navbar>
