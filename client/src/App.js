@@ -1,4 +1,5 @@
-import React, {/* useState, useEffect */} from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import './App.scss';
 
 import MapWrapper from './components/MapWrapper';
@@ -7,6 +8,7 @@ import useApplicationData from './hooks/useApplicationData';
 
 import TopNav from './components/TopNav/TopNav';
 import Sidebar from './components/SideBar/Sidebar';
+import Register from './components/Register/Register';
 
 import { Container, Row, Col } from 'react-bootstrap';
 
@@ -15,7 +17,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
 	const { state, dispatch } = useApplicationData();
 	// useCountryData();
-	
 
 	// const userList = state.users.map(user => (
 	//   <li key={user.email}>
@@ -23,21 +24,29 @@ function App() {
 	//   </li>
 	// ));
 
-
-
 	return (
 		<div className='App'>
-			<TopNav />
-			<Container className='app-container' fluid>
-				<Row>
-					<Col xl={10}>
-						<MapWrapper data={state.countries} />
-					</Col>
-					<Col xl={2}>
-						<Sidebar />
-					</Col>
-				</Row>
-			</Container>
+			<Router>
+				<Switch>
+					<Route path='/register'>
+						<Register />
+					</Route>
+
+					<Route path='/'>
+						<TopNav />
+						<Container className='app-container' fluid>
+							<Row>
+								<Col xl={10}>
+									<MapWrapper />
+								</Col>
+								<Col xl={2}>
+									<Sidebar />
+								</Col>
+							</Row>
+						</Container>
+					</Route>
+				</Switch>
+			</Router>
 		</div>
 	);
 }
