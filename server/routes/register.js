@@ -11,7 +11,6 @@ module.exports = ({ getTests, registerUser }) => {
 
 	router.post('/', (req, res) => {
 		// console.log(req.body);
-
 		const newUser = {
 			first_name: req.body.first_name,
 			last_name: req.body.last_name,
@@ -21,7 +20,9 @@ module.exports = ({ getTests, registerUser }) => {
 
 		registerUser(newUser).then((result) => {
 			console.log('server register.js result', result);
-			res.status(201).json(result);
+			let returnUser = {};
+			returnUser['first_name'] = result.first_name;
+			res.status(201).json(returnUser);
 		});
 
 		// console.log('newUser:', newUser);

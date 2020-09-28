@@ -32,7 +32,7 @@ module.exports = (db) => {
 				newUser.password,
 			])
 			.then((result) => {
-				console.log('server dbHelper result.rows:', result.rows);
+				// console.log('server dbHelper result.rows:', result.rows);
 				return result.rows[0];
 			})
 			.catch((err) => console.error('query error', err.stack));

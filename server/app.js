@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const cookieSession = require('cookie-session');
 
 const db = require('./db');
 const dbHelpers = require('./helpers/dbHelpers')(db);
@@ -17,6 +18,12 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(
+	cookieSession({
+		name: 'session',
+		keys: ['key1', 'key2'],
+	})
+);
 app.use(express.static(path.join(__dirname, 'public')));
 
 const indexRouter = require('./routes/index');
