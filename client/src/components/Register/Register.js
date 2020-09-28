@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import { Form, Button } from 'react-bootstrap';
 
@@ -12,6 +13,8 @@ function Register() {
 		password: '',
 	});
 
+	const history = useHistory();
+
 	const onSubmit = (e) => {
 		e.preventDefault();
 
@@ -24,7 +27,9 @@ function Register() {
 
 		console.log('newUser:', newUser);
 
-		register(newUser);
+		register(newUser).then((res) => {
+			history.push('/');
+		});
 	};
 
 	const onChange = (e) => {
