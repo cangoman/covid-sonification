@@ -25,16 +25,22 @@ function Register() {
 			password: state.password,
 		};
 
-		console.log('newUser:', newUser);
+		// console.log('newUser:', newUser);
 
-		register(newUser).then((res) => {
-			history.push('/');
-		});
+		register(newUser)
+			.then((result) => {
+				console.log('client side register.js result:', result);
+
+				history.push('/');
+			})
+			.catch((error) => console.log(error));
 	};
 
 	const onChange = (e) => {
 		setState({ ...state, [e.target.name]: e.target.value });
 	};
+
+	// local storage for log in authentication -> token :
 
 	return (
 		<Form onSubmit={onSubmit}>

@@ -8,8 +8,9 @@ export const register = (newUser) => {
 			email: newUser.email,
 			password: newUser.password,
 		})
-		.then((response) => {
-			console.log('newUser axios post response', response);
+		.then((result) => {
+			console.log('client newUser axios post result', result);
+			return result;
 		})
-		.catch((error) => console.log(error));
+		.catch((error) => console.log('error from userFunction', error));
 };
