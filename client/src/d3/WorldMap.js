@@ -69,7 +69,8 @@ export default class WorldMap {
 
   //We could potentially modularize this code, add another module that handles the update of data
   update(data) {
-    // console.log("in update function. data: ", data)
+    //this is just here for debugging
+    //  console.log("in update function. data: ", data)
 
     let vis = this;
   
@@ -79,9 +80,9 @@ export default class WorldMap {
     vis.circles = select(".map-vis").append("g")
 
     //This is to figure out the radius of the circles based on # of cases. Need to figure out how data is going to be coming in
-    const radiusValue = d => d.deaths
+    const radiusValue = d => d.data.deaths || 0
     const sizeScale = scaleSqrt()
-      .domain([0, max(data, d => d.deaths), radiusValue])
+      .domain([0, max(data, d => d.data.deaths), radiusValue])
       .range([0,20])
 
     vis.circles.selectAll('circle')
@@ -90,10 +91,13 @@ export default class WorldMap {
       .append('circle')
       .attr("class", "country-circle")
       .attr("transform", d => `translate(${PROJECTION([d.countryInfo.long, d.countryInfo.lat])})`) // projection takes an array [longitude, latitude]
-      .transition().duration([2000])
+      .transition().duration([1500])
       .attr("r", d => sizeScale(radiusValue(d)))
       .attr("fill", "#B37055")
       .attr("opacity", 0.3)
+  }
 
+  clearMap() {
+    //probably will need a function to clear the map from all the shiiiitt
   }
 }
