@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 import { Form, Button } from 'react-bootstrap';
 
+import { register } from './UserFunctions';
+
 function Register() {
 	const [state, setState] = useState({
 		first_name: '',
@@ -12,7 +14,6 @@ function Register() {
 
 	const onSubmit = (e) => {
 		e.preventDefault();
-		console.log('submitted');
 
 		const newUser = {
 			first_name: state.first_name,
@@ -22,6 +23,8 @@ function Register() {
 		};
 
 		console.log('newUser:', newUser);
+
+		register(newUser);
 	};
 
 	const onChange = (e) => {
