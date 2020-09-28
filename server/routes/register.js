@@ -20,10 +20,11 @@ module.exports = ({ getTests, registerUser }) => {
 		};
 
 		registerUser(newUser).then((result) => {
-			console.log('registered from register.js', result);
+			console.log('server register.js result', result);
+			res.status(201).json(result);
 		});
 
-		console.log('newUser:', newUser);
+		// console.log('newUser:', newUser);
 	});
 
 	return router;
