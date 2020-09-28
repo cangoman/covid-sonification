@@ -1,10 +1,29 @@
 const express = require('express');
 const router = express.Router();
 
-module.exports = (db) => {
+module.exports = ({ getTests, registerUser }) => {
 	// /register
-	router.get('/', function (req, res) {
-		res.render('index', { title: 'Register' });
+	router.get('/', (req, res) => {
+		getTests()
+			.then((tests) => res.json(tests))
+			.catch((err) => res.json({ error: err.message }));
+	});
+
+	router.post('/', (req, res) => {
+		// console.log(req.body);
+
+		const newUser = {
+			first_name: req.body.first_name,
+			last_name: req.body.last_name,
+			email: req.body.email,
+			password: req.body.password,
+		};
+
+		registerUser(newUser).then((result) => {
+			console.log('registered from register.js', result);
+		});
+
+		console.log('newUser:', newUser);
 	});
 
 	return router;

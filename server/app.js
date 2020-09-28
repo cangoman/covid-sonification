@@ -25,7 +25,7 @@ const registerRouter = require('./routes/register');
 
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter(dbHelpers));
-app.use('/register', registerRouter(db));
+app.use('/register', registerRouter(dbHelpers));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
