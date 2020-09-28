@@ -9,15 +9,15 @@ const useApplicationData = () => {
     loading: true,
   });
 
-  useEffect(() => {
-    axios({
-      method: 'GET',
-      url: '/api/users',
-    }).then(({ data }) => {
-      // update the state with the result
-      dispatch({ type: SET_USERS, users: data });
-    });
-  }, []);
+  // useEffect(() => {
+  //   axios({
+  //     method: 'GET',
+  //     url: '/api/users',
+  //   }).then(({ data }) => {
+  //     // update the state with the result
+  //     dispatch({ type: SET_USERS, users: data });
+  //   });
+  // }, []);
 
   return {
     state,

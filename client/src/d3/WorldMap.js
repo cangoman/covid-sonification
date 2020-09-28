@@ -1,4 +1,4 @@
-import { select, json, geoPath, geoNaturalEarth1, tsv, max, scaleSqrt, selectAll,  zoom, format, event } from 'd3';
+import { select, json, geoPath, geoNaturalEarth1, tsv, max, scaleSqrt, selectAll/*,  zoom, format, event */} from 'd3';
 import { feature } from 'topojson'
 
 const HEIGHT = 500;
@@ -10,7 +10,7 @@ const PROJECTION = geoNaturalEarth1();
 export default class WorldMap {
   
   constructor(element) {
-    console.log("drawing map")
+    // console.log("drawing map")
     let vis = this;
     //Append the svg element to our map visualization container
   
@@ -69,7 +69,7 @@ export default class WorldMap {
 
   //We could potentially modularize this code, add another module that handles the update of data
   update(data) {
-    console.log("in update function. data: ", data)
+    // console.log("in update function. data: ", data)
 
     let vis = this;
   
