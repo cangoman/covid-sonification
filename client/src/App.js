@@ -9,6 +9,7 @@ import useApplicationData from './hooks/useApplicationData';
 import TopNav from './components/TopNav/TopNav';
 import Sidebar from './components/SideBar/Sidebar';
 import Register from './components/Register/Register';
+import Login from './components/Login/Login';
 
 import { Container, Row, Col } from 'react-bootstrap';
 
@@ -28,11 +29,15 @@ function App() {
 		<div className='App'>
 			<Router>
 				<Switch>
-					<Route path='/register'>
+					<Route exact path='/register'>
 						<Register />
 					</Route>
 
-					<Route path='/'>
+					<Route exact path='/login'>
+						<Login />
+					</Route>
+
+					<Route exact path='/'>
 						<TopNav />
 						<Container className='app-container' fluid>
 							<Row>
