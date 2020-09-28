@@ -5,7 +5,7 @@ import { Form, Button } from 'react-bootstrap';
 import { login } from './LoginFunctions';
 
 function Login() {
-	const history = useHistory;
+	const history = useHistory();
 	const [state, setState] = useState({
 		email: '',
 		password: '',
