@@ -9,7 +9,7 @@ export const register = (newUser) => {
 			password: newUser.password,
 		})
 		.then((result) => {
-			console.log('client newUser axios post result', result);
+			// console.log('client newUser axios post result', result);
 			return result;
 		})
 		.catch((error) => console.log('error from RegisterFunction', error));
