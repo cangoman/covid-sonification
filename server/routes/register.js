@@ -21,8 +21,10 @@ module.exports = ({ getTests, registerUser }) => {
 
 		registerUser(newUser).then((result) => {
 			console.log('server register.js result', result);
+
 			let returnUser = {};
-			returnUser['first_name'] = result.first_name;
+			returnUser.email = result.email;
+
 			res.status(201).json(returnUser);
 		});
 
