@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Navbar, Nav, Button } from 'react-bootstrap';
+import React from 'react';
+import { Button } from 'react-bootstrap';
 
 function LoginButton() {
 	return (

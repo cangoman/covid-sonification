@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import './App.scss';
+import axios from 'axios';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Container, Row, Col } from 'react-bootstrap';
 
 import MapWrapper from './components/MapWrapper';
 import useApplicationData from './hooks/useApplicationData';
@@ -11,10 +12,8 @@ import Sidebar from './components/SideBar/Sidebar';
 import Register from './components/Register/Register';
 import Login from './components/Login/Login';
 
-import { Container, Row, Col } from 'react-bootstrap';
-
+import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import axios from 'axios';
 
 const BASE_URL = 'https://covid19-api.org/api/timeline/';
 
