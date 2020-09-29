@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Form, Button, Alert } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 
 import { register } from './RegisterFunctions';
 
@@ -26,7 +26,7 @@ function Register() {
 		register(newUser)
 			.then((result) => {
 				console.log('client side register.js result:', result);
-				// localStorage.setItem('username', result.data.first_name);
+				localStorage.setItem('email', result.data.email);
 				history.push('/');
 			})
 			.catch((error) => console.log(error));
@@ -87,9 +87,6 @@ function Register() {
 					onChange={onChange}
 				/>
 			</Form.Group>
-
-			<Alert variant='danger'>Please fill all the forms</Alert>
-
 			<Button variant='primary' type='submit'>
 				Submit
 			</Button>
