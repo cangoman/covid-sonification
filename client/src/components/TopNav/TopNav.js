@@ -6,7 +6,7 @@ import VolumeSlider from './VolumeSlider';
 import LoginButton from '../Login/LoginButton';
 import LogoutButton from '../Login/LogoutButton';
 
-import './TopNav.css';
+import './TopNav.scss';
 
 function TopNav() {
 	const location = useLocation();
@@ -19,8 +19,14 @@ function TopNav() {
 	}, [location]);
 
 	return (
-		<Navbar className='top-nav' bg='dark' variant='dark' expand='lg'>
-			<Navbar.Brand href='#home'>Covid-Sonification</Navbar.Brand>
+		<Navbar
+			className='top-nav'
+			bg='dark'
+			variant='dark'
+			expand='lg'
+			fixed='top'
+		>
+			<Navbar.Brand href='/'>Covid-Sonification</Navbar.Brand>
 			<Navbar.Toggle aria-controls='basic-navbar-nav' />
 			<Navbar.Collapse id='basic-navbar-nav'>
 				<Nav className='mr-auto'>
