@@ -49,8 +49,8 @@ function App() {
 
 	return (
 		<div className='App'>
-			<TopNav />
 			<Router>
+				<TopNav />
 				<Switch>
 					<Route exact path='/register'>
 						<Register />

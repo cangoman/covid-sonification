@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 
 import VolumeSlider from './VolumeSlider';
@@ -8,14 +9,14 @@ import LogoutButton from '../Login/LogoutButton';
 import './TopNav.css';
 
 function TopNav() {
-	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const location = useLocation();
+	const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('email'));
 
 	useEffect(() => {
 		let user = localStorage.getItem('email');
 		console.log('user from useEffect', user);
-
 		if (user) setIsLoggedIn(true);
-	}, [isLoggedIn]);
+	}, [isLoggedIn, localStorage, location]);
 
 	return (
 		<Navbar className='top-nav' bg='dark' variant='dark' expand='lg'>

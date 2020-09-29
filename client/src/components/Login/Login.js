@@ -22,9 +22,13 @@ function Login() {
 		login(user)
 			.then((result) => {
 				console.log('login.js result:', result);
+				localStorage.setItem('email', result.data.email);
 				history.push('/');
 			})
 			.catch((error) => console.log(error));
+		// look for statuscode 404 -> render a ui error message
+		// if statusCode === 404
+		// error.response.status
 	};
 
 	const onChange = (e) => {
@@ -39,6 +43,7 @@ function Login() {
 			<Form.Group controlId='email'>
 				<Form.Label>Email address</Form.Label>
 				<Form.Control
+					required
 					type='email'
 					name='email'
 					placeholder='Enter email'
@@ -50,6 +55,7 @@ function Login() {
 			<Form.Group controlId='password'>
 				<Form.Label>Password</Form.Label>
 				<Form.Control
+					required
 					type='password'
 					name='password'
 					placeholder='Password'
