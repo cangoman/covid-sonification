@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 
 import VolumeSlider from './VolumeSlider';
+import LoginButton from '../Login/LoginButton';
+import LogoutButton from '../Login/LogoutButton';
 
 import './TopNav.css';
 
@@ -9,7 +11,7 @@ function TopNav() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 	useEffect(() => {
-		let user = localStorage.getItem('username');
+		let user = localStorage.getItem('email');
 		console.log('user from useEffect', user);
 
 		if (user) setIsLoggedIn(true);
@@ -26,11 +28,8 @@ function TopNav() {
 				</Nav>
 				<Nav>
 					<VolumeSlider />
-					{!isLoggedIn && (
-						<Button href='/login' variant='outline-light'>
-							Login
-						</Button>
-					)}
+					{!isLoggedIn && <LoginButton />}
+					{isLoggedIn && <LogoutButton />}
 				</Nav>
 			</Navbar.Collapse>
 		</Navbar>
