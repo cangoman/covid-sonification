@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faVolumeUp, faVolumeDown, faVolumeOff } from '@fortawesome/free-solid-svg-icons'
 import "./VolumeSlider.scss"
+import * as Tone from 'tone'
 
 
-function VolumeSlider(props) {
+function VolumeSlider() {
   const [volume, setVolume] = useState(50);
   const [mute, setMute] = useState(false)
   
