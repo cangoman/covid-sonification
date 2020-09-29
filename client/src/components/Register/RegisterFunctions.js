@@ -12,5 +12,5 @@ export const register = (newUser) => {
 			console.log('client newUser axios post result', result);
 			return result;
 		})
-		.catch((error) => console.log('error from userFunction', error));
+		.catch((error) => console.log('error from RegisterFunction', error));
 };

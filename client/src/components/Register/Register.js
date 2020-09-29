@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 
-import { register } from './UserFunctions';
+import { register } from './RegisterFunctions';
 
 function Register() {
 	const history = useHistory();
@@ -26,7 +26,7 @@ function Register() {
 		register(newUser)
 			.then((result) => {
 				console.log('client side register.js result:', result);
-				localStorage.setItem('username', result.data.first_name);
+				// localStorage.setItem('username', result.data.first_name);
 				history.push('/');
 			})
 			.catch((error) => console.log(error));
