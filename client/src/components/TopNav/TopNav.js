@@ -15,7 +15,7 @@ function TopNav() {
 		console.log('user from useEffect', user);
 
 		if (user) setIsLoggedIn(true);
-	}, []);
+	}, [isLoggedIn]);
 
 	return (
 		<Navbar className='top-nav' bg='dark' variant='dark' expand='lg'>
