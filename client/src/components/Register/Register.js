@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Alert } from 'react-bootstrap';
 
 import { register } from './RegisterFunctions';
 
@@ -43,6 +43,7 @@ function Register() {
 			<Form.Group controlId='first_name'>
 				<Form.Label>First name</Form.Label>
 				<Form.Control
+					required
 					type='text'
 					name='first_name'
 					placeholder='Enter First name'
@@ -54,6 +55,7 @@ function Register() {
 			<Form.Group controlId='last_name'>
 				<Form.Label>Last name</Form.Label>
 				<Form.Control
+					required
 					type='text'
 					name='last_name'
 					placeholder='Enter Last name'
@@ -65,6 +67,7 @@ function Register() {
 			<Form.Group controlId='email'>
 				<Form.Label>Email address</Form.Label>
 				<Form.Control
+					required
 					type='email'
 					name='email'
 					placeholder='Enter email'
@@ -76,6 +79,7 @@ function Register() {
 			<Form.Group controlId='password'>
 				<Form.Label>Password</Form.Label>
 				<Form.Control
+					required
 					type='password'
 					name='password'
 					placeholder='Password'
@@ -83,6 +87,9 @@ function Register() {
 					onChange={onChange}
 				/>
 			</Form.Group>
+
+			<Alert variant='danger'>Please fill all the forms</Alert>
+
 			<Button variant='primary' type='submit'>
 				Submit
 			</Button>
