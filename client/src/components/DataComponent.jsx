@@ -14,9 +14,16 @@ const BASE_URL = 'https://covid19-api.org/api/timeline/'
 function DataComponent(props) {
   const { countries } = props;
   const [timelineData, setTimelineData] = useState([])
+  const [play, setPlay] = useState(false);
+  const [countryData, setCountryData] = useState([]);
+  
+  const initialCounter = 5;
+  const [counter, setCounter] = useState(initialCounter);
+  const [interval, setInterval] = useState(1000); //This may need to come from a parent component...sets the amount of time corresponding to a day
+
 
 	//This will need to be selected by the user. and rn it causes a warning on the browser
-	const query = ['colombia' , 'canada' /* , "mexico", 'brazil', "france" */]
+	const query = ['colombia', 'morocco' /*, "spain" , 'brazil', "france" */]
 
 	useEffect(() => {
 		if (countries) {
@@ -38,11 +45,6 @@ function DataComponent(props) {
 		}
   }, [countries]);
   
-  const [countryData, setCountryData] = useState([]);
-  const [play, setPlay] = useState(true);
-  const [counter, setCounter] = useState(5);
-  let delay = 1000;
-  
   useInterval(() => {
 		if (play) {
       const data = getNextDay(timelineData, counter)
@@ -52,7 +54,18 @@ function DataComponent(props) {
 				setPlay(false)
 			}
 		}	
-	}, play ? delay : null) 
+  }, play ? interval : null) 
+  
+  const playButtonClick = () => {
+    if (counter === 0)
+      return
+    setPlay(prev => !prev)
+  }
+
+  const restartCounter = () => {
+    setCounter(initialCounter);
+    setPlay(true)
+  }
 
 
 
@@ -63,7 +76,7 @@ function DataComponent(props) {
         <MapWrapper countryData={countryData} />
       </Col>
       <Col xl={2}>
-        <Sidebar countryData={countryData}/>
+        <Sidebar countryData={countryData} noSynths={query.length} playButtonClick={playButtonClick} restart={restartCounter} />
       </Col>
     </Row>
   </Container>
