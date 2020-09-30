@@ -11,6 +11,7 @@ function StartAudioButton(props) {
       initializeAudio();
     else if (Tone.context.state !== 'running')
       Tone.context.resume();
+    props.setPlay();
   }
 
   const initializeAudio = async () => {
@@ -21,10 +22,10 @@ function StartAudioButton(props) {
 
   return (
     <Button 
-    variant="outline-light"
+    variant="outline-dark"
     onClick={() => handleClick()} 
     >
-      Start Audio
+      Play!
     </Button>
   )
 }
