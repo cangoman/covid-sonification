@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Navbar, Nav } from 'react-bootstrap';
 
-import VolumeSlider from './VolumeSlider';
+
 import LoginButton from '../Login/LoginButton';
 import RegisterButton from '../Register/RegisterButton';
 import LogoutButton from '../Login/LogoutButton';
@@ -35,7 +35,6 @@ function TopNav() {
 					<Nav.Link href='#link'>Link</Nav.Link>
 				</Nav>
 				<Nav>
-					<VolumeSlider />
 					{!isLoggedIn && <LoginButton />}
 					{!isLoggedIn && <RegisterButton />}
 					{isLoggedIn && <LogoutButton />}

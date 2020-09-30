@@ -6,17 +6,20 @@ import * as Tone from 'tone'
 
 
 function VolumeSlider() {
-  const [volume, setVolume] = useState(50);
-  const [mute, setMute] = useState(false)
+  const [volume, setVolume] = useState(-12);
+  const [mute, setMute] = useState(false);
+
+  const vol = new Tone.Volume(-12).toDestination();
+
   
   useEffect( () => {
-
+    console.log(volume)
   }, [volume])
 
   const volumeIcon = () => {
-    if (volume < 1 || mute)
+    if (volume < -55 || mute)
       return faVolumeOff;
-    return volume < 50 ? faVolumeDown : faVolumeUp;
+    return volume < -30 ? faVolumeDown : faVolumeUp;
   }
   
   return (
@@ -31,8 +34,8 @@ function VolumeSlider() {
       <input 
         id="volume"
         type="range"
-        min={0}
-        max={100}
+        min={-60}
+        max={0}
         onChange={ e => {
           setVolume(e.currentTarget.value);
         }}
