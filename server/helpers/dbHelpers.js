@@ -38,11 +38,20 @@ module.exports = (db) => {
 			.catch((err) => console.error('query error', err.stack));
 	};
 
-	const loginUser = (user) => {};
+	const loginUser = (user) => {
+		let query = {
+			text: 'SELECT * FROM users WHERE email = $1',
+		};
+		return db
+			.query(query, [user.email])
+			.then((result) => result.rows[0])
+			.catch((err) => console.error(err.stack));
+	};
 
 	return {
 		getUsers,
 		getTests,
 		registerUser,
+		loginUser,
 	};
 };

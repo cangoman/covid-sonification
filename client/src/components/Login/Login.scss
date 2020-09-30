@@ -1,4 +1,4 @@
-.register-page {
+.login-page {
 	height: 100vh;
 	background-image: url('../../assets/earth.jpg');
 	background-size: cover;
@@ -13,7 +13,7 @@
 		margin: auto;
 		margin-top: auto;
 		background-color: rgba(0, 0, 0, 0.4);
-		padding: 3rem 3rem;
+		padding: 5rem 3rem;
 		border-radius: 6px;
 		box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
 
@@ -52,7 +52,6 @@
 		}
 	}
 
-	input[type='text'],
 	input[type='email'],
 	input[type='password'],
 	textarea {

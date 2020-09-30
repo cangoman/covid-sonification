@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 
-import { register } from './UserFunctions';
+import { register } from './RegisterFunctions';
+
+import './Register.scss';
 
 function Register() {
 	const history = useHistory();
@@ -26,7 +28,7 @@ function Register() {
 		register(newUser)
 			.then((result) => {
 				console.log('client side register.js result:', result);
-				localStorage.setItem('username', result.data.first_name);
+				localStorage.setItem('email', result.data.email);
 				history.push('/');
 			})
 			.catch((error) => console.log(error));
@@ -39,54 +41,67 @@ function Register() {
 	// local storage for log in authentication -> token :
 
 	return (
-		<Form onSubmit={onSubmit}>
-			<Form.Group controlId='first_name'>
-				<Form.Label>First name</Form.Label>
-				<Form.Control
-					type='text'
-					name='first_name'
-					placeholder='Enter First name'
-					value={state.first_name}
-					onChange={onChange}
-				/>
-			</Form.Group>
+		<div className='register-page'>
+			<div className='register-page__form-card'>
+				<h1>REGISTER</h1>
+				<Form onSubmit={onSubmit}>
+					<Form.Group controlId='first_name'>
+						<Form.Label>First name</Form.Label>
+						<Form.Control
+							required
+							type='text'
+							name='first_name'
+							placeholder='First name'
+							value={state.first_name}
+							onChange={onChange}
+							autocomplete='no'
+						/>
+					</Form.Group>
 
-			<Form.Group controlId='last_name'>
-				<Form.Label>Last name</Form.Label>
-				<Form.Control
-					type='text'
-					name='last_name'
-					placeholder='Enter Last name'
-					value={state.last_name}
-					onChange={onChange}
-				/>
-			</Form.Group>
+					<Form.Group controlId='last_name'>
+						<Form.Label>Last name</Form.Label>
+						<Form.Control
+							required
+							type='text'
+							name='last_name'
+							placeholder='Last name'
+							value={state.last_name}
+							onChange={onChange}
+							autocomplete='no'
+						/>
+					</Form.Group>
 
-			<Form.Group controlId='email'>
-				<Form.Label>Email address</Form.Label>
-				<Form.Control
-					type='email'
-					name='email'
-					placeholder='Enter email'
-					value={state.email}
-					onChange={onChange}
-				/>
-			</Form.Group>
+					<Form.Group controlId='email'>
+						<Form.Label>Email address</Form.Label>
+						<Form.Control
+							required
+							type='email'
+							name='email'
+							placeholder='Email'
+							value={state.email}
+							onChange={onChange}
+							autocomplete='off'
+						/>
+					</Form.Group>
 
-			<Form.Group controlId='password'>
-				<Form.Label>Password</Form.Label>
-				<Form.Control
-					type='password'
-					name='password'
-					placeholder='Password'
-					value={state.password}
-					onChange={onChange}
-				/>
-			</Form.Group>
-			<Button variant='primary' type='submit'>
-				Submit
-			</Button>
-		</Form>
+					<Form.Group controlId='password'>
+						<Form.Label>Password</Form.Label>
+						<Form.Control
+							required
+							type='password'
+							name='password'
+							placeholder='Password'
+							value={state.password}
+							onChange={onChange}
+						/>
+					</Form.Group>
+					<Button variant='outline-light' type='submit' block>
+						Register
+					</Button>
+				</Form>
+				<span>Listen to the sound of the world</span>
+			</div>
+		</div>
 	);
 }
 
