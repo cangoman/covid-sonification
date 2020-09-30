@@ -46,6 +46,10 @@ function Sidebar(props) {
 		}
 	}, [props.countryData]);
 
+	const clearMapData = () => {
+		props.clearMapData();
+	};
+
 	return (
 		<div>
 			<h1>Sonification Menu</h1>
@@ -53,7 +57,7 @@ function Sidebar(props) {
 			<Button variant='outline-dark' onClick={props.restart}>
 				Restart
 			</Button>
-			<Button variant='outline-danger' clearMap={props.clearMap}>
+			<Button variant='outline-danger' onClick={clearMapData}>
 				Clear Map
 			</Button>
 			<DataCard date={props.date} />

@@ -26,7 +26,6 @@ function MapWrapper({ countryData, map, setNewMap, updateMap, clearMapData }) {
 	return (
 		<div className='map-container'>
 			<svg ref={svgRef} className='map-vis'></svg>
-			<Button onClick={clearMapData}>Clear</Button>
 		</div>
 	);
 }

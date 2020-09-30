@@ -99,7 +99,6 @@ function DataComponent(props) {
 						map={map}
 						setNewMap={setNewMap}
 						updateMap={updateMap}
-						clearMapData={clearMapData}
 					/>
 				</Col>
 				<Col xl={2}>
@@ -109,6 +108,7 @@ function DataComponent(props) {
 						noSynths={query.length}
 						playButtonClick={playButtonClick}
 						restart={restartCounter}
+						clearMapData={clearMapData}
 					/>
 				</Col>
 			</Row>
