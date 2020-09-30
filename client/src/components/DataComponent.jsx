@@ -5,7 +5,7 @@ import axios from 'axios'
 import Sidebar from './SideBar/Sidebar';
 import MapWrapper from './MapWrapper';
 import useInterval from '../hooks/useInterval'
-import { createTimelineData } from '../helpers/DataFormatHelpers'
+import { createTimelineData, getNextDay } from '../helpers/DataFormatHelpers'
 
 
 const BASE_URL = 'https://covid19-api.org/api/timeline/'
@@ -38,12 +38,6 @@ function DataComponent(props) {
 		}
   }, [countries]);
   
-  // useEffect(() => {
-  //   console.log("timeline data: ", timelineData)
-  // }, [timelineData])
-
-
-
   const [countryData, setCountryData] = useState([]);
   const [play, setPlay] = useState(true);
   const [counter, setCounter] = useState(5);
@@ -51,22 +45,12 @@ function DataComponent(props) {
   
   useInterval(() => {
 		if (play) {
-      // console.log("timelineData: ", timelineData)
-			const data = timelineData.map( element => {
-				return { 
-          date: element.data[counter].last_update.substr(0,10),
-          countryInfo: {...element.countryInfo },
-					data: element.data[counter]
-				}
-			})
+      const data = getNextDay(timelineData, counter)
       setCountryData(data);
-      // console.log("formatted data:", data)
 			setCounter(oldCount => oldCount - 1)
 			if (counter === 1) {
 				setPlay(false)
 			}
-			// console.log(data, counter, play)
-
 		}	
 	}, play ? delay : null) 
 
@@ -79,7 +63,7 @@ function DataComponent(props) {
         <MapWrapper countryData={countryData} />
       </Col>
       <Col xl={2}>
-        <Sidebar />
+        <Sidebar countryData={countryData}/>
       </Col>
     </Row>
   </Container>
