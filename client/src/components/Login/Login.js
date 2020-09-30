@@ -4,6 +4,8 @@ import { Form, Button } from 'react-bootstrap';
 
 import { login } from './LoginFunctions';
 
+import './Login.scss';
+
 function Login() {
 	const history = useHistory();
 	const [state, setState] = useState({
@@ -39,34 +41,41 @@ function Login() {
 	};
 
 	return (
-		<Form onSubmit={onSubmit}>
-			<Form.Group controlId='email'>
-				<Form.Label>Email address</Form.Label>
-				<Form.Control
-					required
-					type='email'
-					name='email'
-					placeholder='Enter email'
-					value={state.email}
-					onChange={onChange}
-				/>
-			</Form.Group>
+		<div className='login-page'>
+			<div className='login-page__form-card'>
+				<h1>LOGIN</h1>
+				<Form onSubmit={onSubmit}>
+					<Form.Group controlId='email'>
+						<Form.Label>Email address</Form.Label>
+						<Form.Control
+							required
+							type='email'
+							name='email'
+							placeholder='Email'
+							value={state.email}
+							onChange={onChange}
+							autocomplete='off'
+						/>
+					</Form.Group>
 
-			<Form.Group controlId='password'>
-				<Form.Label>Password</Form.Label>
-				<Form.Control
-					required
-					type='password'
-					name='password'
-					placeholder='Password'
-					value={state.password}
-					onChange={onChange}
-				/>
-			</Form.Group>
-			<Button variant='primary' type='submit'>
-				Submit
-			</Button>
-		</Form>
+					<Form.Group controlId='password'>
+						<Form.Label>Password</Form.Label>
+						<Form.Control
+							required
+							type='password'
+							name='password'
+							placeholder='Password'
+							value={state.password}
+							onChange={onChange}
+						/>
+					</Form.Group>
+					<Button variant='outline-light' type='submit' block>
+						Log in
+					</Button>
+				</Form>
+				<span>Listen to the sound of the world</span>
+			</div>
+		</div>
 	);
 }
 

@@ -1,0 +1,79 @@
+.login-page {
+	height: 100vh;
+	background-image: url('../../assets/earth.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	// background-attachment: fixed;
+	align-items: center;
+	display: flex;
+	margin-top: -50px;
+	color: white;
+
+	&__form-card {
+		margin: auto;
+		margin-top: auto;
+		background-color: rgba(0, 0, 0, 0.4);
+		padding: 5rem 3rem;
+		border-radius: 6px;
+		box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+
+		h1 {
+			font-size: 2rem;
+			letter-spacing: 0.5rem;
+		}
+	}
+
+	.form-label {
+		visibility: hidden;
+	}
+
+	.form-control::placeholder {
+		color: white;
+	}
+
+	input {
+		color: white;
+		border: none;
+		background: transparent;
+		border-bottom: 2px solid grey;
+		border-radius: unset;
+		outline: none !important;
+		box-shadow: none;
+
+		&:focus {
+			background: transparent;
+			color: white;
+			outline: none;
+		}
+
+		&:active {
+			background: transparent;
+			outline: none;
+		}
+	}
+
+	input[type='email'],
+	textarea {
+		outline: none;
+		box-shadow: none !important;
+	}
+
+	input[type='password'],
+	textarea {
+		outline: none;
+		box-shadow: none !important;
+	}
+
+	Button {
+		margin: 3rem 0;
+	}
+
+	Form {
+		min-width: 20rem !important;
+		color: white;
+	}
+}
+
+// .form-control::placeholder {
+// 	color: red !important;
+// }
