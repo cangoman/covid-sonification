@@ -4,6 +4,7 @@ import { Navbar, Nav } from 'react-bootstrap';
 
 import VolumeSlider from './VolumeSlider';
 import LoginButton from '../Login/LoginButton';
+import RegisterButton from '../Register/RegisterButton';
 import LogoutButton from '../Login/LogoutButton';
 
 import './TopNav.scss';
@@ -36,6 +37,7 @@ function TopNav() {
 				<Nav>
 					<VolumeSlider />
 					{!isLoggedIn && <LoginButton />}
+					{!isLoggedIn && <RegisterButton />}
 					{isLoggedIn && <LogoutButton />}
 				</Nav>
 			</Navbar.Collapse>
