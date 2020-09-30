@@ -1,24 +1,33 @@
 import React, { useState, useEffect } from 'react';
-import { Navbar, Nav, Button } from 'react-bootstrap';
+import { useLocation } from 'react-router-dom';
+import { Navbar, Nav } from 'react-bootstrap';
 
 import VolumeSlider from './VolumeSlider';
+import LoginButton from '../Login/LoginButton';
+import RegisterButton from '../Register/RegisterButton';
+import LogoutButton from '../Login/LogoutButton';
 
-
-import './TopNav.css';
+import './TopNav.scss';
 
 function TopNav() {
-	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const location = useLocation();
+	const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('email'));
 
 	useEffect(() => {
-		let user = localStorage.getItem('username');
+		let user = localStorage.getItem('email');
 		console.log('user from useEffect', user);
-
 		if (user) setIsLoggedIn(true);
-	}, []);
+	}, [location]);
 
 	return (
-		<Navbar className='top-nav' bg='dark' variant='dark' expand='lg'>
-			<Navbar.Brand href='#home'>Covid-Sonification</Navbar.Brand>
+		<Navbar
+			className='top-nav'
+			bg='dark'
+			variant='dark'
+			expand='lg'
+			fixed='top'
+		>
+			<Navbar.Brand href='/'>Covid-Sonification</Navbar.Brand>
 			<Navbar.Toggle aria-controls='basic-navbar-nav' />
 			<Navbar.Collapse id='basic-navbar-nav'>
 				<Nav className='mr-auto'>
@@ -27,11 +36,9 @@ function TopNav() {
 				</Nav>
 				<Nav>
 					<VolumeSlider />
-					{!isLoggedIn && (
-						<Button href='/login' variant='outline-light'>
-							Login
-						</Button>
-					)}
+					{!isLoggedIn && <LoginButton />}
+					{!isLoggedIn && <RegisterButton />}
+					{isLoggedIn && <LogoutButton />}
 				</Nav>
 			</Navbar.Collapse>
 		</Navbar>

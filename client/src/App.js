@@ -1,26 +1,25 @@
-import React, {useState, useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import './App.scss';
-
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Container, Row, Col } from 'react-bootstrap';
 
 import useApplicationData from './hooks/useApplicationData';
 
 import TopNav from './components/TopNav/TopNav';
 import Register from './components/Register/Register';
 import Login from './components/Login/Login';
-import DataComponent from './components/DataComponent'
+import DataComponent from './components/DataComponent';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import './App.scss';
 
 function App() {
 	const { state, dispatch } = useApplicationData();
 
 	return (
 		<div className='App'>
-			<TopNav />
-			
 			<Router>
+				<TopNav />
 				<Switch>
 					<Route exact path='/register'>
 						<Register />
@@ -32,14 +31,11 @@ function App() {
 
 					<Route exact path='/'>
 						<DataComponent countries={state.countries} />
-
 					</Route>
 				</Switch>
 			</Router>
-			</div>
-		)
-
-	
+		</div>
+	);
 }
 
 export default App;
