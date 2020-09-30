@@ -5,6 +5,8 @@ import axios from 'axios'
 import Sidebar from './SideBar/Sidebar';
 import MapWrapper from './MapWrapper';
 import useInterval from '../hooks/useInterval'
+import { createTimelineData } from '../helpers/DataFormatHelpers'
+
 
 const BASE_URL = 'https://covid19-api.org/api/timeline/'
 
@@ -14,49 +16,53 @@ function DataComponent(props) {
   const [timelineData, setTimelineData] = useState([])
 
 	//This will need to be selected by the user. and rn it causes a warning on the browser
-	const query = ['colombia', 'canada', "mexico", 'brazil', "france"]
+	const query = ['colombia' , 'canada' /* , "mexico", 'brazil', "france" */]
 
 	useEffect(() => {
 		if (countries) {
 			for (const country of query) {
 				const regexp = new RegExp(country, 'i')
-				const countryInfo = countries.find( element => element.name.match(regexp))
-				// console.log(countryInfo)
+        const countryInfo = countries.find( element => element.name.match(regexp))
+        
 				if (countryInfo) {
 					axios({
 						method: 'GET',
 						url: `${BASE_URL}${countryInfo.alpha2Code}`
 					})
 					.then(response => {
-						const countryObject = {countryInfo, data: response.data}
+            const countryObject = createTimelineData(countryInfo, response.data)
 						setTimelineData( timelineData => [...timelineData, countryObject] )
 					})
 				}
 			}
 		}
-	}, [countries]);
+  }, [countries]);
+  
+  // useEffect(() => {
+  //   console.log("timeline data: ", timelineData)
+  // }, [timelineData])
+
 
 
   const [countryData, setCountryData] = useState([]);
   const [play, setPlay] = useState(true);
   const [counter, setCounter] = useState(5);
-  let delay = 800;
+  let delay = 1000;
   
   useInterval(() => {
 		if (play) {
+      // console.log("timelineData: ", timelineData)
 			const data = timelineData.map( element => {
 				return { 
-					countryInfo: {
-						lat: element.countryInfo.latlng[0],
-						long: element.countryInfo.latlng[1]
-					},
+          date: element.data[counter].last_update.substr(0,10),
+          countryInfo: {...element.countryInfo },
 					data: element.data[counter]
 				}
 			})
-			setCountryData(data);
+      setCountryData(data);
+      // console.log("formatted data:", data)
 			setCounter(oldCount => oldCount - 1)
 			if (counter === 1) {
-				// console.log("danger");
 				setPlay(false)
 			}
 			// console.log(data, counter, play)
