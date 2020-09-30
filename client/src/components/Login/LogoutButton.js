@@ -8,7 +8,7 @@ function LogoutButton() {
 
 	return (
 		<Form onSubmit={onSubmit}>
-			<Button variant='outline-light' type='submit'>
+			<Button variant='outline-light' type='submit' className='px-4'>
 				Log out
 			</Button>
 		</Form>
