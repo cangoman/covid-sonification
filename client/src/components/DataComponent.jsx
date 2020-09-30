@@ -4,12 +4,13 @@ import axios from 'axios'
 
 import Sidebar from './SideBar/Sidebar';
 import MapWrapper from './MapWrapper';
+import useInterval from '../hooks/useInterval'
 
 const BASE_URL = 'https://covid19-api.org/api/timeline/'
 
 
-function DataComponent({countries}) {
-
+function DataComponent(props) {
+  const { countries } = props;
   const [timelineData, setTimelineData] = useState([])
 
 	//This will need to be selected by the user. and rn it causes a warning on the browser
@@ -36,6 +37,32 @@ function DataComponent({countries}) {
 	}, [countries]);
 
 
+  const [countryData, setCountryData] = useState([]);
+  const [play, setPlay] = useState(true);
+  const [counter, setCounter] = useState(5);
+  let delay = 800;
+  
+  useInterval(() => {
+		if (play) {
+			const data = timelineData.map( element => {
+				return { 
+					countryInfo: {
+						lat: element.countryInfo.latlng[0],
+						long: element.countryInfo.latlng[1]
+					},
+					data: element.data[counter]
+				}
+			})
+			setCountryData(data);
+			setCounter(oldCount => oldCount - 1)
+			if (counter === 1) {
+				// console.log("danger");
+				setPlay(false)
+			}
+			// console.log(data, counter, play)
+
+		}	
+	}, play ? delay : null) 
 
 
 
@@ -43,7 +70,7 @@ function DataComponent({countries}) {
     <Container className='app-container' fluid>
     <Row>
       <Col xl={10}>
-        <MapWrapper data={timelineData} />
+        <MapWrapper countryData={countryData} />
       </Col>
       <Col xl={2}>
         <Sidebar />

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 
 import VolumeSlider from './VolumeSlider';
-import StartAudioButton from './StartAudioButton'
+
 
 import './TopNav.css';
 
@@ -26,7 +26,6 @@ function TopNav() {
 					<Nav.Link href='#link'>Link</Nav.Link>
 				</Nav>
 				<Nav>
-					<StartAudioButton />
 					<VolumeSlider />
 					{!isLoggedIn && (
 						<Button href='/login' variant='outline-light'>

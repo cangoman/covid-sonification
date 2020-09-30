@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap"
 import * as Tone from 'tone';
 
 
-function StartAudioButton() {
+function StartAudioButton(props) {
   const [audioOn, setAudioOn] = useState(false)
 
   const handleClick = () => {
@@ -28,7 +28,5 @@ function StartAudioButton() {
     </Button>
   )
 }
-
-
 
 export default StartAudioButton;
