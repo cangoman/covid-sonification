@@ -181,7 +181,7 @@ function Sidebar(props) {
 		<div>
 			<h1>Sonification Menu</h1>
 			<StartAudioButton setPlay={props.playButtonClick} />
-			<Button variant='outline-dark' onClick={props.restart}>
+			<Button variant='outline-light' onClick={props.restart}>
 				Restart
 			</Button>
 			<Button variant='outline-danger' onClick={clearMapData}>
