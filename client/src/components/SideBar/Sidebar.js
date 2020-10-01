@@ -178,7 +178,7 @@ function Sidebar(props) {
 	};
 
 	return (
-		<div>
+		<div className='sidebar'>
 			<h1>Sonification Menu</h1>
 			<StartAudioButton setPlay={props.playButtonClick} />
 			<Button variant='outline-light' onClick={props.restart}>
