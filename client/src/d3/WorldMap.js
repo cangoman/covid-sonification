@@ -80,9 +80,9 @@ export default class WorldMap {
     vis.circles = select(".map-vis").append("g")
 
     //This is to figure out the radius of the circles based on # of cases. Need to figure out how data is going to be coming in
-    const radiusValue = d => d.data.deaths || 0
+    const radiusValue = d => d.data.new_deaths || 0
     const sizeScale = scaleSqrt()
-      .domain([0, max(data, d => d.data.deaths), radiusValue])
+      .domain([0, max(data, d => d.data.new_deaths), radiusValue])
       .range([0,20])
 
     vis.circles.selectAll('circle')

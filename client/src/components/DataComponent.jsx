@@ -6,6 +6,7 @@ import Sidebar from './SideBar/Sidebar';
 import MapWrapper from './MapWrapper';
 import useInterval from '../hooks/useInterval'
 import { createTimelineData, getNextDay } from '../helpers/DataFormatHelpers'
+import * as Tone from 'tone'
 
 
 const BASE_URL = 'https://covid19-api.org/api/timeline/'
@@ -17,14 +18,16 @@ function DataComponent(props) {
   const [play, setPlay] = useState(false);
   const [countryData, setCountryData] = useState([]);
   const [date, setDate] = useState(null);
+
   
   const initialCounter = 200;
   const [counter, setCounter] = useState(initialCounter);
   const [interval, setInterval] = useState(1000); //This may need to come from a parent component...sets the amount of time corresponding to a day
 
 
+
 	//This will need to be selected by the user. and rn it causes a warning on the browser
-	const query = ['china'/* "colombia" , 'brazil', "france" */]
+	const query = ['china', 'mexico' ,  "colombia", 'brazil',  "france", 'spain', 'morocco' ]
 
 	useEffect(() => {
 		if (countries) {
@@ -47,18 +50,27 @@ function DataComponent(props) {
   }, [countries]);
   
   useInterval(() => {
-		if (play) {
-      const data = getNextDay(timelineData, counter)
-      setCountryData(data);
-      setDate(data[0].date)
-			setCounter(oldCount => oldCount - 1)
-			if (counter === 1) {
-				setPlay(false)
-			}
-		}	
+        if (play) {
+          const data = getNextDay(timelineData, counter)
+          setCountryData(data);
+          setDate(data[0].date)
+          setCounter(oldCount => oldCount - 1)
+          if (counter === 1) {
+            setPlay(false)
+          }
+        }	
   }, play ? interval : null) 
   
+  useEffect(() => {
+    Tone.Transport.bpm.value = 60;
+  })
+
+
   const playButtonClick = () => {
+    if (play)
+      Tone.Transport.stop();
+    else
+      Tone.Transport.start();
     if (counter === 0)
       return
     setPlay(prev => !prev)
@@ -68,6 +80,9 @@ function DataComponent(props) {
     setCounter(initialCounter);
     setPlay(true)
   }
+
+  
+
 
   return(
     <Container className='app-container' fluid>
