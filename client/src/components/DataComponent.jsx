@@ -4,29 +4,32 @@ import axios from 'axios';
 
 import Sidebar from './SideBar/Sidebar';
 import MapWrapper from './MapWrapper';
-import useInterval from '../hooks/useInterval';
-import { createTimelineData, getNextDay } from '../helpers/DataFormatHelpers';
+import useInterval from '../hooks/useInterval'
+import { createTimelineData, getNextDay } from '../helpers/DataFormatHelpers'
+import * as Tone from 'tone'
 
 import WorldMap from '../d3/WorldMap';
 
 const BASE_URL = 'https://covid19-api.org/api/timeline/';
 
 function DataComponent(props) {
-	const { countries } = props;
-	const [timelineData, setTimelineData] = useState([]);
-	const [play, setPlay] = useState(false);
-	const [countryData, setCountryData] = useState([]);
-	const [date, setDate] = useState(null);
+  const { countries } = props;
+  const [timelineData, setTimelineData] = useState([])
+  const [play, setPlay] = useState(false);
+  const [countryData, setCountryData] = useState([]);
+  const [date, setDate] = useState(null);
 
-	const initialCounter = 200;
-	const [counter, setCounter] = useState(initialCounter);
-	const [interval, setInterval] = useState(1000); //This may need to come from a parent component...sets the amount of time corresponding to a day
+  
+  const initialCounter = 200;
+  const [counter, setCounter] = useState(initialCounter);
+  const [interval, setInterval] = useState(1000); //This may need to come from a parent component...sets the amount of time corresponding to a day
 
 	// state for MapWrapper.js
 	const [map, setMap] = useState(null);
 
+
 	//This will need to be selected by the user. and rn it causes a warning on the browser
-	const query = ['china' /* "colombia" , 'brazil', "france" */];
+	const query = ['china', 'mexico' ,  "colombia", 'brazil',  "france", 'spain', 'morocco' ]
 
 	useEffect(() => {
 		if (countries) {
