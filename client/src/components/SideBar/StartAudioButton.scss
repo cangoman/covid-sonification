@@ -1,0 +1,17 @@
+.start-audio-button {
+	color: white;
+
+	.play-icon,
+	.pause-icon {
+		border: none;
+		// box-shadow: 10px 10px 22px -8px rgb(255, 255, 255);
+
+		&:hover {
+			cursor: pointer;
+		}
+
+		&:active {
+			transform: translateY(1px);
+		}
+	}
+}

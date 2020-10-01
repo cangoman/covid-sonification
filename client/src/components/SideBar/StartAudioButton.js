@@ -1,14 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import * as Tone from 'tone';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlayCircle, faPauseCircle } from '@fortawesome/free-solid-svg-icons';
+
+import './StartAudioButton.scss';
+
 function StartAudioButton(props) {
 	const [audioOn, setAudioOn] = useState(false);
+	const [playIcon, setPlayIcon] = useState(false);
 
 	const handleClick = () => {
 		if (!audioOn) initializeAudio();
 		else if (Tone.context.state !== 'running') Tone.context.resume();
 		props.setPlay();
+		setPlayIcon((prev) => !prev);
 	};
 
 	const initializeAudio = async () => {
@@ -17,10 +24,18 @@ function StartAudioButton(props) {
 		setAudioOn(true);
 	};
 
+	const playButtonIcon = () => {
+		return playIcon === false ? (
+			<FontAwesomeIcon icon={faPlayCircle} size='3x' className='play-icon' />
+		) : (
+			<FontAwesomeIcon icon={faPauseCircle} size='3x' className='pause-icon' />
+		);
+	};
+
 	return (
-		<Button variant='outline-light' onClick={() => handleClick()}>
-			Play!
-		</Button>
+		<div className='start-audio-button'>
+			<a onClick={() => handleClick()}>{playButtonIcon()}</a>
+		</div>
 	);
 }
 
