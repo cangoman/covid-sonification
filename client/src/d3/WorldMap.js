@@ -40,7 +40,7 @@ export default class WorldMap {
 			.attr('class', 'sphere')
 			.attr('d', pathGenerator({ type: 'Sphere' }))
 			.attr('fill', 'none')
-			.attr('stroke', 'lightgrey');
+			.attr('stroke', '#333');
 
 		//We can figure out zoom later, ideally we want to be able to set the limit of the zoom out to 100%, but i'm not sure how to do that yet. Alternatively, we can consider clicking on a country to zoom into it
 		// vis.svg.call(zoom().on("zoom", () => {
@@ -67,7 +67,7 @@ export default class WorldMap {
 				.append('path')
 				.attr('class', 'country')
 				.attr('d', pathGenerator)
-				.attr('fill', 'lightgrey')
+				.attr('fill', 'white')
 				.append('title')
 				.text((d) => countryName[d.id]);
 		});
@@ -107,8 +107,9 @@ export default class WorldMap {
 			.transition()
 			.duration([1500])
 			.attr('r', (d) => sizeScale(radiusValue(d)))
-			.attr('fill', '#B37055')
-			.attr('opacity', 0.3);
+			.attr('fill', '#ed0000')
+			.attr('stroke', 'red')
+			.attr('opacity', 0.4);
 	}
 
 	clearMap() {
