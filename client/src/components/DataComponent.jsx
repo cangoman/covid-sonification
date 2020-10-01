@@ -5,7 +5,7 @@ import axios from 'axios'
 import Sidebar from './SideBar/Sidebar';
 import MapWrapper from './MapWrapper';
 import useInterval from '../hooks/useInterval'
-import { createTimelineData, getNextDay } from '../helpers/DataFormatHelpers'
+import { createTimelineData, getNextDay, createDailyData } from '../helpers/DataFormatHelpers'
 import * as Tone from 'tone'
 
 
@@ -15,19 +15,20 @@ const BASE_URL = 'https://covid19-api.org/api/timeline/'
 function DataComponent(props) {
   const { countries } = props;
   const [timelineData, setTimelineData] = useState([])
+  const [dailyData, setDailyData] = useState([])
   const [play, setPlay] = useState(false);
   const [countryData, setCountryData] = useState([]);
   const [date, setDate] = useState(null);
 
-  
+  let lengthOfData;
   const initialCounter = 200;
   const [counter, setCounter] = useState(initialCounter);
-  const [interval, setInterval] = useState(1000); //This may need to come from a parent component...sets the amount of time corresponding to a day
+  const [interval, setInterval] = useState(2000); //This may need to come from a parent component...sets the amount of time corresponding to a day
 
 
 
 	//This will need to be selected by the user. and rn it causes a warning on the browser
-	const query = ['china', 'mexico' ,  "colombia", 'brazil',  "france", 'spain', 'morocco' ]
+	const query = ['china', 'mexico' ,  "colombia", 'brazil',  "france", 'spain', 'morocco', 'australia' ]
 
 	useEffect(() => {
 		if (countries) {
@@ -48,10 +49,21 @@ function DataComponent(props) {
 			}
 		}
   }, [countries]);
+
+  useEffect(() => {
+    if (timelineData.length !== 0) {
+      setDailyData(createDailyData(timelineData))
+    }
+  }, [timelineData])
+
+  useEffect(() => {
+    console.log("dailyData: ",dailyData)
+  }, [dailyData])
+
   
   useInterval(() => {
         if (play) {
-          const data = getNextDay(timelineData, counter)
+          const data = dailyData[counter]
           setCountryData(data);
           setDate(data[0].date)
           setCounter(oldCount => oldCount - 1)
@@ -61,9 +73,28 @@ function DataComponent(props) {
         }	
   }, play ? interval : null) 
   
-  useEffect(() => {
-    Tone.Transport.bpm.value = 60;
-  })
+  // const dataProcessing = () => {
+  //     console.log("Inside the dataProcessing function")
+  //     const data = dailyData[counter]
+  //     if (data) {
+  //       setCountryData(data);
+  //       setDate(data[0]['date'])
+  //     }
+  //     setCounter(oldCount => oldCount - 1)
+  //     if (counter === 1) {
+  //       setPlay(false)
+  //       Tone.Transport.stop()
+  //   }	
+  // }
+
+  // useEffect(() => {
+  //   Tone.Transport.bpm.value = 60;
+  //   if (timelineData && play)
+  //   Tone.Transport.scheduleRepeat(() => {
+  //     dataProcessing();
+      
+  //   }, "4n", '1m')
+  // }, [timelineData, play])
 
 
   const playButtonClick = () => {
