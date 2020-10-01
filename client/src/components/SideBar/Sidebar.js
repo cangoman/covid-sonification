@@ -187,7 +187,7 @@ function Sidebar(props) {
 			<Button variant='outline-danger' onClick={clearMapData}>
 				Clear Map
 			</Button>
-			<DataCard date={props.date} />
+			<DataCard date={props.date} countryData={props.countryData} />
 		</div>
 	);
 }
