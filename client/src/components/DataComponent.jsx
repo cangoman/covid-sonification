@@ -93,7 +93,7 @@ function DataComponent(props) {
 	return (
 		<Container className='app-container' fluid>
 			<Row>
-				<Col xl={10}>
+				<Col xl={9}>
 					<MapWrapper
 						countryData={countryData}
 						map={map}
@@ -101,7 +101,7 @@ function DataComponent(props) {
 						updateMap={updateMap}
 					/>
 				</Col>
-				<Col xl={2}>
+				<Col xl={3}>
 					<Sidebar
 						date={date}
 						countryData={countryData}
