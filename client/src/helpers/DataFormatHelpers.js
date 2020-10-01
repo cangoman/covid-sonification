@@ -1,3 +1,6 @@
+const moment = require('moment')
+
+
 function createTimelineData(countryInfo, data) {
   const countryObject = {
     countryInfo: {
@@ -21,21 +24,72 @@ function getDiffData(data) {
   data[data.length-1]["new_deaths"] = data[data.length-1].deaths;
   data[data.length-1]["new_recoveries"] = data[data.length-1].recovered;
 
+  for (let i = data.length; i < 365; i++) {
+    const zeroes = {
+      new_cases: 0,
+      new_deaths: 0,
+      new_recoveries: 0,
+      last_update: null
+    }
+    data[i] = zeroes;
+  }
+
   return data;
 }
 
 function getNextDay(data, counter) {
   return data.map( element => {
     return { 
-      date: element.data[counter].last_update.substr(0,10),
+      date: element.data[counter]['last_update'] !== undefined ? element.data[counter].last_update.substr(0,10) : null,
       countryInfo: {...element.countryInfo },
       data: element.data[counter]
     }
   })
 }
 
+function createDailyData(timelineData) {
+  const dailyData = [];
+  let day = moment();
+  const indices = [];
+  for (let i = 0; i < timelineData.length; i ++) {
+    indices.push(0);
+  }
+
+  for (let i = 0; i < 365; i++) { //hard coded value for now
+    const currentDay = [];
+    
+    for (let j = 0; j < timelineData.length; j++) {
+      if ( day.dayOfYear() === moment(timelineData[j].data[indices[j]].last_update).dayOfYear()) {
+        currentDay.push({
+          countryInfo: timelineData[j].countryInfo,
+          date: day.dayOfYear(),
+          data: timelineData[j].data[indices[j]]
+        })
+        indices[j]++;
+      } else {
+        currentDay.push({
+          countryInfo: timelineData[j].countryInfo,
+          date: day.dayOfYear(),
+          data: {
+            new_cases: 0,
+            new_deaths: 0,
+            new_recoveries: 0,
+            last_update: null
+          }
+        })
+      }
+    }
+    day = day.subtract(1, 'day')
+    dailyData.push(currentDay)
+  }
+  return dailyData;
+}
+
+
+
 module.exports = {
  createTimelineData,
- getNextDay
+ getNextDay,
+ createDailyData
 } 
   
