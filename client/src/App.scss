@@ -3,10 +3,13 @@
 	flex-direction: column;
 	align-items: stretch;
 	justify-content: center;
-	height: 100vh;
 	text-align: center;
 	box-sizing: border-box;
+}
+
+.App {
+	height: 100vh;
 	padding-top: 50px;
-	background: url('./assets/dark-bg-01.jpeg') no-repeat;
-	background-size: cover;
+	// background: url('./assets/dark-bg-01.jpeg') no-repeat;
+	// background-size: cover;
 }

@@ -1,5 +1,17 @@
+.sidebar {
+	color: white;
+	// max-height: 60vh;
+	overflow: scroll;
 
-.card {
-	margin-bottom: 1em;
-	margin-top: 2em;
+	&__top {
+		display: flex;
+		flex-direction: column;
+		margin-bottom: 1rem;
+
+		&-body {
+			display: flex;
+			align-items: center;
+			justify-content: space-evenly;
+		}
+	}
 }
