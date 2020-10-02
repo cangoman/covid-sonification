@@ -4,7 +4,7 @@ import * as Tone from 'tone';
 
 import DataCard from './DataCard';
 import StartAudioButton from './StartAudioButton';
-import DateInput from './DateInput'
+import DateInput from './DateInput';
 
 // import VolumeSlider from './VolumeSlider';
 
@@ -45,61 +45,60 @@ function Sidebar(props) {
 				},
 			]);
 		}
-	}, [])
+	}, []);
 
 	//plays the sounds and stuff
 	useEffect(() => {
 		if (synthGroup.length !== 0) {
 			//We can get the logic to get the notes and modify stuff out to another function
-			const note = ['D4', 'G2', 'B3', 'F#4', 'A5', 'D3', 'G4']
+			const note = ['D4', 'G2', 'B3', 'F#4', 'A5', 'D3', 'G4'];
 			for (let i = 0; i < synthGroup.length; i++) {
-			// update parameters
-			const new_deaths = props.countryData[i].data["new_deaths"]
-			if ( new_deaths < 20) {
-				synthGroup[i].delay.set({
-					delayTime: 0.75,
-					feedback: 0.2
-				})	
-			} else if ( new_deaths > 20 && new_deaths < 50 ) {
-				synthGroup[i].delay.set({
-					delayTime: 0.50,
-					feedback: 0.5
-				})
-			} else if (new_deaths > 50 && new_deaths < 100) {
-				synthGroup[i].delay.set({
-					delayTime: 0.25,
-					feedback: 0.6
-				})
-			}
+				// update parameters
+				const new_deaths = props.countryData[i].data['new_deaths'];
+				if (new_deaths < 20) {
+					synthGroup[i].delay.set({
+						delayTime: 0.75,
+						feedback: 0.2,
+					});
+				} else if (new_deaths > 20 && new_deaths < 50) {
+					synthGroup[i].delay.set({
+						delayTime: 0.5,
+						feedback: 0.5,
+					});
+				} else if (new_deaths > 50 && new_deaths < 100) {
+					synthGroup[i].delay.set({
+						delayTime: 0.25,
+						feedback: 0.6,
+					});
+				}
 
-			const new_cases = props.countryData[i].data["new_cases"]
-			if ( new_cases <= 500) {
-				synthGroup[i].volume.set({
-					volume: -20
-				})	
-			} else if ( new_cases > 500 && new_cases < 1500 ) {
-				synthGroup[i].volume.set({
-					volume: -16,
-					
-				})
-			} else if (new_cases > 1500 && new_cases < 3000) {
-				synthGroup[i].volume.set({
-					volume: -12
-				})
-			} else {
-				synthGroup[i].volume.set({
-					volume: -8
-				})
-			}
-			
-			if (new_deaths) {
-				synthGroup[i].synth.triggerAttackRelease(note[i], "16n")
-				console.log("playing a synth",  new_deaths)
+				const new_cases = props.countryData[i].data['new_cases'];
+				if (new_cases <= 500) {
+					synthGroup[i].volume.set({
+						volume: -20,
+					});
+				} else if (new_cases > 500 && new_cases < 1500) {
+					synthGroup[i].volume.set({
+						volume: -16,
+					});
+				} else if (new_cases > 1500 && new_cases < 3000) {
+					synthGroup[i].volume.set({
+						volume: -12,
+					});
+				} else {
+					synthGroup[i].volume.set({
+						volume: -8,
+					});
+				}
+
+				if (new_deaths) {
+					synthGroup[i].synth.triggerAttackRelease(note[i], '16n');
+					console.log('playing a synth', new_deaths);
+				}
 			}
 		}
-			}
-	}, [props.countryData])
-	
+	}, [props.countryData]);
+
 	const clearMapData = () => {
 		props.clearMapData();
 	};
@@ -108,14 +107,27 @@ function Sidebar(props) {
 	// 	console.log("sidebar, prop.dates: ", props.dates)
 	// }, [props.dates]);
 
-	const setStartDate = date => {
-		props.setDates(prev => ({ ...prev, startDate: date }) )
-	}
+	const setStartDate = (date) => {
+		props.setDates((prev) => ({ ...prev, startDate: date }));
+	};
 
-	const setEndDate = date => {
-		props.setDates(prev => ({ ...prev, endDate: date}))
-	}
+	const setEndDate = (date) => {
+		props.setDates((prev) => ({ ...prev, endDate: date }));
+	};
 
+	const displayCountryData = () => {
+		if (props.countryData) {
+			return props.countryData.map((item, i) => {
+				return (
+					<DataCard
+						key={i}
+						countryData={item.data}
+						countryInfo={item.countryInfo}
+					/>
+				);
+			});
+		}
+	};
 
 	return (
 		<div className='sidebar'>
@@ -133,19 +145,32 @@ function Sidebar(props) {
 						Clear Map
 					</Button>
 				</div>
-				<div className="date-ranges">
-					<DateInput name='Start Date' date={props.dates.startDate} setDate={setStartDate}/>
-					<DateInput name="End Date" date={props.dates.endDate} setDate={setEndDate}/>
+				<div className='date-ranges'>
+					<DateInput
+						name='Start Date'
+						date={props.dates.startDate}
+						setDate={setStartDate}
+					/>
+					<DateInput
+						name='End Date'
+						date={props.dates.endDate}
+						setDate={setEndDate}
+					/>
 				</div>
-				<div className="day-duration">
+				<div className='day-duration'>
 					<label for='day-duration'>Duration of day (in seconds)</label>
-					<input name="day-duration" type="number" max="5000" step='0.1' value={props.interval / 1000} onChange={e => props.setInterval(e.currentTarget.value * 1000)}/>
+					<input
+						name='day-duration'
+						type='number'
+						max='5000'
+						step='0.1'
+						value={props.interval / 1000}
+						onChange={(e) => props.setInterval(e.currentTarget.value * 1000)}
+					/>
 				</div>
 			</div>
 
-			<div className='sidebar-bottom'>
-				<DataCard date={props.date} countryData={props.countryData} />
-			</div>
+			<div className='sidebar__bottom'>{displayCountryData()}</div>
 		</div>
 	);
 }

@@ -3,9 +3,13 @@ import axios from 'axios';
 
 import Sidebar from './SideBar/Sidebar';
 import MapWrapper from './MapWrapper';
-import useInterval from '../hooks/useInterval'
-import { createTimelineData, createDailyData, today, getDateIndex } from '../helpers/DataFormatHelpers'
-
+import useInterval from '../hooks/useInterval';
+import {
+	createTimelineData,
+	createDailyData,
+	today,
+	getDateIndex,
+} from '../helpers/DataFormatHelpers';
 
 import WorldMap from '../d3/WorldMap';
 
@@ -22,16 +26,16 @@ function DataComponent(props) {
 	const [play, setPlay] = useState(false);
 	const [countryData, setCountryData] = useState([]);
 	const [dates, setDates] = useState({
-    startDate: "2020-01-22",
-    endDate: today()
-  });
+		startDate: '2020-01-22',
+		endDate: today(),
+	});
 
-  const [counters, setCounters] = useState({
-    start: null,
-    current: null,
-    end: null
-  })
-  //Duration of a day
+	const [counters, setCounters] = useState({
+		start: null,
+		current: null,
+		end: null,
+	});
+	//Duration of a day
 	const [interval, setInterval] = useState(2000);
 
 	// state for MapWrapper.js
@@ -80,34 +84,37 @@ function DataComponent(props) {
 	}, [timelineData]);
 
 	useEffect(() => {
-    const startIndex = getDateIndex(dates.startDate);
-    const endIndex = getDateIndex(dates.endDate)
-    setCounters(prev => ({current: startIndex, start: startIndex , end: endIndex }) )
-  }, [dates])
-  
+		const startIndex = getDateIndex(dates.startDate);
+		const endIndex = getDateIndex(dates.endDate);
+		setCounters((prev) => ({
+			current: startIndex,
+			start: startIndex,
+			end: endIndex,
+		}));
+	}, [dates]);
 
 	useInterval(
 		() => {
 			if (play) {
 				const data = dailyData[counters.current];
 				setCountryData(data);
-        advanceCounter()
+				advanceCounter();
 			}
 		},
 		play ? interval : null
-  );
-  
-  const advanceCounter = () => {
-    if (counters.start > counters.end) {
-      setCounters( prev => ({...prev, current: prev.current - 1}))
-    } else if (counters.start < counters.end) {
-      setCounters( prev => ({...prev, current: prev.current + 1}))
-    } 
+	);
 
-    if (counters.current === 0 || counters.current === counters.end) {
-      setPlay(false)
-    }
-  }
+	const advanceCounter = () => {
+		if (counters.start > counters.end) {
+			setCounters((prev) => ({ ...prev, current: prev.current - 1 }));
+		} else if (counters.start < counters.end) {
+			setCounters((prev) => ({ ...prev, current: prev.current + 1 }));
+		}
+
+		if (counters.current === 0 || counters.current === counters.end) {
+			setPlay(false);
+		}
+	};
 
 	// const dataProcessing = () => {
 	//     console.log("Inside the dataProcessing function")
@@ -132,15 +139,13 @@ function DataComponent(props) {
 	//   }, "4n", '1m')
 	// }, [timelineData, play])
 
-  
-
 	const playButtonClick = () => {
-		if (counters.current === 0 || !counters.current ) return;
+		if (counters.current === 0 || !counters.current) return;
 		setPlay((prev) => !prev);
 	};
 
 	const restartCounter = () => {
-		setCounters( prev => ({ ...prev, current: prev.start}));
+		setCounters((prev) => ({ ...prev, current: prev.start }));
 		setPlay(true);
 	};
 
@@ -173,11 +178,11 @@ function DataComponent(props) {
 					noSynths={query.length}
 					playButtonClick={playButtonClick}
 					restart={restartCounter}
-          clearMapData={clearMapData}
-          dates={dates}
-          setDates={setDates}
-          interval={interval}
-          setInterval={setInterval}
+					clearMapData={clearMapData}
+					dates={dates}
+					setDates={setDates}
+					interval={interval}
+					setInterval={setInterval}
 				/>
 			</div>
 		</div>

@@ -1,17 +1,27 @@
 .sidebar {
 	color: white;
-	// max-height: 60vh;
-	overflow: scroll;
+	height: 90%;
 
 	&__top {
 		display: flex;
 		flex-direction: column;
 		margin-bottom: 1rem;
 
+		&-title {
+			h1 {
+				font-size: 1.5rem;
+			}
+		}
+
 		&-body {
 			display: flex;
 			align-items: center;
 			justify-content: space-evenly;
 		}
+	}
+
+	&__bottom {
+		overflow: scroll;
+		height: 90%;
 	}
 }
