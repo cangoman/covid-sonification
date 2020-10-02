@@ -21,8 +21,8 @@ function DataComponent(props) {
 	const [play, setPlay] = useState(false);
 	const [countryData, setCountryData] = useState([]);
 	const [dates, setDates] = useState({
-    startDate: null,
-    endDate: null
+    startDate: "",
+    endDate: ""
   });
 
   const [counters, setCounters] = useState({
