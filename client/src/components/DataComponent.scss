@@ -1,0 +1,16 @@
+.data-component {
+	padding: 2rem;
+
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	position: relative;
+
+	&__left {
+		width: 80%;
+	}
+
+	&__right {
+		padding-left: 1rem;
+	}
+}
