@@ -97,6 +97,11 @@ function getDateIndices(dates) {
   })
   return dateIndices;
 }
+function getDateIndex(date) {
+  const today = moment();
+  const thisDate = moment(date);
+  return today.diff(thisDate, 'days');
+}
 
 
 
@@ -104,6 +109,7 @@ module.exports = {
  createTimelineData,
  getNextDay,
  createDailyData,
- getDateIndices
+ getDateIndices,
+ getDateIndex
 } 
   

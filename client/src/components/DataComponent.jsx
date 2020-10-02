@@ -4,12 +4,13 @@ import axios from 'axios';
 import Sidebar from './SideBar/Sidebar';
 import MapWrapper from './MapWrapper';
 import useInterval from '../hooks/useInterval'
-import { createTimelineData, createDailyData, getDateIndices } from '../helpers/DataFormatHelpers'
+import { createTimelineData, createDailyData, getDateIndices, getDateIndex } from '../helpers/DataFormatHelpers'
 
 
 import WorldMap from '../d3/WorldMap';
 
 import './DataComponent.scss';
+import { StateTimeline } from 'tone';
 
 const BASE_URL = 'https://covid19-api.org/api/timeline/';
 
@@ -19,10 +20,17 @@ function DataComponent(props) {
 	const [dailyData, setDailyData] = useState([]);
 	const [play, setPlay] = useState(false);
 	const [countryData, setCountryData] = useState([]);
-	const [date, setDate] = useState(null);
+	const [dates, setDates] = useState({
+    startDate: null,
+    endDate: null
+  });
 
-	const initialCounter = 250;
-	const [counter, setCounter] = useState(initialCounter);
+  const [counters, setCounters] = useState({
+    start: null,
+    current: null,
+    end: null
+  })
+
 	const [interval, setInterval] = useState(2000); //This may need to come from a parent component...sets the amount of time corresponding to a day
 
 	// state for MapWrapper.js
@@ -70,27 +78,41 @@ function DataComponent(props) {
 		}
 	}, [timelineData]);
 
-	// useEffect(() => {
-	//   console.log("dailyData: ",dailyData)
-	// }, [dailyData])
+	useEffect(() => {
+    const startIndex = getDateIndex(dates.startDate);
+    const endIndex = getDateIndex(dates.endDate)
+    setCounters(prev => ({current: startIndex, start: startIndex , end: endIndex }) )
+  }, [dates])
+  
+
 
 	useInterval(
 		() => {
 			if (play) {
-				const data = dailyData[counter];
-				// console.log("new data, daydata: ", daydata)
-				// const data = getNextDay(timelineData, counter)
-				// console.log("old data, from get next day", data)
+				const data = dailyData[counters.current];
 				setCountryData(data);
-				setDate(data[0].date);
-				setCounter((oldCount) => oldCount - 1);
-				if (counter === 1) {
-					setPlay(false);
-				}
+        advanceCounter()
+				// if (counter === 1) {
+				// 	setPlay(false);
+				// }
 			}
 		},
 		play ? interval : null
-	);
+  );
+  
+  const advanceCounter = () => {
+    if (counters.start > counters.end) {
+      setCounters( prev => ({...prev, current: prev.current - 1}))
+    } else if (counters.start < counters.end) {
+      setCounters( prev => ({...prev, current: prev.current + 1}))
+    } 
+    // else {
+    //   setPlay(false)
+    // }
+    if (counters.current === 0 || counters.current === counters.end) {
+      setPlay(false)
+    }
+  }
 
 	// const dataProcessing = () => {
 	//     console.log("Inside the dataProcessing function")
@@ -115,13 +137,15 @@ function DataComponent(props) {
 	//   }, "4n", '1m')
 	// }, [timelineData, play])
 
+  
+
 	const playButtonClick = () => {
-		if (counter === 0) return;
+		if (counters.current === 0 || !counters.current ) return;
 		setPlay((prev) => !prev);
 	};
 
 	const restartCounter = () => {
-		setCounter(initialCounter);
+		setCounters( prev => ({ ...prev, current: prev.start}));
 		setPlay(true);
 	};
 
@@ -150,12 +174,13 @@ function DataComponent(props) {
 			</div>
 			<div className='data-component__right'>
 				<Sidebar
-					date={date}
 					countryData={countryData}
 					noSynths={query.length}
 					playButtonClick={playButtonClick}
 					restart={restartCounter}
-					clearMapData={clearMapData}
+          clearMapData={clearMapData}
+          dates={dates}
+          setDates={setDates}
 				/>
 			</div>
 		</div>

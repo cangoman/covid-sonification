@@ -4,15 +4,17 @@ import * as Tone from 'tone';
 
 import DataCard from './DataCard';
 import StartAudioButton from './StartAudioButton';
+import DateInput from './DateInput'
+
 // import VolumeSlider from './VolumeSlider';
 
 import './SideBar.scss';
 
 function Sidebar(props) {
 	const [synthGroup, setSynthGroup] = useState([]);
-	const [sampler, setSampler] = useState();
+	// const [sampler, setSampler] = useState();
 
-	const delayTimes = [0.25, 0.4, 0.8, 0.33];
+	// const delayTimes = [0.25, 0.4, 0.8, 0.33];
 
 	//create my synths and effects
 	useEffect(() => {
@@ -101,6 +103,21 @@ function Sidebar(props) {
 	const clearMapData = () => {
 		props.clearMapData();
 	};
+
+	// useEffect(() => {
+	// 	console.log("sidebar, prop.dates: ", props.dates)
+	// }, [props.dates]);
+
+	const setStartDate = date => {
+		props.setDates(prev => ({ ...prev, startDate: date }) )
+	}
+
+	const setEndDate = date => {
+		props.setDates(prev => ({ ...prev, endDate: date}))
+	}
+
+
+
 	
 	return (
 		<div className='sidebar'>
@@ -117,6 +134,10 @@ function Sidebar(props) {
 					<Button variant='outline-danger' onClick={clearMapData}>
 						Clear Map
 					</Button>
+				</div>
+				<div className="date-ranges">
+					<DateInput date={props.dates.startDate} setDate={setStartDate}/>
+					<DateInput date={props.dates.endDate} setDate={setEndDate}/>
 				</div>
 			</div>
 

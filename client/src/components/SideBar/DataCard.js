@@ -5,7 +5,7 @@ import { Card } from 'react-bootstrap';
 import './DataCard.scss';
 
 function DataCard(props) {
-	console.log('countryData datacard.js:', props.countryData);
+	// console.log('countryData datacard.js:', props.countryData);
 
 	const displayCountryData = () => {
 		if (props.countryData) {
