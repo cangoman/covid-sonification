@@ -5,8 +5,8 @@ import axios from 'axios';
 import Sidebar from './SideBar/Sidebar';
 import MapWrapper from './MapWrapper';
 import useInterval from '../hooks/useInterval'
-import { createTimelineData, getNextDay, createDailyData } from '../helpers/DataFormatHelpers'
-import * as Tone from 'tone'
+import { createTimelineData, createDailyData } from '../helpers/DataFormatHelpers'
+
 
 import WorldMap from '../d3/WorldMap';
 
@@ -20,8 +20,8 @@ function DataComponent(props) {
   const [countryData, setCountryData] = useState([]);
   const [date, setDate] = useState(null);
 
-  let lengthOfData;
-  const initialCounter = 200;
+
+  const initialCounter = 250;
   const [counter, setCounter] = useState(initialCounter);
   const [interval, setInterval] = useState(2000); //This may need to come from a parent component...sets the amount of time corresponding to a day
 
@@ -30,7 +30,7 @@ function DataComponent(props) {
 
 
 	//This will need to be selected by the user. and rn it causes a warning on the browser
-	const query = ['china', 'mexico' ,  "colombia", 'brazil',  "france", 'spain', 'morocco', 'australia' ]
+	const query = ['china', 'mexico' ,  "united states of america", 'brazil',  "france", 'spain', 'morocco', 'australia' ]
 
 	useEffect(() => {
 		if (countries) {
@@ -63,14 +63,17 @@ function DataComponent(props) {
     }
   }, [timelineData])
 
-  useEffect(() => {
-    console.log("dailyData: ",dailyData)
-  }, [dailyData])
+  // useEffect(() => {
+  //   console.log("dailyData: ",dailyData)
+  // }, [dailyData])
 
   
   useInterval(() => {
         if (play) {
           const data = dailyData[counter]
+          // console.log("new data, daydata: ", daydata)
+          // const data = getNextDay(timelineData, counter)
+          // console.log("old data, from get next day", data)
           setCountryData(data);
           setDate(data[0].date)
           setCounter(oldCount => oldCount - 1)
@@ -140,7 +143,7 @@ function DataComponent(props) {
 				</Col>
 				<Col xl={3}>
 					<Sidebar
-						date={date}
+						// date={date}
 						countryData={countryData}
 						noSynths={query.length}
 						playButtonClick={playButtonClick}

@@ -9,6 +9,7 @@ import {
 	selectAll /*,  zoom, format, event */,
 } from 'd3';
 import { feature } from 'topojson';
+import * as moment  from 'moment'
 
 const HEIGHT = 500;
 const WIDTH = 960;
@@ -72,6 +73,15 @@ export default class WorldMap {
 				.text((d) => countryName[d.id]);
 		});
 
+		vis.circles = select('.map-vis')
+			.append('g')
+			.attr('class', 'map-circles');
+
+		vis.legend = select('.map-vis')
+			.append('g')
+			.attr('class', 'map-legend')
+			.append('text');
+
 		this.update([]);
 	}
 
@@ -79,13 +89,12 @@ export default class WorldMap {
 	update(data) {
 		//this is just here for debugging
 		//  console.log("in update function. data: ", data)
-
-		let vis = this;
+		let vis = this; // getting a reference to the current component
 
 		selectAll('circle').remove();
 		//select the map visualization element and append a group for our data points at the end
 		//important step... renders last items on top, so if you dont have a group appended at the end, points will be under the map
-		vis.circles = select('.map-vis').append('g');
+		
 
 		//This is to figure out the radius of the circles based on # of cases. Need to figure out how data is going to be coming in
 		const radiusValue = (d) => d.data.deaths || 0;
@@ -105,11 +114,27 @@ export default class WorldMap {
 					`translate(${PROJECTION([d.countryInfo.long, d.countryInfo.lat])})`
 			) // projection takes an array [longitude, latitude]
 			.transition()
-			.duration([1500])
+			.duration([1500]) // THIS VALUE WILL HAVE TO BE REPLACED BY SOMETHING RELATIVE TO THE TEMPO/DURATION OF THE DAY IN SECODS
 			.attr('r', (d) => sizeScale(radiusValue(d)))
 			.attr('fill', '#ed0000')
 			.attr('stroke', 'red')
 			.attr('opacity', 0.4);
+
+			
+
+
+		const date = data[0] ? data[0].date : null;
+		// console.log(formatDate.format("MMM Do YY"))
+		
+		vis.legend.select('text').remove();
+		if (date) {
+			vis.legend
+					.text( (moment().dayOfYear(date)).format("MMM Do YYYY") )
+					.attr('x', 75)
+					.attr('y', 420)
+					.style('fill', 'white')
+					.style('font-size', 30)
+		}
 	}
 
 	clearMap() {

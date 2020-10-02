@@ -92,7 +92,7 @@ function Sidebar(props) {
 			
 			if (new_deaths) {
 				synthGroup[i].synth.triggerAttackRelease(note[i], "16n")
-				// console.log("playing a synth",  new_deaths)
+				console.log("playing a synth",  new_deaths)
 			}
 		}
 			}

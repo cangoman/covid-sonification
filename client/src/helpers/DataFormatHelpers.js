@@ -47,9 +47,10 @@ function getNextDay(data, counter) {
   })
 }
 
+
 function createDailyData(timelineData) {
   const dailyData = [];
-  let day = moment();
+  let day = moment.utc();
   const indices = [];
   for (let i = 0; i < timelineData.length; i ++) {
     indices.push(0);
