@@ -3,9 +3,12 @@ import axios from 'axios';
 
 import Sidebar from './SideBar/Sidebar';
 import MapWrapper from './MapWrapper';
-import useInterval from '../hooks/useInterval'
-import { createTimelineData, createDailyData, getDateIndices } from '../helpers/DataFormatHelpers'
-
+import useInterval from '../hooks/useInterval';
+import {
+	createTimelineData,
+	createDailyData,
+	getDateIndices,
+} from '../helpers/DataFormatHelpers';
 
 import WorldMap from '../d3/WorldMap';
 
@@ -21,7 +24,7 @@ function DataComponent(props) {
 	const [countryData, setCountryData] = useState([]);
 	const [date, setDate] = useState(null);
 
-	const initialCounter = 250;
+	const initialCounter = 100;
 	const [counter, setCounter] = useState(initialCounter);
 	const [interval, setInterval] = useState(2000); //This may need to come from a parent component...sets the amount of time corresponding to a day
 

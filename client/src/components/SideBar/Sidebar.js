@@ -43,65 +43,78 @@ function Sidebar(props) {
 				},
 			]);
 		}
-	}, [])
+	}, []);
 
 	//plays the sounds and stuff
 	useEffect(() => {
 		if (synthGroup.length !== 0) {
 			//We can get the logic to get the notes and modify stuff out to another function
-			const note = ['D4', 'G2', 'B3', 'F#4', 'A5', 'D3', 'G4']
+			const note = ['D4', 'G2', 'B3', 'F#4', 'A5', 'D3', 'G4'];
 			for (let i = 0; i < synthGroup.length; i++) {
-			// update parameters
-			const new_deaths = props.countryData[i].data["new_deaths"]
-			if ( new_deaths < 20) {
-				synthGroup[i].delay.set({
-					delayTime: 0.75,
-					feedback: 0.2
-				})	
-			} else if ( new_deaths > 20 && new_deaths < 50 ) {
-				synthGroup[i].delay.set({
-					delayTime: 0.50,
-					feedback: 0.5
-				})
-			} else if (new_deaths > 50 && new_deaths < 100) {
-				synthGroup[i].delay.set({
-					delayTime: 0.25,
-					feedback: 0.6
-				})
-			}
+				// update parameters
+				const new_deaths = props.countryData[i].data['new_deaths'];
+				if (new_deaths < 20) {
+					synthGroup[i].delay.set({
+						delayTime: 0.75,
+						feedback: 0.2,
+					});
+				} else if (new_deaths > 20 && new_deaths < 50) {
+					synthGroup[i].delay.set({
+						delayTime: 0.5,
+						feedback: 0.5,
+					});
+				} else if (new_deaths > 50 && new_deaths < 100) {
+					synthGroup[i].delay.set({
+						delayTime: 0.25,
+						feedback: 0.6,
+					});
+				}
 
-			const new_cases = props.countryData[i].data["new_cases"]
-			if ( new_cases <= 500) {
-				synthGroup[i].volume.set({
-					volume: -20
-				})	
-			} else if ( new_cases > 500 && new_cases < 1500 ) {
-				synthGroup[i].volume.set({
-					volume: -16,
-					
-				})
-			} else if (new_cases > 1500 && new_cases < 3000) {
-				synthGroup[i].volume.set({
-					volume: -12
-				})
-			} else {
-				synthGroup[i].volume.set({
-					volume: -8
-				})
-			}
-			
-			if (new_deaths) {
-				synthGroup[i].synth.triggerAttackRelease(note[i], "16n")
-				console.log("playing a synth",  new_deaths)
+				const new_cases = props.countryData[i].data['new_cases'];
+				if (new_cases <= 500) {
+					synthGroup[i].volume.set({
+						volume: -20,
+					});
+				} else if (new_cases > 500 && new_cases < 1500) {
+					synthGroup[i].volume.set({
+						volume: -16,
+					});
+				} else if (new_cases > 1500 && new_cases < 3000) {
+					synthGroup[i].volume.set({
+						volume: -12,
+					});
+				} else {
+					synthGroup[i].volume.set({
+						volume: -8,
+					});
+				}
+
+				if (new_deaths) {
+					synthGroup[i].synth.triggerAttackRelease(note[i], '16n');
+					console.log('playing a synth', new_deaths);
+				}
 			}
 		}
-			}
-	}, [props.countryData])
-	
+	}, [props.countryData]);
+
 	const clearMapData = () => {
 		props.clearMapData();
 	};
-	
+
+	const displayCountryData = () => {
+		if (props.countryData) {
+			return props.countryData.map((item, i) => {
+				return (
+					<DataCard
+						key={i}
+						countryData={item.data}
+						countryInfo={item.countryInfo}
+					/>
+				);
+			});
+		}
+	};
+
 	return (
 		<div className='sidebar'>
 			<div className='sidebar__top'>
@@ -120,9 +133,7 @@ function Sidebar(props) {
 				</div>
 			</div>
 
-			<div className='sidebar-bottom'>
-				<DataCard date={props.date} countryData={props.countryData} />
-			</div>
+			<div className='sidebar__bottom'>{displayCountryData()}</div>
 		</div>
 	);
 }
