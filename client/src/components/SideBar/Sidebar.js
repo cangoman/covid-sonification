@@ -117,8 +117,6 @@ function Sidebar(props) {
 	}
 
 
-
-	
 	return (
 		<div className='sidebar'>
 			<div className='sidebar__top'>
@@ -136,8 +134,12 @@ function Sidebar(props) {
 					</Button>
 				</div>
 				<div className="date-ranges">
-					<DateInput date={props.dates.startDate} setDate={setStartDate}/>
-					<DateInput date={props.dates.endDate} setDate={setEndDate}/>
+					<DateInput name='Start Date' date={props.dates.startDate} setDate={setStartDate}/>
+					<DateInput name="End Date" date={props.dates.endDate} setDate={setEndDate}/>
+				</div>
+				<div className="day-duration">
+					<label for='day-duration'>Duration of day (in seconds)</label>
+					<input name="day-duration" type="number" max="5000" step='0.1' value={props.interval / 1000} onChange={e => props.setInterval(e.currentTarget.value * 1000)}/>
 				</div>
 			</div>
 

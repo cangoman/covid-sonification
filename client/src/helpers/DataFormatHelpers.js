@@ -38,15 +38,15 @@ function getDiffData(data) {
   return data;
 }
 
-function getNextDay(data, counter) {
-  return data.map( element => {
-    return { 
-      date: element.data[counter]['last_update'] !== undefined ? element.data[counter].last_update.substr(0,10) : null,
-      countryInfo: {...element.countryInfo },
-      data: element.data[counter]
-    }
-  })
-}
+// function getNextDay(data, counter) {
+//   return data.map( element => {
+//     return { 
+//       date: element.data[counter]['last_update'] !== undefined ? element.data[counter].last_update.substr(0,10) : null,
+//       countryInfo: {...element.countryInfo },
+//       data: element.data[counter]
+//     }
+//   })
+// }
 
 
 function createDailyData(timelineData) {
@@ -103,13 +103,16 @@ function getDateIndex(date) {
   return today.diff(thisDate, 'days');
 }
 
+function today() {
+  return moment().format('YYYY-MM-DD')
+}
+
 
 
 module.exports = {
  createTimelineData,
- getNextDay,
  createDailyData,
- getDateIndices,
+ today,
  getDateIndex
 } 
   

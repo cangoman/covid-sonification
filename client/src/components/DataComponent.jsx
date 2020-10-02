@@ -4,13 +4,14 @@ import axios from 'axios';
 import Sidebar from './SideBar/Sidebar';
 import MapWrapper from './MapWrapper';
 import useInterval from '../hooks/useInterval'
-import { createTimelineData, createDailyData, getDateIndices, getDateIndex } from '../helpers/DataFormatHelpers'
+import { createTimelineData, createDailyData, today, getDateIndex } from '../helpers/DataFormatHelpers'
 
 
 import WorldMap from '../d3/WorldMap';
 
 import './DataComponent.scss';
 import { StateTimeline } from 'tone';
+import { ToastBody } from 'react-bootstrap';
 
 const BASE_URL = 'https://covid19-api.org/api/timeline/';
 
@@ -21,8 +22,8 @@ function DataComponent(props) {
 	const [play, setPlay] = useState(false);
 	const [countryData, setCountryData] = useState([]);
 	const [dates, setDates] = useState({
-    startDate: "",
-    endDate: ""
+    startDate: "2020-01-22",
+    endDate: today()
   });
 
   const [counters, setCounters] = useState({
@@ -30,8 +31,8 @@ function DataComponent(props) {
     current: null,
     end: null
   })
-
-	const [interval, setInterval] = useState(2000); //This may need to come from a parent component...sets the amount of time corresponding to a day
+  //Duration of a day
+	const [interval, setInterval] = useState(2000);
 
 	// state for MapWrapper.js
 	const [map, setMap] = useState(null);
@@ -85,16 +86,12 @@ function DataComponent(props) {
   }, [dates])
   
 
-
 	useInterval(
 		() => {
 			if (play) {
 				const data = dailyData[counters.current];
 				setCountryData(data);
         advanceCounter()
-				// if (counter === 1) {
-				// 	setPlay(false);
-				// }
 			}
 		},
 		play ? interval : null
@@ -106,9 +103,7 @@ function DataComponent(props) {
     } else if (counters.start < counters.end) {
       setCounters( prev => ({...prev, current: prev.current + 1}))
     } 
-    // else {
-    //   setPlay(false)
-    // }
+
     if (counters.current === 0 || counters.current === counters.end) {
       setPlay(false)
     }
@@ -155,7 +150,7 @@ function DataComponent(props) {
 	};
 
 	const updateMap = () => {
-		map.update(countryData);
+		map.update(countryData, interval);
 	};
 
 	const clearMapData = () => {
@@ -181,6 +176,8 @@ function DataComponent(props) {
           clearMapData={clearMapData}
           dates={dates}
           setDates={setDates}
+          interval={interval}
+          setInterval={setInterval}
 				/>
 			</div>
 		</div>

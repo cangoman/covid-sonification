@@ -82,11 +82,11 @@ export default class WorldMap {
 			.attr('class', 'map-legend')
 			.append('text');
 
-		this.update([]);
+		this.update([], null);
 	}
 
 	//We could potentially modularize this code, add another module that handles the update of data
-	update(data) {
+	update(data, interval) {
 		//this is just here for debugging
 		//  console.log("in update function. data: ", data)
 		let vis = this; // getting a reference to the current component
@@ -114,7 +114,7 @@ export default class WorldMap {
 					`translate(${PROJECTION([d.countryInfo.long, d.countryInfo.lat])})`
 			) // projection takes an array [longitude, latitude]
 			.transition()
-			.duration([1500]) // THIS VALUE WILL HAVE TO BE REPLACED BY SOMETHING RELATIVE TO THE TEMPO/DURATION OF THE DAY IN SECODS
+			.duration([2*interval/3])
 			.attr('r', (d) => sizeScale(radiusValue(d)))
 			.attr('fill', '#ed0000')
 			.attr('stroke', 'red')
@@ -126,14 +126,15 @@ export default class WorldMap {
 		const date = data[0] ? data[0].date : null;
 		// console.log(formatDate.format("MMM Do YY"))
 		
-		vis.legend.select('text').remove();
+		//vis.legend.select('text').remove();
 		if (date) {
 			vis.legend
-					.text( (moment().dayOfYear(date)).format("MMM Do YYYY") )
-					.attr('x', 75)
-					.attr('y', 420)
-					.style('fill', 'white')
-					.style('font-size', 30)
+				.attr('x', 75)
+				.attr('y', 420)
+				.style('fill', 'white')
+				.style('font-size', 30)
+				.transition()
+				.text( (moment().dayOfYear(date)).format("MMM Do YYYY") )
 		}
 	}
 
