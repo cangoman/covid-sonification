@@ -4,6 +4,7 @@ const moment = require('moment')
 function createTimelineData(countryInfo, data) {
   const countryObject = {
     countryInfo: {
+      name: countryInfo.name,
       lat: countryInfo.latlng[0],
       long: countryInfo.latlng[1]
     },
@@ -60,7 +61,9 @@ function createDailyData(timelineData) {
     const currentDay = [];
     
     for (let j = 0; j < timelineData.length; j++) {
-      if ( day.dayOfYear() === moment(timelineData[j].data[indices[j]].last_update).dayOfYear()) {
+
+      const datumDay = moment(timelineData[j].data[indices[j]].last_update)
+      if ( day.dayOfYear() === datumDay.dayOfYear() && day.year() === datumDay.year() ) {
         currentDay.push({
           countryInfo: timelineData[j].countryInfo,
           date: day.dayOfYear(),
@@ -86,11 +89,21 @@ function createDailyData(timelineData) {
   return dailyData;
 }
 
+function getDateIndices(dates) {
+  const today = moment();
+  const dateIndices = dates.map( date => {
+    const thisDate = moment(date);
+    return today.diff(thisDate, 'days')
+  })
+  return dateIndices;
+}
+
 
 
 module.exports = {
  createTimelineData,
  getNextDay,
- createDailyData
+ createDailyData,
+ getDateIndices
 } 
   

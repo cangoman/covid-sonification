@@ -5,7 +5,7 @@ import axios from 'axios';
 import Sidebar from './SideBar/Sidebar';
 import MapWrapper from './MapWrapper';
 import useInterval from '../hooks/useInterval'
-import { createTimelineData, createDailyData } from '../helpers/DataFormatHelpers'
+import { createTimelineData, createDailyData, getDateIndices } from '../helpers/DataFormatHelpers'
 
 
 import WorldMap from '../d3/WorldMap';
@@ -63,9 +63,12 @@ function DataComponent(props) {
     }
   }, [timelineData])
 
-  // useEffect(() => {
-  //   console.log("dailyData: ",dailyData)
-  // }, [dailyData])
+  useEffect(() => {
+    console.log("dailyData: ",dailyData)
+    const indices = getDateIndices(['2020-06-05', '2020-06-17'])
+    console.log("Does this correspont to june 5 and june 17?: ", dailyData[indices[0]], dailyData[indices[1]])
+
+  }, [dailyData])
 
   
   useInterval(() => {
