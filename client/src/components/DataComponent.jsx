@@ -10,6 +10,8 @@ import * as Tone from 'tone';
 
 import WorldMap from '../d3/WorldMap';
 
+import './DataComponent.scss';
+
 const BASE_URL = 'https://covid19-api.org/api/timeline/';
 
 function DataComponent(props) {
@@ -100,28 +102,26 @@ function DataComponent(props) {
 	};
 
 	return (
-		<Container className='app-container' fluid>
-			<Row>
-				<Col xl={9}>
-					<MapWrapper
-						countryData={countryData}
-						map={map}
-						setNewMap={setNewMap}
-						updateMap={updateMap}
-					/>
-				</Col>
-				<Col xl={3}>
-					<Sidebar
-						date={date}
-						countryData={countryData}
-						noSynths={query.length}
-						playButtonClick={playButtonClick}
-						restart={restartCounter}
-						clearMapData={clearMapData}
-					/>
-				</Col>
-			</Row>
-		</Container>
+		<div className='data-component'>
+			<div className='data-component__left'>
+				<MapWrapper
+					countryData={countryData}
+					map={map}
+					setNewMap={setNewMap}
+					updateMap={updateMap}
+				/>
+			</div>
+			<div className='data-component__right'>
+				<Sidebar
+					date={date}
+					countryData={countryData}
+					noSynths={query.length}
+					playButtonClick={playButtonClick}
+					restart={restartCounter}
+					clearMapData={clearMapData}
+				/>
+			</div>
+		</div>
 	);
 }
 

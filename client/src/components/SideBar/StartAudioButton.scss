@@ -4,7 +4,7 @@
 	.play-icon,
 	.pause-icon {
 		border: none;
-		// box-shadow: 10px 10px 22px -8px rgb(255, 255, 255);
+		display: inline;
 
 		&:hover {
 			cursor: pointer;

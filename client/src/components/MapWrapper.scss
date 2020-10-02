@@ -1,10 +1,12 @@
-svg {
-	border: solid 1px lightgrey;
-	border-radius: 15px;
-}
+.map-container {
+	svg {
+		border: solid 1px lightgrey;
+		border-radius: 15px;
+	}
 
-svg .country:hover {
-	stroke: black;
-	stroke-width: 1px;
-	cursor: pointer;
+	svg .country:hover {
+		stroke: black;
+		stroke-width: 1px;
+		cursor: pointer;
+	}
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Row, Navbar } from 'react-bootstrap';
 import * as Tone from 'tone';
 
 import DataCard from './DataCard';
@@ -179,15 +179,25 @@ function Sidebar(props) {
 
 	return (
 		<div className='sidebar'>
-			<h1>Sonification Menu</h1>
-			<StartAudioButton setPlay={props.playButtonClick} />
-			<Button variant='outline-light' onClick={props.restart}>
-				Restart
-			</Button>
-			<Button variant='outline-danger' onClick={clearMapData}>
-				Clear Map
-			</Button>
-			<DataCard date={props.date} countryData={props.countryData} />
+			<div className='sidebar__top'>
+				<div className='sidebar__top-title'>
+					<h1>Sonification Menu</h1>
+				</div>
+
+				<div className='sidebar__top-body'>
+					<StartAudioButton setPlay={props.playButtonClick} />
+					<Button variant='outline-light' onClick={props.restart}>
+						Restart
+					</Button>
+					<Button variant='outline-danger' onClick={clearMapData}>
+						Clear Map
+					</Button>
+				</div>
+			</div>
+
+			<div className='sidebar-bottom'>
+				<DataCard date={props.date} countryData={props.countryData} />
+			</div>
 		</div>
 	);
 }
