@@ -19,6 +19,8 @@ function Sidebar(props) {
 
 	//create my synths and effects
 	useEffect(() => {
+		setSynthGroup([]);
+		console.log('synthcreation. no. of synths: ', props.noSynths)
 		for (let i = 0; i < props.noSynths; i++) {
 			const synth = new Tone.Synth();
 			const delay = new Tone.FeedbackDelay({
@@ -46,7 +48,7 @@ function Sidebar(props) {
 				},
 			]);
 		}
-	}, []);
+	}, [props.noSynths]);
 
 	//plays the sounds and stuff
 	useEffect(() => {
@@ -93,7 +95,7 @@ function Sidebar(props) {
 				}
 
 				if (new_deaths) {
-					synthGroup[i].synth.triggerAttackRelease(note[i], '16n');
+					synthGroup[i].synth.triggerAttackRelease(note[i % note.length], '16n');
 					console.log('playing a synth', new_deaths);
 				}
 			}
@@ -150,6 +152,7 @@ function Sidebar(props) {
 					countries={props.allCountries} 
 					selected={props.countriesSelected}
 					setSelected={props.setCountriesSelected}
+					setQuery={props.setQuery}
 				/>
 				<div className='date-ranges'>
 					<DateInput

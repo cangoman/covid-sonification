@@ -15,7 +15,6 @@ function CountrySelector(props) {
     })
   })
 
-  // const [selected, setSelected] = useState([]);
 
   return (
     <div className="country-selector">
@@ -26,8 +25,18 @@ function CountrySelector(props) {
         onChange={props.setSelected}
         labelledBy={"Select Countries"}
         />
-      <Button variant="outline-light">Clear Selection</Button>
-      <Button variant="outline-light">Confirm Selection</Button>
+      <Button 
+        variant="outline-light"
+        onClick={() => props.setSelected([])}
+      >
+        Clear Selection
+      </Button>
+      <Button 
+        variant="outline-light"
+        onClick={() => { props.setQuery(props.selected.map( country => country.label))}}
+      >
+        Confirm Selection
+      </Button>
     </div>
   )
 }

@@ -30,6 +30,7 @@ function DataComponent(props) {
 		endDate: today(),
 	});
  const [countriesSelected, setCountriesSelected] = useState([]);
+ const [query, setQuery] = useState(['united states of america', 'canada', 'colombia', 'china']);
 
 
 	const [counters, setCounters] = useState({
@@ -43,19 +44,9 @@ function DataComponent(props) {
 	// state for MapWrapper.js
 	const [map, setMap] = useState(null);
 
-	//This will need to be selected by the user. and rn it causes a warning on the browser
-	const query = [
-		'china',
-		'mexico',
-		'united states of america',
-		'brazil',
-		'france',
-		'spain',
-		'morocco',
-		'australia',
-	];
 
 	useEffect(() => {
+		setTimelineData([])
 		if (countries) {
 			for (const country of query) {
 				const regexp = new RegExp(country, 'i');
@@ -104,6 +95,14 @@ function DataComponent(props) {
 		},
 		play ? interval : null
 	);
+
+
+useEffect(() => {
+	console.log('timeline data: ', timelineData)
+	console.log('dailyData: ', dailyData)
+	console.log('query: ', query)
+	console.log('countryData: ', countryData)
+}, [timelineData, countryData, query, dailyData])
 
 	const advanceCounter = () => {
 		if (counters.start > counters.end) {
@@ -187,6 +186,7 @@ function DataComponent(props) {
 					setInterval={setInterval}
 					countriesSelected={countriesSelected}
 					setCountriesSelected={setCountriesSelected}
+					setQuery={setQuery}
 				/>
 			</div>
 		</div>
