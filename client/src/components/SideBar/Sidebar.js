@@ -8,11 +8,8 @@ import RestartAudioButton from './RestartAudioButton';
 import ClearButton from './ClearButton';
 
 import DateInput from './DateInput';
-<<<<<<< HEAD
-import CountrySelector from './CountrySelector'
-=======
+import CountrySelector from './CountrySelector';
 import DayIntervalInput from './DayIntervalInput';
->>>>>>> feature/data-card
 
 // import VolumeSlider from './VolumeSlider';
 
@@ -27,7 +24,7 @@ function Sidebar(props) {
 	//create my synths and effects
 	useEffect(() => {
 		setSynthGroup([]);
-		console.log('synthcreation. no. of synths: ', props.noSynths)
+		console.log('synthcreation. no. of synths: ', props.noSynths);
 		for (let i = 0; i < props.noSynths; i++) {
 			const synth = new Tone.Synth();
 			const delay = new Tone.FeedbackDelay({
@@ -102,7 +99,10 @@ function Sidebar(props) {
 				}
 
 				if (new_deaths) {
-					synthGroup[i].synth.triggerAttackRelease(note[i % note.length], '16n');
+					synthGroup[i].synth.triggerAttackRelease(
+						note[i % note.length],
+						'16n'
+					);
 					console.log('playing a synth', new_deaths);
 				}
 			}
@@ -145,63 +145,41 @@ function Sidebar(props) {
 				<div className='sidebar__top--title'>
 					<h1>Sonification Menu</h1>
 				</div>
-<<<<<<< HEAD
 
 				<div className='sidebar__top-body'>
-					<StartAudioButton setPlay={props.playButtonClick} />
-					<Button variant='outline-light' onClick={props.restart}>
-						Restart
-					</Button>
-					<Button variant='outline-danger' onClick={clearMapData}>
-						Clear Map
-					</Button>
-				</div>
-				<CountrySelector 
-					countries={props.allCountries} 
-					selected={props.countriesSelected}
-					setSelected={props.setCountriesSelected}
-					setQuery={props.setQuery}
-				/>
-				<div className='date-ranges'>
-=======
-				<div className='sidebar__top--calendar'>
->>>>>>> feature/data-card
-					<DateInput
-						name='Start'
-						date={props.dates.startDate}
-						setDate={setStartDate}
+					<div className='sidebar__top--calendar'>
+						<DateInput
+							name='Start'
+							date={props.dates.startDate}
+							setDate={setStartDate}
+						/>
+						<DateInput
+							name='End'
+							date={props.dates.endDate}
+							setDate={setEndDate}
+						/>
+					</div>
+					<div className='sidebar__top--day-duration'>
+						<DayIntervalInput
+							setInterval={props.setInterval}
+							interval={props.interval}
+						/>
+					</div>
+					<CountrySelector
+						countries={props.allCountries}
+						selected={props.countriesSelected}
+						setSelected={props.setCountriesSelected}
+						setQuery={props.setQuery}
 					/>
-					<DateInput
-						name='End'
-						date={props.dates.endDate}
-						setDate={setEndDate}
-					/>
+					<div className='sidebar__top--button-controls'>
+						<RestartAudioButton restart={props.restart} />
+						<StartAudioButton setPlay={props.playButtonClick} />
+						<ClearButton onClick={clearMapData} />
+					</div>
 				</div>
-<<<<<<< HEAD
-				<div className='day-duration'>
-					<label htmlFor='day-duration'>Duration of day (in seconds)</label>
-					<input
-						name='day-duration'
-						type='number'
-						max='5000'
-						step='0.1'
-						value={props.interval / 1000}
-						onChange={(e) => props.setInterval(e.currentTarget.value * 1000)}
-=======
-				<div className='sidebar__top--day-duration'>
-					<DayIntervalInput
-						setInterval={props.setInterval}
-						interval={props.interval}
->>>>>>> feature/data-card
-					/>
-				</div>
-				<div className='sidebar__top--button-controls'>
-					<RestartAudioButton restart={props.restart} />
-					<StartAudioButton setPlay={props.playButtonClick} />
-					<ClearButton onClick={clearMapData} />
-				</div>
+
+				<div className='sidebar__bottom'>{displayCountryData()}</div>
 			</div>
-			<div className='sidebar__bottom'>{displayCountryData()}</div>
 		</div>
 	);
 }
