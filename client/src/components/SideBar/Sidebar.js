@@ -132,11 +132,40 @@ function Sidebar(props) {
 	return (
 		<div className='sidebar'>
 			<div className='sidebar__top'>
-				<div className='sidebar__top-title'>
+				<div className='sidebar__top--title'>
 					<h1>Sonification Menu</h1>
 				</div>
 
-				<div className='sidebar__top-body'>
+				<div className='sidebar__top--calendar'>
+					<DateInput
+						name='Start'
+						date={props.dates.startDate}
+						setDate={setStartDate}
+					/>
+					<DateInput
+						name='End'
+						date={props.dates.endDate}
+						setDate={setEndDate}
+					/>
+				</div>
+				<div className='sidebar__top--day-duration'>
+					<div className='sidebar__top--day-duration-left'>
+						<label for='day-duration'>Day interval</label>
+					</div>
+					<div className='sidebar__top--day-duration-right'>
+						<input
+							name='day-duration'
+							type='number'
+							max='5000'
+							step='0.1'
+							value={props.interval / 1000}
+							placeholder='seconds'
+							onChange={(e) => props.setInterval(e.currentTarget.value * 1000)}
+						/>
+					</div>
+				</div>
+
+				<div className='sidebar__top--button-controls'>
 					<StartAudioButton setPlay={props.playButtonClick} />
 					<Button variant='outline-light' onClick={props.restart}>
 						Restart
@@ -144,29 +173,6 @@ function Sidebar(props) {
 					<Button variant='outline-danger' onClick={clearMapData}>
 						Clear Map
 					</Button>
-				</div>
-				<div className='date-ranges'>
-					<DateInput
-						name='Start Date'
-						date={props.dates.startDate}
-						setDate={setStartDate}
-					/>
-					<DateInput
-						name='End Date'
-						date={props.dates.endDate}
-						setDate={setEndDate}
-					/>
-				</div>
-				<div className='day-duration'>
-					<label for='day-duration'>Duration of day (in seconds)</label>
-					<input
-						name='day-duration'
-						type='number'
-						max='5000'
-						step='0.1'
-						value={props.interval / 1000}
-						onChange={(e) => props.setInterval(e.currentTarget.value * 1000)}
-					/>
 				</div>
 			</div>
 
