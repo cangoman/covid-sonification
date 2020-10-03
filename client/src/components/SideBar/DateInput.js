@@ -7,7 +7,7 @@ function DateInput(props) {
   const dayLimit = moment(today).format("YYYY-MM-DD")
   return (
     <>
-      <label for ={props.name}>{props.name}</label>
+      <label htmlFor={props.name}>{props.name}</label>
       <input name={props.name} type="date" value={props.date} onChange={e => props.setDate(e.currentTarget.value)} min={'2020-01-20'} max={dayLimit}></input>
     </>
   )

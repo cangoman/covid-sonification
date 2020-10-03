@@ -5,8 +5,8 @@ function createTimelineData(countryInfo, data) {
   const countryObject = {
     countryInfo: {
       name: countryInfo.name,
-      lat: countryInfo.latlng[0],
-      long: countryInfo.latlng[1]
+      lat: countryInfo.latitude,
+      long: countryInfo.longitude
     },
     data: getDiffData(data)
   }
@@ -38,15 +38,15 @@ function getDiffData(data) {
   return data;
 }
 
-// function getNextDay(data, counter) {
-//   return data.map( element => {
-//     return { 
-//       date: element.data[counter]['last_update'] !== undefined ? element.data[counter].last_update.substr(0,10) : null,
-//       countryInfo: {...element.countryInfo },
-//       data: element.data[counter]
-//     }
-//   })
-// }
+function getNextDay(data, counter) {
+  return data.map( element => {
+    return { 
+      date: element.data[counter]['last_update'] !== undefined ? element.data[counter].last_update.substr(0,10) : null,
+      countryInfo: {...element.countryInfo },
+      data: element.data[counter]
+    }
+  })
+}
 
 
 function createDailyData(timelineData) {
@@ -111,6 +111,7 @@ function today() {
 
 module.exports = {
  createTimelineData,
+ getNextDay,
  createDailyData,
  today,
  getDateIndex

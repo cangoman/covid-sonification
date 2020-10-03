@@ -5,6 +5,7 @@ import * as Tone from 'tone';
 import DataCard from './DataCard';
 import StartAudioButton from './StartAudioButton';
 import DateInput from './DateInput';
+import CountrySelector from './CountrySelector'
 
 // import VolumeSlider from './VolumeSlider';
 
@@ -145,6 +146,11 @@ function Sidebar(props) {
 						Clear Map
 					</Button>
 				</div>
+				<CountrySelector 
+					countries={props.allCountries} 
+					selected={props.countriesSelected}
+					setSelected={props.setCountriesSelected}
+				/>
 				<div className='date-ranges'>
 					<DateInput
 						name='Start Date'
@@ -158,7 +164,7 @@ function Sidebar(props) {
 					/>
 				</div>
 				<div className='day-duration'>
-					<label for='day-duration'>Duration of day (in seconds)</label>
+					<label htmlFor='day-duration'>Duration of day (in seconds)</label>
 					<input
 						name='day-duration'
 						type='number'

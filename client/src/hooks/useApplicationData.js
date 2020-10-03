@@ -11,7 +11,8 @@ const useApplicationData = () => {
   useEffect(() => {
     axios({
       method: 'GET',
-      url: "https://restcountries.eu/rest/v2/all?fields=name;alpha2Code;latlng",
+      // url: "https://restcountries.eu/rest/v2/all?fields=name;alpha2Code;latlng",
+      url: 'https://covid19-api.org/api/countries'
     }).then(({ data }) => {
       // update the state with the result
       // console.log("inside axios call: ", data)

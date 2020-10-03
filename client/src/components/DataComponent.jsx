@@ -29,6 +29,8 @@ function DataComponent(props) {
 		startDate: '2020-01-22',
 		endDate: today(),
 	});
+ const [countriesSelected, setCountriesSelected] = useState([]);
+
 
 	const [counters, setCounters] = useState({
 		start: null,
@@ -60,11 +62,10 @@ function DataComponent(props) {
 				const countryInfo = countries.find((element) =>
 					element.name.match(regexp)
 				);
-
 				if (countryInfo) {
 					axios({
 						method: 'GET',
-						url: `${BASE_URL}${countryInfo.alpha2Code}`,
+						url: `${BASE_URL}${countryInfo.alpha2}`,
 					}).then((response) => {
 						const countryObject = createTimelineData(
 							countryInfo,
@@ -75,7 +76,7 @@ function DataComponent(props) {
 				}
 			}
 		}
-	}, [countries]);
+	}, [countries, query]);
 
 	useEffect(() => {
 		if (timelineData.length !== 0) {
@@ -174,6 +175,7 @@ function DataComponent(props) {
 			</div>
 			<div className='data-component__right'>
 				<Sidebar
+					allCountries={countries}
 					countryData={countryData}
 					noSynths={query.length}
 					playButtonClick={playButtonClick}
@@ -183,6 +185,8 @@ function DataComponent(props) {
 					setDates={setDates}
 					interval={interval}
 					setInterval={setInterval}
+					countriesSelected={countriesSelected}
+					setCountriesSelected={setCountriesSelected}
 				/>
 			</div>
 		</div>
