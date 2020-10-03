@@ -2,7 +2,7 @@
 	display: flex;
 
 	&--left {
-		width: 70%;
+		width: 80%;
 
 		.multi-select {
 			--rmsc-main: #4285f4;
@@ -21,6 +21,30 @@
 	}
 
 	&--right {
-		width: 30%;
+		width: 20%;
+		display: flex;
+		justify-content: space-evenly;
+		align-items: center;
+
+		.country-selector-confirm {
+			color: #038035;
+		}
+
+		.country-selector-cancel {
+			color: #ff4444;
+		}
+
+		.country-selector-confirm,
+		.country-selector-cancel {
+			font-size: 1.2rem;
+
+			&:hover {
+				cursor: pointer;
+			}
+
+			&:active {
+				transform: translateY(1px);
+			}
+		}
 	}
 }
