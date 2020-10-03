@@ -32,7 +32,6 @@ function DataComponent(props) {
  const [countriesSelected, setCountriesSelected] = useState([]);
  const [query, setQuery] = useState(['united states of america', 'canada', 'colombia', 'china']);
 
-
 	const [counters, setCounters] = useState({
 		start: null,
 		current: null,
@@ -161,6 +160,24 @@ useEffect(() => {
 	const clearMapData = () => {
 		map.clearMap();
 	};
+
+
+	//I think these 3 states will trigger all the necessary setState for the settings to be retrieved
+	const saveState = () => {
+		return `
+		{
+			"query": ${query},
+			"dates": ${dates},
+			"interval": ${interval}
+		}`
+	}
+
+	const loadState = (query, dates, interval) => {
+		setQuery(query);
+		setDates(dates);
+		setInterval(interval);
+	}
+
 
 	return (
 		<div className='data-component'>
