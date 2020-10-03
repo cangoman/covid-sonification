@@ -177,9 +177,8 @@ function Sidebar(props) {
 						<ClearButton onClick={clearMapData} />
 					</div>
 				</div>
-
-				<div className='sidebar__bottom'>{displayCountryData()}</div>
 			</div>
+			<div className='sidebar__bottom'>{displayCountryData()}</div>
 		</div>
 	);
 }
