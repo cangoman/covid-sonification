@@ -1,0 +1,13 @@
+.clear-button__container {
+	font-size: 2.2rem;
+	color: #d43928;
+	display: inline-flex;
+
+	&:hover {
+		cursor: pointer;
+	}
+
+	&:active {
+		transform: translateY(1px);
+	}
+}

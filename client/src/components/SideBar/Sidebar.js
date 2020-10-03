@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Row, Navbar } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import * as Tone from 'tone';
 
 import DataCard from './DataCard';
 import StartAudioButton from './StartAudioButton';
+import RestartAudioButton from './RestartAudioButton';
+import ClearButton from './ClearButton';
+
 import DateInput from './DateInput';
 
 // import VolumeSlider from './VolumeSlider';
@@ -150,7 +153,7 @@ function Sidebar(props) {
 				</div>
 				<div className='sidebar__top--day-duration'>
 					<div className='sidebar__top--day-duration-left'>
-						<label for='day-duration'>Day interval</label>
+						<label htmlFor='day-duration'>Day interval</label>
 					</div>
 					<div className='sidebar__top--day-duration-right'>
 						<input
@@ -166,13 +169,12 @@ function Sidebar(props) {
 				</div>
 
 				<div className='sidebar__top--button-controls'>
+					<RestartAudioButton restart={props.restart} />
 					<StartAudioButton setPlay={props.playButtonClick} />
-					<Button variant='outline-light' onClick={props.restart}>
-						Restart
-					</Button>
-					<Button variant='outline-danger' onClick={clearMapData}>
+					{/* <Button variant='outline-danger' onClick={clearMapData}>
 						Clear Map
-					</Button>
+					</Button> */}
+					<ClearButton onClick={clearMapData} />
 				</div>
 			</div>
 

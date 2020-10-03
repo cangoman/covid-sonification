@@ -1,0 +1,12 @@
+.restart-audio-button__container {
+	font-size: 1.7rem;
+	display: inline-flex;
+
+	&:hover {
+		cursor: pointer;
+	}
+
+	&:active {
+		transform: translateY(1px);
+	}
+}
