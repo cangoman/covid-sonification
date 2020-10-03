@@ -7,21 +7,37 @@
 		flex-direction: column;
 		margin-bottom: 1rem;
 
-		&-title {
+		&--title {
 			h1 {
 				font-size: 1.5rem;
 			}
 		}
 
-		&-body {
+		&--button-controls {
 			display: flex;
 			align-items: center;
 			justify-content: space-evenly;
+		}
+
+		&--day-duration {
+			// display: flex;
+
+			&-left {
+				width: 40%;
+			}
+
+			&-right {
+				flex-grow: 1;
+
+				input {
+					width: 71%;
+				}
+			}
 		}
 	}
 
 	&__bottom {
 		overflow: scroll;
-		height: 90%;
+		height: 60%;
 	}
 }

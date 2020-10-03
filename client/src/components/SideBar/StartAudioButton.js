@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from 'react-bootstrap';
 import * as Tone from 'tone';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -26,9 +25,9 @@ function StartAudioButton(props) {
 
 	const playButtonIcon = () => {
 		return playIcon === false ? (
-			<FontAwesomeIcon icon={faPlayCircle} size='3x' className='play-icon' />
+			<FontAwesomeIcon icon={faPlayCircle} className='play-icon' />
 		) : (
-			<FontAwesomeIcon icon={faPauseCircle} size='3x' className='pause-icon' />
+			<FontAwesomeIcon icon={faPauseCircle} className='pause-icon' />
 		);
 	};
 

@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Row, Navbar } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import * as Tone from 'tone';
 
 import DataCard from './DataCard';
 import StartAudioButton from './StartAudioButton';
+import RestartAudioButton from './RestartAudioButton';
+import ClearButton from './ClearButton';
+
 import DateInput from './DateInput';
+<<<<<<< HEAD
 import CountrySelector from './CountrySelector'
+=======
+import DayIntervalInput from './DayIntervalInput';
+>>>>>>> feature/data-card
 
 // import VolumeSlider from './VolumeSlider';
 
@@ -135,9 +142,10 @@ function Sidebar(props) {
 	return (
 		<div className='sidebar'>
 			<div className='sidebar__top'>
-				<div className='sidebar__top-title'>
+				<div className='sidebar__top--title'>
 					<h1>Sonification Menu</h1>
 				</div>
+<<<<<<< HEAD
 
 				<div className='sidebar__top-body'>
 					<StartAudioButton setPlay={props.playButtonClick} />
@@ -155,17 +163,21 @@ function Sidebar(props) {
 					setQuery={props.setQuery}
 				/>
 				<div className='date-ranges'>
+=======
+				<div className='sidebar__top--calendar'>
+>>>>>>> feature/data-card
 					<DateInput
-						name='Start Date'
+						name='Start'
 						date={props.dates.startDate}
 						setDate={setStartDate}
 					/>
 					<DateInput
-						name='End Date'
+						name='End'
 						date={props.dates.endDate}
 						setDate={setEndDate}
 					/>
 				</div>
+<<<<<<< HEAD
 				<div className='day-duration'>
 					<label htmlFor='day-duration'>Duration of day (in seconds)</label>
 					<input
@@ -175,10 +187,20 @@ function Sidebar(props) {
 						step='0.1'
 						value={props.interval / 1000}
 						onChange={(e) => props.setInterval(e.currentTarget.value * 1000)}
+=======
+				<div className='sidebar__top--day-duration'>
+					<DayIntervalInput
+						setInterval={props.setInterval}
+						interval={props.interval}
+>>>>>>> feature/data-card
 					/>
 				</div>
+				<div className='sidebar__top--button-controls'>
+					<RestartAudioButton restart={props.restart} />
+					<StartAudioButton setPlay={props.playButtonClick} />
+					<ClearButton onClick={clearMapData} />
+				</div>
 			</div>
-
 			<div className='sidebar__bottom'>{displayCountryData()}</div>
 		</div>
 	);
