@@ -3,13 +3,13 @@ import { Button } from 'react-bootstrap';
 import * as Tone from 'tone';
 
 import DataCard from './DataCard';
-import StartAudioButton from './StartAudioButton';
-import RestartAudioButton from './RestartAudioButton';
-import ClearButton from './ClearButton';
+import StartAudioButton from './AudioControls/StartAudioButton';
+import RestartAudioButton from './AudioControls/RestartAudioButton';
+import ClearButton from './AudioControls/ClearButton';
 
-import DateInput from './DateInput';
+import DateInput from './DateSelectors/DateInput';
 import CountrySelector from './CountrySelector';
-import DayIntervalInput from './DayIntervalInput';
+import DayIntervalInput from './DayInterval/DayIntervalInput';
 
 // import VolumeSlider from './VolumeSlider';
 
@@ -165,12 +165,14 @@ function Sidebar(props) {
 							interval={props.interval}
 						/>
 					</div>
-					<CountrySelector
-						countries={props.allCountries}
-						selected={props.countriesSelected}
-						setSelected={props.setCountriesSelected}
-						setQuery={props.setQuery}
-					/>
+					<div className='sidebar__top--country-selector'>
+						<CountrySelector
+							countries={props.allCountries}
+							selected={props.countriesSelected}
+							setSelected={props.setCountriesSelected}
+							setQuery={props.setQuery}
+						/>
+					</div>
 					<div className='sidebar__top--button-controls'>
 						<RestartAudioButton restart={props.restart} />
 						<StartAudioButton setPlay={props.playButtonClick} />

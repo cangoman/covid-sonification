@@ -40,7 +40,7 @@ function DataCard(props) {
 							</span>
 							<span> / </span>
 							<span className='data-card__body--bottom-right-death'>
-								{props.countryData.deaths}
+								{0 || props.countryData.deaths}
 							</span>
 							<span> / </span>
 							<span className='data-card__body--bottom-right-recover'>
