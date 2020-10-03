@@ -8,6 +8,7 @@ import RestartAudioButton from './RestartAudioButton';
 import ClearButton from './ClearButton';
 
 import DateInput from './DateInput';
+import DayIntervalInput from './DayIntervalInput';
 
 // import VolumeSlider from './VolumeSlider';
 
@@ -138,7 +139,6 @@ function Sidebar(props) {
 				<div className='sidebar__top--title'>
 					<h1>Sonification Menu</h1>
 				</div>
-
 				<div className='sidebar__top--calendar'>
 					<DateInput
 						name='Start'
@@ -152,32 +152,17 @@ function Sidebar(props) {
 					/>
 				</div>
 				<div className='sidebar__top--day-duration'>
-					<div className='sidebar__top--day-duration-left'>
-						<label htmlFor='day-duration'>Day interval</label>
-					</div>
-					<div className='sidebar__top--day-duration-right'>
-						<input
-							name='day-duration'
-							type='number'
-							max='5000'
-							step='0.1'
-							value={props.interval / 1000}
-							placeholder='seconds'
-							onChange={(e) => props.setInterval(e.currentTarget.value * 1000)}
-						/>
-					</div>
+					<DayIntervalInput
+						setInterval={props.setInterval}
+						interval={props.interval}
+					/>
 				</div>
-
 				<div className='sidebar__top--button-controls'>
 					<RestartAudioButton restart={props.restart} />
 					<StartAudioButton setPlay={props.playButtonClick} />
-					{/* <Button variant='outline-danger' onClick={clearMapData}>
-						Clear Map
-					</Button> */}
 					<ClearButton onClick={clearMapData} />
 				</div>
 			</div>
-
 			<div className='sidebar__bottom'>{displayCountryData()}</div>
 		</div>
 	);
