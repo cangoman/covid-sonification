@@ -176,6 +176,14 @@ function Sidebar(props) {
 						<StartAudioButton setPlay={props.playButtonClick} />
 						<ClearButton onClick={clearMapData} />
 					</div>
+					<div className='sidebar__bottom--save'>
+						<Button
+							variant="outline-light"
+							onClick={props.saveComposition}
+						>
+							Save your composition
+						</Button>
+					</div>
 				</div>
 			</div>
 			<div className='sidebar__bottom'>{displayCountryData()}</div>

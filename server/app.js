@@ -30,11 +30,14 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const registerRouter = require('./routes/register');
 const loginRouter = require('./routes/login');
+const compositionsRouter = require('./routes/compositions');
 
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter(dbHelpers));
 app.use('/register', registerRouter(dbHelpers));
 app.use('/login', loginRouter(dbHelpers));
+app.use('/compositions', compositionsRouter(dbHelpers));
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
