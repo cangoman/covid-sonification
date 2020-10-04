@@ -27,6 +27,9 @@ function getDiffData(data) {
 
   for (let i = data.length; i < 365; i++) {
     const zeroes = {
+      deaths: 0,
+      cases: 0,
+      recovered: 0,
       new_cases: 0,
       new_deaths: 0,
       new_recoveries: 0,
@@ -62,19 +65,36 @@ function createDailyData(timelineData) {
     
     for (let j = 0; j < timelineData.length; j++) {
 
-      const datumDay = moment(timelineData[j].data[indices[j]].last_update)
+      let datumDay = moment(timelineData[j].data[indices[j]].last_update)
       if ( day.dayOfYear() === datumDay.dayOfYear() && day.year() === datumDay.year() ) {
+        // console.log("data corresponds for this day: ", day.dayOfYear())
         currentDay.push({
           countryInfo: timelineData[j].countryInfo,
           date: day.dayOfYear(),
           data: timelineData[j].data[indices[j]]
         })
-        indices[j]++;
+        // keep updating the index until we reach the next day. we only want the latest report for each day
+        while ( day.dayOfYear() === datumDay.dayOfYear() && day.year() === datumDay.year() ) {
+          indices[j]++;
+          datumDay = moment(timelineData[j].data[indices[j]].last_update)
+        }
+
       } else {
+        // we want new stuff to be 0s. but totals to come from the previous days
+        const data = {
+          deaths: timelineData[j].data[indices[j] - 1].deaths - timelineData[j].data[indices[j] - 1].new_deaths,
+          cases: timelineData[j].data[indices[j] - 1].cases - timelineData[j].data[indices[j] - 1].new_cases,
+          recovered: timelineData[j].data[indices[j] - 1].recovered - timelineData[j].data[indices[j] - 1].new_recoveries,
+        }
+
         currentDay.push({
           countryInfo: timelineData[j].countryInfo,
           date: day.dayOfYear(),
           data: {
+            ...data,
+            // deaths: timelineData[j].data[indices[j]],
+            // cases: 0,
+            // recoveries: 0,
             new_cases: 0,
             new_deaths: 0,
             new_recoveries: 0,

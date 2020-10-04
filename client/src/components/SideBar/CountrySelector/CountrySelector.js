@@ -13,12 +13,18 @@ import './CountrySelector.scss';
 function CountrySelector(props) {
 	const { countries } = props;
 	// console.log(countries)
-	const options = countries.map((country) => {
-		return {
+	let options = countries.map((country) => {
+		// if (country.name !== "Aruba")
+		{return {
 			label: country.name,
 			value: country.alpha2,
-		};
+		};}
 	});
+
+	//use this method to filter any countries that produce errors in our app
+	options = options.filter( element => element.value !== 'AW')
+
+
 
 	return (
 		<div className='country-selector__container'>

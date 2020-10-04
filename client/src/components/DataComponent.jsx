@@ -116,12 +116,12 @@ function DataComponent(props) {
 	);
 
 
-// useEffect(() => {
-// 	console.log('timeline data: ', timelineData)
-// 	console.log('dailyData: ', dailyData)
-// 	console.log('query: ', query)
-// 	console.log('countryData: ', countryData)
-// }, [timelineData, countryData, query, dailyData])
+useEffect(() => {
+	console.log('timeline data: ', timelineData)
+	console.log('dailyData: ', dailyData)
+	// console.log('query: ', query)
+	console.log('countryData: ', countryData)
+}, [timelineData, countryData, query, dailyData])
 
 	const advanceCounter = () => {
 		if (counters.start > counters.end) {
