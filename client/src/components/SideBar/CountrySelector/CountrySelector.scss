@@ -1,8 +1,9 @@
 .country-selector__container {
 	display: flex;
+	margin: 0.5rem 0;
 
 	&--left {
-		width: 80%;
+		width: 75%;
 
 		.multi-select {
 			--rmsc-main: #4285f4;
@@ -21,22 +22,22 @@
 	}
 
 	&--right {
-		width: 20%;
+		width: 25%;
 		display: flex;
 		justify-content: space-evenly;
 		align-items: center;
 
 		.country-selector-confirm {
-			color: #038035;
+			color: #0275d8;
 		}
 
 		.country-selector-cancel {
-			color: #ff4444;
+			color: #f0ad4e;
 		}
 
 		.country-selector-confirm,
 		.country-selector-cancel {
-			font-size: 1.2rem;
+			font-size: 1.3rem;
 
 			&:hover {
 				cursor: pointer;

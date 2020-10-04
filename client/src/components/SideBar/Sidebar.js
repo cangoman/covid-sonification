@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import * as Tone from 'tone';
 
-import DataCard from './DataCard';
+import DataCard from './DataCard/DataCard';
 import StartAudioButton from './AudioControls/StartAudioButton';
 import RestartAudioButton from './AudioControls/RestartAudioButton';
 import ClearButton from './AudioControls/ClearButton';
 
 import DateInput from './DateSelectors/DateInput';
-import CountrySelector from './CountrySelector';
+import CountrySelector from './CountrySelector/CountrySelector';
 import DayIntervalInput from './DayInterval/DayIntervalInput';
 
 // import VolumeSlider from './VolumeSlider';
@@ -125,7 +125,7 @@ function Sidebar(props) {
 		props.setDates((prev) => ({ ...prev, endDate: date }));
 	};
 
-	const displayCountryData = () => {
+	const displayCountryDataCards = () => {
 		if (props.countryData) {
 			return props.countryData.map((item, i) => {
 				return (
@@ -180,7 +180,7 @@ function Sidebar(props) {
 					</div>
 				</div>
 			</div>
-			<div className='sidebar__bottom'>{displayCountryData()}</div>
+			<div className='sidebar__bottom'>{displayCountryDataCards()}</div>
 		</div>
 	);
 }
