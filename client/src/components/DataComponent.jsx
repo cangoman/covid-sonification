@@ -10,6 +10,7 @@ import {
 	today,
 	getDateIndex,
 } from '../helpers/DataFormatHelpers';
+import { saveState } from '../helpers/SaveStateHelpers'
 
 import WorldMap from '../d3/WorldMap';
 
@@ -29,9 +30,8 @@ function DataComponent(props) {
 		startDate: '2020-01-22',
 		endDate: today(),
 	});
- const [countriesSelected, setCountriesSelected] = useState([]);
- const [query, setQuery] = useState(['united states of america', 'canada', 'colombia', 'china']);
-
+ 	const [countriesSelected, setCountriesSelected] = useState([]);
+ 	const [query, setQuery] = useState(['united states of america', 'canada', 'colombia', 'china']);
 
 	const [counters, setCounters] = useState({
 		start: null,
@@ -97,12 +97,12 @@ function DataComponent(props) {
 	);
 
 
-useEffect(() => {
-	console.log('timeline data: ', timelineData)
-	console.log('dailyData: ', dailyData)
-	console.log('query: ', query)
-	console.log('countryData: ', countryData)
-}, [timelineData, countryData, query, dailyData])
+// useEffect(() => {
+// 	console.log('timeline data: ', timelineData)
+// 	console.log('dailyData: ', dailyData)
+// 	console.log('query: ', query)
+// 	console.log('countryData: ', countryData)
+// }, [timelineData, countryData, query, dailyData])
 
 	const advanceCounter = () => {
 		if (counters.start > counters.end) {
@@ -162,6 +162,25 @@ useEffect(() => {
 		map.clearMap();
 	};
 
+
+	//I think these 3 states will trigger all the necessary setState for the settings to be retrieved
+	const saveCompositionState = () => {
+		const state = 
+		{
+			query,
+			dates,
+			interval
+		}
+		saveState(state);
+	}
+
+	const loadState = (query, dates, interval) => {
+		setQuery(query);
+		setDates(dates);
+		setInterval(interval);
+	}
+
+
 	return (
 		<div className='data-component'>
 			<div className='data-component__left'>
@@ -187,6 +206,7 @@ useEffect(() => {
 					countriesSelected={countriesSelected}
 					setCountriesSelected={setCountriesSelected}
 					setQuery={setQuery}
+					saveComposition={saveCompositionState}
 				/>
 			</div>
 		</div>

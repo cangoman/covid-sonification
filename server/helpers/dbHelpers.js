@@ -9,6 +9,16 @@ module.exports = (db) => {
 			.catch((err) => err);
 	};
 
+	const getUserId = (email) => {
+		let query = {
+			text: 'SELECT id FROM users WHERE email = $1'
+		}
+		return db
+			.query(query, [email])
+			.then((result) => result.rows[0])
+			.catch((err) => console.error(err.stack));
+	}
+
 	const getTests = () => {
 		const query = {
 			text: 'SELECT * FROM tests',
@@ -48,10 +58,28 @@ module.exports = (db) => {
 			.catch((err) => console.error(err.stack));
 	};
 
+	const saveComposition = (composition, user_id) => {
+		let  query = {
+			text: 'INSERT INTO compositions (state, created_on, user_id) VALUES ($1, NOW(), $2) returning *'
+		}
+		return db
+			.query(query, [
+				composition,
+				user_id
+			])
+			.then((result) => {
+				// console.log("then in saveComposition, dbHelpers", result.rows[0])
+				return result.rows[0]
+			})
+			.catch((err) => err);
+	}
+
 	return {
 		getUsers,
 		getTests,
 		registerUser,
 		loginUser,
+		saveComposition,
+		getUserId
 	};
 };
