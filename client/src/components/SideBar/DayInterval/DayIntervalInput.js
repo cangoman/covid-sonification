@@ -17,6 +17,7 @@ function DayIntervalInput(props) {
 					placeholder='seconds'
 					onChange={(e) => props.setInterval(e.currentTarget.value * 1000)}
 				/>
+				<span>seconds</span>
 			</div>
 		</div>
 	);

@@ -5,15 +5,17 @@
 	background: linear-gradient(
 		135deg,
 		rgba(33, 96, 168, 1) 0%,
-		rgba(23, 50, 122, 1) 67%,
+		rgba(23, 50, 122, 1) 55%,
 		rgba(15, 45, 92, 1) 100%
 	);
 	margin-bottom: 1rem;
 	border-radius: 4px;
-	padding: 0.5rem 1rem;
+	padding: 0.5rem 0.6rem;
 
 	&__title {
 		font-weight: bold;
+		text-transform: uppercase;
+		font-size: 0.9rem;
 	}
 
 	&__body--top,
@@ -22,6 +24,7 @@
 
 		&-left {
 			width: 10%;
+			font-size: 0.7rem;
 			font-weight: bold;
 			align-self: center;
 			text-orientation: upright;
@@ -29,6 +32,8 @@
 
 		&-right {
 			flex-grow: 1;
+			display: flex;
+			justify-content: space-evenly;
 
 			span {
 				font-size: 1rem;
@@ -39,20 +44,35 @@
 		&-left,
 		&-right {
 			&-case {
-				color: yellow;
+				color: rgb(238, 238, 0);
 			}
 
 			&-death {
-				color: red;
+				color: rgb(255, 6, 6);
 			}
 
 			&-recover {
-				color: green;
+				color: rgb(2, 138, 2);
 			}
 		}
 	}
 
 	&__footer {
-		font-size: 0.8rem;
+		font-size: 0.7rem;
+		display: flex;
+
+		&--left {
+			width: 10%;
+		}
+
+		&--right {
+			flex-grow: 1;
+			display: flex;
+			justify-content: center;
+
+			span {
+				margin: 0 0.2rem;
+			}
+		}
 	}
 }

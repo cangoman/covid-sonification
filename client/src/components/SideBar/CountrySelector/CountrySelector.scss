@@ -1,0 +1,51 @@
+.country-selector__container {
+	display: flex;
+	margin: 0.5rem 0;
+
+	&--left {
+		width: 75%;
+
+		.multi-select {
+			--rmsc-main: #4285f4;
+			--rmsc-hover: #f1f3f5;
+			--rmsc-selected: #e2e6ea;
+			--rmsc-border: #ccc;
+			--rmsc-gray: #aaa;
+			--rmsc-bg: #fff;
+			--rmsc-p: 10px; /* Spacing */
+			--rmsc-radius: 4px; /* Radius */
+			--rmsc-h: 30px; /* Height */
+
+			color: black;
+			text-align: left;
+		}
+	}
+
+	&--right {
+		width: 25%;
+		display: flex;
+		justify-content: space-evenly;
+		align-items: center;
+
+		.country-selector-confirm {
+			color: #0275d8;
+		}
+
+		.country-selector-cancel {
+			color: #f0ad4e;
+		}
+
+		.country-selector-confirm,
+		.country-selector-cancel {
+			font-size: 1.3rem;
+
+			&:hover {
+				cursor: pointer;
+			}
+
+			&:active {
+				transform: translateY(1px);
+			}
+		}
+	}
+}

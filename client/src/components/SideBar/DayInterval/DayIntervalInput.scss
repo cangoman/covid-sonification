@@ -1,0 +1,25 @@
+.day-interval-input__container {
+	display: flex;
+	align-items: center;
+	margin: 0.5rem 0;
+
+	&--left {
+		width: 40%;
+
+		label {
+			margin: unset;
+		}
+	}
+
+	&--right {
+		// display: flex;
+		flex-grow: 1;
+
+		input {
+			width: 3.5rem;
+			margin-right: 1rem;
+			border: 1px solid black;
+			border-radius: 4px;
+		}
+	}
+}

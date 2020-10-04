@@ -1,9 +1,15 @@
 .date-input__container {
 	display: flex;
 	flex-direction: row;
+	align-items: center;
+	margin: 0.5rem 0;
 
 	&--left {
 		width: 40%;
+
+		label {
+			margin: unset;
+		}
 	}
 
 	&--right {
