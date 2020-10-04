@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 import * as Tone from 'tone';
 
 import DataCard from './DataCard/DataCard';
@@ -10,6 +10,8 @@ import ClearButton from './AudioControls/ClearButton';
 import DateInput from './DateSelectors/DateInput';
 import CountrySelector from './CountrySelector/CountrySelector';
 import DayIntervalInput from './DayInterval/DayIntervalInput';
+
+import SaveCompositionModal from './SaveComposition/SaveCompositionModal';
 
 // import VolumeSlider from './VolumeSlider';
 
@@ -179,12 +181,10 @@ function Sidebar(props) {
 						<ClearButton onClick={clearMapData} />
 					</div>
 					<div className='sidebar__bottom--save'>
-						<Button
-							variant="outline-light"
-							onClick={props.saveComposition}
-						>
+						{/* <Button variant='outline-light' onClick={props.saveComposition}>
 							Save your composition
-						</Button>
+						</Button> */}
+						<SaveCompositionModal saveComposition={props.saveComposition} />
 					</div>
 				</div>
 			</div>

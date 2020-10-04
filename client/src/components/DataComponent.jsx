@@ -11,7 +11,7 @@ import {
 	today,
 	getDateIndex,
 } from '../helpers/DataFormatHelpers';
-import { saveState, loadState } from '../helpers/SaveStateHelpers'
+import { saveState, loadState } from '../helpers/SaveStateHelpers';
 
 import WorldMap from '../d3/WorldMap';
 
@@ -31,8 +31,13 @@ function DataComponent(props) {
 		startDate: '2020-01-22',
 		endDate: today(),
 	});
- 	const [countriesSelected, setCountriesSelected] = useState([]);
- 	const [query, setQuery] = useState(['united states of america', 'canada', 'colombia', 'china']);
+	const [countriesSelected, setCountriesSelected] = useState([]);
+	const [query, setQuery] = useState([
+		'united states of america',
+		'canada',
+		'colombia',
+		'china',
+	]);
 
 	const [counters, setCounters] = useState({
 		start: null,
@@ -48,24 +53,21 @@ function DataComponent(props) {
 	const { id } = useParams();
 	useEffect(() => {
 		if (id) {
-			loadState(id)
-			.then(response => {
-				if(response) {
+			loadState(id).then((response) => {
+				if (response) {
 					setQuery(response.query);
 					setInterval(response.interval);
 					setDates({
 						startDate: response.dates.startDate,
-						endDate: response.dates.endDate
-					})
+						endDate: response.dates.endDate,
+					});
 				}
-
-			})
-
+			});
 		}
-	}, [])
+	}, []);
 
 	useEffect(() => {
-		setTimelineData([])
+		setTimelineData([]);
 		if (countries) {
 			for (const country of query) {
 				const regexp = new RegExp(country, 'i');
@@ -115,13 +117,12 @@ function DataComponent(props) {
 		play ? interval : null
 	);
 
-
-// useEffect(() => {
-// 	console.log('timeline data: ', timelineData)
-// 	console.log('dailyData: ', dailyData)
-// 	console.log('query: ', query)
-// 	console.log('countryData: ', countryData)
-// }, [timelineData, countryData, query, dailyData])
+	// useEffect(() => {
+	// 	console.log('timeline data: ', timelineData)
+	// 	console.log('dailyData: ', dailyData)
+	// 	console.log('query: ', query)
+	// 	console.log('countryData: ', countryData)
+	// }, [timelineData, countryData, query, dailyData])
 
 	const advanceCounter = () => {
 		if (counters.start > counters.end) {
@@ -181,24 +182,22 @@ function DataComponent(props) {
 		map.clearMap();
 	};
 
-
 	//I think these 3 states will trigger all the necessary setState for the settings to be retrieved
-	const saveCompositionState = () => {
-		const state = 
-		{
+	const saveCompositionState = (compositionTitle) => {
+		const state = {
 			query,
 			dates,
-			interval
-		}
+			interval,
+		};
+
 		saveState(state);
-	}
+	};
 
 	// const loadState = (query, dates, interval) => {
 	// 	setQuery(query);
 	// 	setDates(dates);
 	// 	setInterval(interval);
 	// }
-
 
 	return (
 		<div className='data-component'>
