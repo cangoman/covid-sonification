@@ -58,13 +58,14 @@ module.exports = (db) => {
 			.catch((err) => console.error(err.stack));
 	};
 
-	const saveComposition = (composition, user_id) => {
+	const saveComposition = (composition, title, user_id) => {
 		let  query = {
-			text: 'INSERT INTO compositions (state, created_on, user_id) VALUES ($1, NOW(), $2) returning *'
+			text: 'INSERT INTO compositions (state, title,  created_on, user_id) VALUES ($1, $2, NOW(), $3) returning *'
 		}
 		return db
 			.query(query, [
 				composition,
+				title,
 				user_id
 			])
 			.then((result) => result.rows[0])

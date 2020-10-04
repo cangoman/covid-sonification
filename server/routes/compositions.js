@@ -12,10 +12,11 @@ module.exports = ({ getUserId, saveComposition, getCompositionSettings, deleteCo
   });
 
   router.post('/new', (req, res) => {
-    // console.log("entering post request: ", req.body.state)
+    console.log("(BE says) entering post request: ", req.body)
     getUserId(req.body.email)
     .then( response => {
-      saveComposition(req.body.state, response.id)
+      console.log(response)
+      saveComposition(req.body.state, req.body.title, response.id)
         .then(response => {
           console.log(response.data)
           res.status(200).json(response.data)
