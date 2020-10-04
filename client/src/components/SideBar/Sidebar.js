@@ -105,7 +105,7 @@ function Sidebar(props) {
 						note[i % note.length],
 						'16n'
 					);
-					console.log('playing a synth', new_deaths);
+					// console.log('playing a synth', new_deaths);
 				}
 			}
 		}

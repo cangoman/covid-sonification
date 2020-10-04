@@ -97,10 +97,12 @@ export default class WorldMap {
 		
 
 		//This is to figure out the radius of the circles based on # of cases. Need to figure out how data is going to be coming in
-		const radiusValue = (d) => d.data.deaths || 0;
+		const radiusValue = (d) => d.data.cases || 0;
 		const sizeScale = scaleSqrt()
-			.domain([0, max(data, (d) => d.data.deaths), radiusValue])
+			.domain([0, max(data, (d) => d.data.cases), radiusValue])
 			.range([0, 20]);
+
+		
 
 		vis.circles
 			.selectAll('circle')
@@ -115,7 +117,9 @@ export default class WorldMap {
 			) // projection takes an array [longitude, latitude]
 			.transition()
 			.duration([2*interval/3])
-			.attr('r', (d) => sizeScale(radiusValue(d)))
+			.attr('r', (d) => {
+				return radiusValue(d) === 0 ? 0 : sizeScale(radiusValue(d))
+			})
 			.attr('fill', '#ed0000')
 			.attr('stroke', 'red')
 			.attr('opacity', 0.4);
