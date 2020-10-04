@@ -15,10 +15,10 @@ function createTimelineData(countryInfo, data) {
 
 function getDiffData(data) {
   
-  for (let i = 0; i < data.length-1; i++) {
-    data[i]["new_cases"] = data[i].cases - data[i+1].cases;
-    data[i]["new_deaths"] = data[i].deaths - data[i+1].deaths;
-    data[i]["new_recoveries"] = data[i].recovered - data[i+1].recovered;
+  for (let i = 0; i < data.length - 1; i++) {
+    data[i]["new_cases"] = (data[i].cases - data[i+1].cases) >= 0 ? data[i].cases - data[i+1].cases : 0;
+    data[i]["new_deaths"] = (data[i].deaths - data[i+1].deaths) >= 0 ? data[i].deaths - data[i+1].deaths : 0;
+    data[i]["new_recoveries"] = (data[i].recovered - data[i+1].recovered) >= 0 ? data[i].recovered - data[i+1].recovered : 0;
   }
 
   data[data.length-1]["new_cases"] = data[data.length-1].cases;
