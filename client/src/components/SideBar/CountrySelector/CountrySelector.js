@@ -22,7 +22,7 @@ function CountrySelector(props) {
 	});
 
 	//use this method to filter any countries that produce errors in our app
-	options = options.filter( element => !['AW', 'GL', 'GP'].includes(element.value))
+	options = options.filter( element => !['AW', 'GL', 'GP', 'GU', 'GG'].includes(element.value))
 
 
 
