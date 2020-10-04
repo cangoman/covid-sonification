@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Modal } from 'react-bootstrap';
 import * as Tone from 'tone';
 
 import DataCard from './DataCard/DataCard';
@@ -19,14 +18,15 @@ import './SideBar.scss';
 
 function Sidebar(props) {
 	const [synthGroup, setSynthGroup] = useState([]);
-	// const [sampler, setSampler] = useState();
 
-	// const delayTimes = [0.25, 0.4, 0.8, 0.33];
+	/**********************************************/
+	/* ------ SYNTHS AND AUDIO FUNCTIONS ---------*/
+	/**********************************************/
 
-	//create my synths and effects
+	//creates synths and effects
 	useEffect(() => {
 		setSynthGroup([]);
-		console.log('synthcreation. no. of synths: ', props.noSynths);
+		// console.log('synthcreation. no. of synths: ', props.noSynths);
 		for (let i = 0; i < props.noSynths; i++) {
 			const synth = new Tone.Synth();
 			const delay = new Tone.FeedbackDelay({
@@ -56,7 +56,7 @@ function Sidebar(props) {
 		}
 	}, [props.noSynths]);
 
-	//plays the sounds and stuff
+	//plays the sounds
 	useEffect(() => {
 		if (synthGroup.length !== 0) {
 			//We can get the logic to get the notes and modify stuff out to another function
@@ -111,13 +111,18 @@ function Sidebar(props) {
 		}
 	}, [props.countryData]);
 
+	//sets tempo. not sure if it is necessary
+	// useEffect(() => {
+	// 	Tone.Transport.bpm.value = 1 / (props.interval/1000) * 240;
+	// 	console.log(Tone.Transport.bpm.value)
+	// }, [props.interval])
+	
+	
+	
+
 	const clearMapData = () => {
 		props.clearMapData();
 	};
-
-	// useEffect(() => {
-	// 	console.log("sidebar, prop.dates: ", props.dates)
-	// }, [props.dates]);
 
 	const setStartDate = (date) => {
 		props.setDates((prev) => ({ ...prev, startDate: date }));

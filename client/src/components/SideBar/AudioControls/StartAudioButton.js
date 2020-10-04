@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import * as Tone from 'tone';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -33,7 +33,7 @@ function StartAudioButton(props) {
 
 	return (
 		<div className='start-audio-button'>
-			<a onClick={() => handleClick()}>{playButtonIcon()}</a>
+			<div onClick={() => handleClick()}>{playButtonIcon()}</div>
 		</div>
 	);
 }

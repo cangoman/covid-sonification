@@ -109,14 +109,15 @@ function createDailyData(timelineData) {
   return dailyData;
 }
 
-function getDateIndices(dates) {
-  const today = moment();
-  const dateIndices = dates.map( date => {
-    const thisDate = moment(date);
-    return today.diff(thisDate, 'days')
-  })
-  return dateIndices;
-}
+// function getDateIndices(dates) {
+//   const today = moment();
+//   const dateIndices = dates.map( date => {
+//     const thisDate = moment(date);
+//     return today.diff(thisDate, 'days')
+//   })
+//   return dateIndices;
+// }
+
 function getDateIndex(date) {
   const today = moment();
   const thisDate = moment(date);

@@ -14,14 +14,16 @@ import {
 import { saveState, loadState } from '../helpers/SaveStateHelpers';
 
 import WorldMap from '../d3/WorldMap';
-
 import './DataComponent.scss';
-import { StateTimeline } from 'tone';
-import { ToastBody } from 'react-bootstrap';
 
 const BASE_URL = 'https://covid19-api.org/api/timeline/';
 
 function DataComponent(props) {
+
+	/**********************************************/
+	/* ------------ APPLICATION STATE ------------*/
+	/**********************************************/
+
 	const { countries } = props;
 	const [timelineData, setTimelineData] = useState([]);
 	const [dailyData, setDailyData] = useState([]);
@@ -44,11 +46,17 @@ function DataComponent(props) {
 		current: null,
 		end: null,
 	});
+
 	//Duration of a day
 	const [interval, setInterval] = useState(2000);
 
 	// state for MapWrapper.js
 	const [map, setMap] = useState(null);
+
+
+	/**********************************************/
+	/* ----------- DATA INITIALIZATION -----------*/
+	/**********************************************/
 
 	const { id } = useParams();
 	useEffect(() => {
@@ -64,7 +72,7 @@ function DataComponent(props) {
 				}
 			});
 		}
-	}, []);
+	}, [id]);
 
 	useEffect(() => {
 		setTimelineData([]);
@@ -106,6 +114,10 @@ function DataComponent(props) {
 		}));
 	}, [dates]);
 
+	/**********************************************/
+	/* ---------- PLAYBACK FUNCTIONS -------------*/
+	/**********************************************/
+
 	useInterval(
 		() => {
 			if (play) {
@@ -117,12 +129,16 @@ function DataComponent(props) {
 		play ? interval : null
 	);
 
-	// useEffect(() => {
-	// 	console.log('timeline data: ', timelineData)
-	// 	console.log('dailyData: ', dailyData)
-	// 	console.log('query: ', query)
-	// 	console.log('countryData: ', countryData)
-	// }, [timelineData, countryData, query, dailyData])
+	const playButtonClick = () => {
+		if (counters.current === 0 || !counters.current) return;
+		setPlay((prev) => !prev);
+	};
+
+	const restartCounter = () => {
+		setCounters((prev) => ({ ...prev, current: prev.start }));
+		setPlay(true);
+	};
+
 
 	const advanceCounter = () => {
 		if (counters.start > counters.end) {
@@ -136,40 +152,11 @@ function DataComponent(props) {
 		}
 	};
 
-	// const dataProcessing = () => {
-	//     console.log("Inside the dataProcessing function")
-	//     const data = dailyData[counter]
-	//     if (data) {
-	//       setCountryData(data);
-	//       setDate(data[0]['date'])
-	//     }
-	//     setCounter(oldCount => oldCount - 1)
-	//     if (counter === 1) {
-	//       setPlay(false)
-	//       Tone.Transport.stop()
-	//   }
-	// }
 
-	// useEffect(() => {
-	//   Tone.Transport.bpm.value = 60;
-	//   if (timelineData && play)
-	//   Tone.Transport.scheduleRepeat(() => {
-	//     dataProcessing();
-
-	//   }, "4n", '1m')
-	// }, [timelineData, play])
-
-	const playButtonClick = () => {
-		if (counters.current === 0 || !counters.current) return;
-		setPlay((prev) => !prev);
-	};
-
-	const restartCounter = () => {
-		setCounters((prev) => ({ ...prev, current: prev.start }));
-		setPlay(true);
-	};
-
-	// For MapWrapper.js in useEffect: Create new map or update
+	/**********************************************/
+	/* ------------- MAP FUNCTIONS ---------------*/
+	/**********************************************/
+	
 	const setNewMap = (svgRefCurrent) => {
 		setMap(new WorldMap(svgRefCurrent));
 	};
@@ -182,7 +169,10 @@ function DataComponent(props) {
 		map.clearMap();
 	};
 
-	//I think these 3 states will trigger all the necessary setState for the settings to be retrieved
+	/**********************************************/
+	/* ---------- SAVE/LOAD FUNCTIONS ------------*/
+	/**********************************************/
+
 	const saveCompositionState = (compositionTitle) => {
 		const state = {
 			query,
@@ -193,11 +183,6 @@ function DataComponent(props) {
 		saveState(state, compositionTitle);
 	};
 
-	// const loadState = (query, dates, interval) => {
-	// 	setQuery(query);
-	// 	setDates(dates);
-	// 	setInterval(interval);
-	// }
 
 	return (
 		<div className='data-component'>

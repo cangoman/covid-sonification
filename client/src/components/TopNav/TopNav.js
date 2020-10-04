@@ -15,7 +15,7 @@ function TopNav() {
 
 	useEffect(() => {
 		let user = localStorage.getItem('email');
-		console.log('user from useEffect', user);
+		// console.log('user from useEffect', user);
 		if (user) setIsLoggedIn(true);
 	}, [location]);
 

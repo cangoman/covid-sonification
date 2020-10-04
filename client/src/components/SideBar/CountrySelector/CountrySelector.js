@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import MultiSelect from 'react-multi-select-component';
-import { Button } from 'react-bootstrap';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -12,19 +11,16 @@ import './CountrySelector.scss';
 
 function CountrySelector(props) {
 	const { countries } = props;
-	// console.log(countries)
+
 	let options = countries.map((country) => {
-		// if (country.name !== "Aruba")
-		{return {
+		return {
 			label: country.name,
 			value: country.alpha2,
-		};}
+		}
 	});
 
-	//use this method to filter any countries that produce errors in our app
+	//use this method to filter any countries that produce errors in our app (they dont have enough data)
 	options = options.filter( element => !['AW', 'GL', 'GP', 'GU', 'GG'].includes(element.value))
-
-
 
 	return (
 		<div className='country-selector__container'>
@@ -38,14 +34,6 @@ function CountrySelector(props) {
 				/>
 			</div>
 			<div className='country-selector__container--right'>
-				{/* <Button
-					variant='outline-light'
-					onClick={() => {
-						props.setQuery(props.selected.map((country) => country.label));
-					}}
-				>
-					Confirm Selection
-				</Button> */}
 				<FontAwesomeIcon
 					icon={faCheckSquare}
 					onClick={() => {

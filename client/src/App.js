@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { Container, Row, Col } from 'react-bootstrap';
+
 
 import useApplicationData from './hooks/useApplicationData';
-
 import TopNav from './components/TopNav/TopNav';
 import Register from './components/Register/Register';
 import Login from './components/Login/Login';
@@ -14,7 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.scss';
 
 function App() {
-	const { state, dispatch } = useApplicationData();
+	const { state /* dispatch */ } = useApplicationData();
 
 	return (
 		<div className='App'>

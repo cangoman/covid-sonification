@@ -1,6 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Button } from 'react-bootstrap';
-import WorldMap from '../d3/WorldMap';
+import React, { useEffect, useRef } from 'react';
 import './MapWrapper.scss';
 
 function MapWrapper({ countryData, map, setNewMap, updateMap }) {
@@ -10,7 +8,7 @@ function MapWrapper({ countryData, map, setNewMap, updateMap }) {
 	useEffect(() => {
 		if (!map) setNewMap(svgRef.current);
 		else updateMap();
-	}, [map, countryData]);
+	}, [map, countryData, setNewMap, updateMap]);
 
 	return (
 		<div className='map-container'>

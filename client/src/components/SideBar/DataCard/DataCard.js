@@ -1,17 +1,11 @@
 import React from 'react';
 
-import { Card } from 'react-bootstrap';
-
 import './DataCard.scss';
 
 function DataCard(props) {
-	// console.log('countryData datacard.js:', props.countryData);
 
 	return (
-		// <Card bg='dark' text='white'>
-		// 	<Card.Header>{props.date}</Card.Header>
-		// 	<Card.Body>{displayCountryData()}</Card.Body>
-		// </Card>
+
 		<>
 			<div className='data-card'>
 				<div className='data-card__title'>{props.countryInfo.name}</div>
