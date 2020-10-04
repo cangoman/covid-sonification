@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 import Sidebar from './SideBar/Sidebar';
@@ -10,7 +11,7 @@ import {
 	today,
 	getDateIndex,
 } from '../helpers/DataFormatHelpers';
-import { saveState } from '../helpers/SaveStateHelpers'
+import { saveState, loadState } from '../helpers/SaveStateHelpers'
 
 import WorldMap from '../d3/WorldMap';
 
@@ -44,6 +45,24 @@ function DataComponent(props) {
 	// state for MapWrapper.js
 	const [map, setMap] = useState(null);
 
+	const { id } = useParams();
+	useEffect(() => {
+		if (id) {
+			loadState(id)
+			.then(response => {
+				if(response) {
+					setQuery(response.query);
+					setInterval(response.interval);
+					setDates({
+						startDate: response.dates.startDate,
+						endDate: response.dates.endDate
+					})
+				}
+
+			})
+
+		}
+	}, [])
 
 	useEffect(() => {
 		setTimelineData([])
@@ -174,11 +193,11 @@ function DataComponent(props) {
 		saveState(state);
 	}
 
-	const loadState = (query, dates, interval) => {
-		setQuery(query);
-		setDates(dates);
-		setInterval(interval);
-	}
+	// const loadState = (query, dates, interval) => {
+	// 	setQuery(query);
+	// 	setDates(dates);
+	// 	setInterval(interval);
+	// }
 
 
 	return (

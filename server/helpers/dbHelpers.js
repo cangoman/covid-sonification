@@ -67,11 +67,34 @@ module.exports = (db) => {
 				composition,
 				user_id
 			])
-			.then((result) => {
-				// console.log("then in saveComposition, dbHelpers", result.rows[0])
-				return result.rows[0]
-			})
-			.catch((err) => err);
+			.then((result) => result.rows[0])
+			.catch((err) => console.error(err.stack));
+	}
+
+	const getCompositionSettings = (composition_id) => {
+		let query = {
+			text: 'SELECT * FROM compositions WHERE id = $1'
+		}
+
+		return db
+			.query(query,[
+				composition_id
+				])
+			.then((result) => result.rows[0])
+			.catch((err) => console.error(err.stack));
+	}
+
+	const deleteComposition = (composition_id) => {
+		let query = {
+			text: 'DELETE FROM compositions WHERE id = $1 returning *'
+		}
+
+		return db
+			.query(query, [
+				composition_id
+			])
+			.then((result) => result.rows[0])
+			.catch((err) => console.error(err.stack));
 	}
 
 	return {
@@ -80,6 +103,8 @@ module.exports = (db) => {
 		registerUser,
 		loginUser,
 		saveComposition,
-		getUserId
+		getCompositionSettings,
+		deleteComposition,
+		getUserId,
 	};
 };

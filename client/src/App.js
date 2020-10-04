@@ -32,6 +32,9 @@ function App() {
 					<Route exact path='/'>
 						<DataComponent countries={state.countries} />
 					</Route>
+					<Route path='/compositions/:id' >
+						<DataComponent countries={state.countries}/>
+					</Route>
 				</Switch>
 			</Router>
 		</div>
