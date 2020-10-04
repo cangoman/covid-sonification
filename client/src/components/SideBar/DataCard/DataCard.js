@@ -22,11 +22,11 @@ function DataCard(props) {
 							<span className='data-card__body--top-right-case'>
 								{props.countryData.new_cases}
 							</span>
-							<span> / </span>
+							<span> | </span>
 							<span className='data-card__body--top-right-death'>
 								{props.countryData.new_deaths}
 							</span>
-							<span> / </span>
+							<span> | </span>
 							<span className='data-card__body--top-right-recover'>
 								{props.countryData.new_recoveries}
 							</span>
@@ -38,11 +38,11 @@ function DataCard(props) {
 							<span className='data-card__body--bottom-right-case'>
 								{props.countryData.cases}
 							</span>
-							<span> / </span>
+							<span> | </span>
 							<span className='data-card__body--bottom-right-death'>
-								{0 || props.countryData.deaths}
+								{props.countryData.deaths}
 							</span>
-							<span> / </span>
+							<span> | </span>
 							<span className='data-card__body--bottom-right-recover'>
 								{props.countryData.recovered}
 							</span>
@@ -50,7 +50,14 @@ function DataCard(props) {
 					</div>
 				</div>
 				<div className='data-card__footer'>
-					<span>Cases / Deaths / Recovered</span>
+					<div className='data-card__footer--left'></div>
+					<div className='data-card__footer--right'>
+						<span>Cases</span>
+						<span> | </span>
+						<span>Deaths</span>
+						<span> | </span>
+						<span>Recovered</span>
+					</div>
 				</div>
 			</div>
 		</>
