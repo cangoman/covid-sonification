@@ -54,7 +54,7 @@ function Register() {
 							placeholder='First name'
 							value={state.first_name}
 							onChange={onChange}
-							autocomplete='no'
+							autoComplete='no'
 						/>
 					</Form.Group>
 
@@ -67,7 +67,7 @@ function Register() {
 							placeholder='Last name'
 							value={state.last_name}
 							onChange={onChange}
-							autocomplete='no'
+							autoComplete='no'
 						/>
 					</Form.Group>
 
@@ -80,7 +80,7 @@ function Register() {
 							placeholder='Email'
 							value={state.email}
 							onChange={onChange}
-							autocomplete='off'
+							autoComplete='off'
 						/>
 					</Form.Group>
 

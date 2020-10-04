@@ -190,7 +190,7 @@ function DataComponent(props) {
 			interval,
 		};
 
-		saveState(state);
+		saveState(state, compositionTitle);
 	};
 
 	// const loadState = (query, dates, interval) => {
