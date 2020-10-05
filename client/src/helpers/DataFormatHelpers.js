@@ -54,11 +54,19 @@ function getNextDay(data, counter) {
 
 function createDailyData(timelineData) {
   const dailyData = [];
-  let day = moment.utc();
   const indices = [];
   for (let i = 0; i < timelineData.length; i ++) {
     indices.push(0);
   }
+
+  // let day = moment.utc();
+  // console.log('moment\'s day: ', day )
+
+  //start on the first day of data available, be it today or tomorrow local time
+  //the api seems to update every hour
+  let day = moment(timelineData[0].data[0].last_update)
+  console.log('the other day: ', day)
+
 
   for (let i = 0; i < 365; i++) { //hard coded value for now
     const currentDay = [];
