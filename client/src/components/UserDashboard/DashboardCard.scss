@@ -1,0 +1,45 @@
+.dashboard-card {
+	&__container {
+		display: flex;
+		flex-direction: column;
+		padding: 2rem;
+		width: 20rem;
+		height: 20rem;
+		color: black;
+		// background-color: #4d31d8;
+		background-color: #ececec;
+		border-radius: 50px;
+		margin: 2rem;
+	}
+
+	&__title {
+		text-align: left;
+
+		h1 {
+			font-size: 1.4rem;
+		}
+	}
+
+	&__table {
+		margin-top: 1rem;
+		font-size: 0.8rem;
+
+		.row-header {
+			font-weight: bold;
+		}
+
+		&--row {
+			display: flex;
+
+			&-left {
+				width: 70%;
+				text-align: left;
+				padding-left: 1rem;
+			}
+
+			&-right {
+				width: 30%;
+			}
+		}
+	}
+}

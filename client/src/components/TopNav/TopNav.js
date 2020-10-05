@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Navbar, Nav } from 'react-bootstrap';
 
-
 import LoginButton from '../Login/LoginButton';
 import RegisterButton from '../Register/RegisterButton';
 import LogoutButton from '../Login/LogoutButton';
@@ -31,8 +30,7 @@ function TopNav() {
 			<Navbar.Toggle aria-controls='basic-navbar-nav' />
 			<Navbar.Collapse id='basic-navbar-nav'>
 				<Nav className='mr-auto'>
-					<Nav.Link href='#home'>Home</Nav.Link>
-					<Nav.Link href='#link'>Link</Nav.Link>
+					{isLoggedIn && <Nav.Link href='/users/:id'>Dashboard</Nav.Link>}
 				</Nav>
 				<Nav>
 					{!isLoggedIn && <LoginButton />}

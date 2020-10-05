@@ -7,6 +7,7 @@ import TopNav from './components/TopNav/TopNav';
 import Register from './components/Register/Register';
 import Login from './components/Login/Login';
 import DataComponent from './components/DataComponent';
+import UserDashboard from './components/UserDashboard/UserDashboard';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.scss';
@@ -27,11 +28,15 @@ function App() {
 						<Login />
 					</Route>
 
-					<Route exact path='/'>
+					<Route path='/users/:id'>
+						<UserDashboard />
+					</Route>
+
+					<Route path='/compositions/:id'>
 						<DataComponent countries={state.countries} />
 					</Route>
-					<Route path='/compositions/:id' >
-						<DataComponent countries={state.countries}/>
+					<Route exact path='/'>
+						<DataComponent countries={state.countries} />
 					</Route>
 				</Switch>
 			</Router>
