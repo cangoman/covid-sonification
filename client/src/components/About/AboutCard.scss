@@ -1,0 +1,22 @@
+.about--card {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 10rem;
+	width: 24rem;
+	color: white;
+	margin: 2rem 1rem;
+
+	h1 {
+		font-size: 1.5rem;
+	}
+
+	p {
+		font-size: 1.1rem;
+	}
+
+	svg {
+		margin-right: 0.8rem;
+	}
+}
