@@ -2,7 +2,9 @@ import React from 'react';
 
 import './DashboardCard.scss';
 
-function DashboardCard() {
+function DashboardCard(props) {
+	console.log(props.state)
+	
 	return (
 		<div className='dashboard-card__container'>
 			<div className='dashboard-card__title'>
@@ -18,9 +20,10 @@ function DashboardCard() {
 					</div>
 				</div>
 				<div className='dashboard-card__table--row'>
-					<div className='dashboard-card__table--row-left'>Symphony #19</div>
-					<div className='dashboard-card__table--row-right'>Oct 4-20</div>
+					<a href={props.link} className='dashboard-card__table--row-left'>{props.title}</a>
+					<div className='dashboard-card__table--row-right'>{props.createdOn.substr(0,10)}</div>
 				</div>
+
 			</div>
 		</div>
 	);

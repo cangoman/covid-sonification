@@ -11,14 +11,26 @@ import './UserDashboard.scss';
 
 function UserDashboard() {
 	// const [compositions, setCompositions] = useState([]);
-	const { compositions } = useCompositions();
+	const { loaded, compositions } = useCompositions();
 	
 	useEffect(() => {
 		console.log(compositions)
-	}, [compositions])
+	}, [compositions, loaded])
 
 	//then map over them and make a cards component to show
 	
+	const compCards = compositions.map( (element, index) => {
+		return(
+			<DashboardCard 
+				key={index}
+				title={element.title}
+				createdOn={element.created_on}
+				link={`/compositions/${element.id}`}
+				state={element.state}
+			/>
+		)
+	} );
+
 	
 	
 	return (
@@ -32,7 +44,7 @@ function UserDashboard() {
 				</div>
 				<div className='user-dashboard__body-right'>
 					{/* <DashboardCard /> */}
-					{/* {compositions} */}
+					{compCards}
 				</div>
 			</div>
 		</div>
