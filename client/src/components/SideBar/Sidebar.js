@@ -182,7 +182,7 @@ function Sidebar(props) {
 					</div>
 					<div className='sidebar__top--button-controls'>
 						<RestartAudioButton restart={props.restart} />
-						<StartAudioButton setPlay={props.playButtonClick} />
+						<StartAudioButton setPlay={props.playButtonClick} play={props.play}/>
 						<ClearButton onClick={clearMapData} />
 					</div>
 					<div className='sidebar__bottom--save'>

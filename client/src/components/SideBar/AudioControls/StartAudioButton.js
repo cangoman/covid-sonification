@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as Tone from 'tone';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -14,7 +14,7 @@ function StartAudioButton(props) {
 		if (!audioOn) initializeAudio();
 		else if (Tone.context.state !== 'running') Tone.context.resume();
 		props.setPlay();
-		setPlayIcon((prev) => !prev);
+		// setPlayIcon(props.play);
 	};
 
 	const initializeAudio = async () => {
@@ -30,6 +30,10 @@ function StartAudioButton(props) {
 			<FontAwesomeIcon icon={faPauseCircle} className='pause-icon' />
 		);
 	};
+
+	useEffect(() => {
+		setPlayIcon(props.play)
+	}, [props.play])
 
 	return (
 		<div className='start-audio-button'>

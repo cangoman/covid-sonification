@@ -147,6 +147,7 @@ function DataComponent(props) {
 		}
 
 		if (counters.current === 0 || counters.current === counters.end) {
+			console.log('should end')
 			setPlay(false);
 		}
 	};
@@ -199,6 +200,7 @@ function DataComponent(props) {
 					countryData={countryData}
 					noSynths={query.length}
 					playButtonClick={playButtonClick}
+					play={play}
 					restart={restartCounter}
 					clearMapData={clearMapData}
 					dates={dates}
