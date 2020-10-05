@@ -145,5 +145,6 @@ export default class WorldMap {
 	clearMap() {
 		//probably will need a function to clear the map from all the shiiiitt
 		selectAll('circle').remove();
+		this.legend.text('')
 	}
 }

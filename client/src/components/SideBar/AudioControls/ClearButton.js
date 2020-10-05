@@ -10,7 +10,7 @@ function ClearButton(props) {
 		<div className='clear-button__container'>
 			<FontAwesomeIcon
 				icon={faTimes}
-				onClick={props.clearMapData}
+				onClick={props.onClick}
 				className='clear-button'
 			/>
 		</div>

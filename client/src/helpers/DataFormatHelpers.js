@@ -65,7 +65,7 @@ function createDailyData(timelineData) {
   //start on the first day of data available, be it today or tomorrow local time
   //the api seems to update every hour
   let day = moment(timelineData[0].data[0].last_update)
-  console.log('the other day: ', day)
+  // console.log('the other day: ', day)
 
 
   for (let i = 0; i < 365; i++) { //hard coded value for now

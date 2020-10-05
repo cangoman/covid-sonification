@@ -136,7 +136,6 @@ function DataComponent(props) {
 
 	const restartCounter = () => {
 		setCounters((prev) => ({ ...prev, current: prev.start }));
-		setPlay(true);
 	};
 
 
