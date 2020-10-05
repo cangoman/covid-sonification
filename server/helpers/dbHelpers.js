@@ -98,6 +98,17 @@ module.exports = (db) => {
 			.catch((err) => console.error(err.stack));
 	}
 
+	const getUserCompositions = (id) => {
+		let query = {
+			text: "SELECT * FROM compositions WHERE user_id = $1"
+		}
+		return db
+			.query(query,
+				[id])
+				.then((result) => result.rows)
+				.catch((err) => console.error(err.stack));
+	}
+
 	return {
 		getUsers,
 		getTests,
@@ -107,5 +118,6 @@ module.exports = (db) => {
 		getCompositionSettings,
 		deleteComposition,
 		getUserId,
+		getUserCompositions
 	};
 };
