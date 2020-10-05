@@ -30,6 +30,7 @@ function TopNav() {
 			<Navbar.Toggle aria-controls='basic-navbar-nav' />
 			<Navbar.Collapse id='basic-navbar-nav'>
 				<Nav className='mr-auto'>
+					<Nav.Link href='/about'>About</Nav.Link>
 					{isLoggedIn && <Nav.Link href='/users/:id'>Dashboard</Nav.Link>}
 				</Nav>
 				<Nav>
