@@ -19,9 +19,17 @@
 	&__body {
 		// width: 100%;
 		display: flex;
-		flex-wrap: wrap;
-		overflow: scroll;
-		justify-content: space-between;
+		height: 80%;
 		margin: 0rem 4rem 2rem;
+
+		&-left {
+			width: 20%;
+			border-right: 3px solid white;
+		}
+
+		&-right {
+			width: 80%;
+			margin-left: 2rem;
+		}
 	}
 }

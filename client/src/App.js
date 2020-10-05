@@ -30,7 +30,7 @@ function App() {
 						<Login />
 					</Route>
 
-					<Route exact path='/users/:id'>
+					<Route path='/users/:id'>
 						<UserDashboard />
 					</Route>
 

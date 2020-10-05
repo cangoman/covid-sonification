@@ -1,0 +1,28 @@
+.dashboard-side-menu__container {
+	height: 100%;
+	color: white;
+	font-size: 2rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+
+	svg:hover {
+		cursor: pointer;
+		animation: bounce 1s infinite;
+		font-size: 3rem;
+		transition: font-size 0.2s linear;
+	}
+
+	@keyframes bounce {
+		0% {
+			transform: translateY(0);
+		}
+		50% {
+			transform: translateY(-5px);
+		}
+		100% {
+			transform: translateY(0);
+		}
+	}
+}
