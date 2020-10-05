@@ -1,7 +1,7 @@
 .dashboard-side-menu__container {
 	height: 100%;
 	color: white;
-	font-size: 2rem;
+	font-size: 2.5rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -9,7 +9,7 @@
 
 	svg:hover {
 		cursor: pointer;
-		animation: bounce 1s infinite;
+		animation: bounce 0.8s infinite;
 		font-size: 3rem;
 		transition: font-size 0.2s linear;
 	}
