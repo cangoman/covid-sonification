@@ -1,0 +1,50 @@
+.about {
+	&__container {
+		height: 100%;
+		background-color: #272727;
+		color: white;
+	}
+
+	&__banner {
+		display: flex;
+		color: white;
+		justify-content: center;
+		align-items: center;
+		height: 70vh;
+		background: url('../../assets/outerspace.jpg');
+		background-size: cover;
+
+		h1 {
+			font-size: 5rem;
+			font-weight: 900;
+			opacity: 0.7;
+			text-shadow: 4px 4px 4px rgb(53, 53, 53);
+		}
+	}
+
+	&__body {
+		width: 80%;
+		margin: auto;
+		padding-top: 4rem;
+
+		&--row {
+			display: flex;
+			height: 10rem;
+			margin: 2rem 0;
+
+			&-title,
+			&-text {
+				width: 50%;
+			}
+
+			&-title {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				font-size: 6rem;
+				font-weight: 900;
+				text-transform: uppercase;
+			}
+		}
+	}
+}
