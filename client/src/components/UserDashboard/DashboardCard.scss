@@ -22,9 +22,24 @@
 	&__title {
 		text-align: left;
 		border-bottom: 1px solid white;
+		display: flex;
 
 		h1 {
 			font-size: 1.4rem;
+		}
+
+		&--social {
+			margin-left: auto;
+
+			svg {
+				font-size: 0.9rem;
+				margin: 0 0.5rem;
+
+				&:hover {
+					cursor: pointer;
+					color: lightcoral;
+				}
+			}
 		}
 	}
 

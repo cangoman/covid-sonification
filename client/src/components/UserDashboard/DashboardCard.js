@@ -1,5 +1,10 @@
 import React from 'react';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
+import { faFacebookF, faTwitter } from '@fortawesome/free-brands-svg-icons';
+// import { faFacebookF, faTwitter } from '@fortawesome/free-solid-svg-icons';
+
 import './DashboardCard.scss';
 
 function DashboardCard(props) {
@@ -9,6 +14,11 @@ function DashboardCard(props) {
 		<div className='dashboard-card__container'>
 			<div className='dashboard-card__title'>
 				<h1>Composition</h1>
+				<div className='dashboard-card__title--social'>
+					<FontAwesomeIcon icon={faFacebookF} />
+					<FontAwesomeIcon icon={faTwitter} />
+					<FontAwesomeIcon icon={faEnvelope} />
+				</div>
 			</div>
 			<div className='dashboard-card__table'>
 				<>
