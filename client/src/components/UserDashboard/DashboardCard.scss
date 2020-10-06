@@ -2,39 +2,75 @@
 	&__container {
 		display: flex;
 		flex-direction: column;
-		padding: 2rem;
-		width: 20rem;
-		height: 20rem;
-		color: black;
-		// background-color: #4d31d8;
-		background-color: #ececec;
-		border-radius: 50px;
-		margin: 2rem;
+		padding: 1rem 2rem;
+		width: 24rem;
+		height: 21rem;
+		color: lightgrey;
+		background-color: #202020;
+		// background-color: #ececec;
+		border-radius: 15px;
+		margin: 2rem 1rem;
+		box-shadow: 10px 10px 17px -8px rgba(255, 255, 255, 1);
+
+		&:hover {
+			transform: translateY(-3px);
+			transition: all 0.1s linear;
+			box-shadow: 10px 10px 17px -2px rgba(255, 255, 255, 1);
+		}
 	}
 
 	&__title {
 		text-align: left;
+		border-bottom: 1px solid white;
+		display: flex;
 
 		h1 {
 			font-size: 1.4rem;
+		}
+
+		&--social {
+			margin-left: auto;
+
+			svg {
+				font-size: 0.9rem;
+				margin: 0 0.5rem;
+
+				&:hover {
+					cursor: pointer;
+					color: lightcoral;
+				}
+			}
 		}
 	}
 
 	&__table {
 		margin-top: 1rem;
 		font-size: 0.8rem;
+		display: flex;
+		flex-direction: column;
 
-		.row-header {
-			font-weight: bold;
-		}
-
-		&--row {
+		&--row-header {
 			display: flex;
+			font-weight: bold;
 
 			&-left {
 				width: 70%;
 				text-align: left;
-				padding-left: 1rem;
+			}
+
+			&-right {
+				width: 30%;
+			}
+		}
+
+		&--row-text {
+			display: flex;
+			margin-bottom: 1rem;
+
+			&-left {
+				width: 70%;
+				text-align: left;
+				padding: 0 1rem;
 			}
 
 			&-right {
