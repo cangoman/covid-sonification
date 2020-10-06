@@ -19,7 +19,6 @@ import './DataComponent.scss';
 const BASE_URL = 'https://covid19-api.org/api/timeline/';
 
 function DataComponent(props) {
-
 	/**********************************************/
 	/* ------------ APPLICATION STATE ------------*/
 	/**********************************************/
@@ -35,10 +34,10 @@ function DataComponent(props) {
 	});
 	const [countriesSelected, setCountriesSelected] = useState([]);
 	const [query, setQuery] = useState([
-		'united states of america',
-		'canada',
-		'colombia',
-		'china',
+		'United States of America',
+		'Canada',
+		'Colombia',
+		'China',
 	]);
 
 	const [counters, setCounters] = useState({
@@ -52,7 +51,6 @@ function DataComponent(props) {
 
 	// state for MapWrapper.js
 	const [map, setMap] = useState(null);
-
 
 	/**********************************************/
 	/* ----------- DATA INITIALIZATION -----------*/
@@ -138,7 +136,6 @@ function DataComponent(props) {
 		setCounters((prev) => ({ ...prev, current: prev.start }));
 	};
 
-
 	const advanceCounter = () => {
 		if (counters.start > counters.end) {
 			setCounters((prev) => ({ ...prev, current: prev.current - 1 }));
@@ -147,16 +144,15 @@ function DataComponent(props) {
 		}
 
 		if (counters.current === 0 || counters.current === counters.end) {
-			console.log('should end')
+			console.log('should end');
 			setPlay(false);
 		}
 	};
 
-
 	/**********************************************/
 	/* ------------- MAP FUNCTIONS ---------------*/
 	/**********************************************/
-	
+
 	const setNewMap = (svgRefCurrent) => {
 		setMap(new WorldMap(svgRefCurrent));
 	};
@@ -182,7 +178,6 @@ function DataComponent(props) {
 
 		saveState(state, compositionTitle);
 	};
-
 
 	return (
 		<div className='data-component'>
