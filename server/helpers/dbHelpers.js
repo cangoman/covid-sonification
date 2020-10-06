@@ -100,7 +100,7 @@ module.exports = (db) => {
 
 	const getUserCompositions = (id) => {
 		let query = {
-			text: "SELECT * FROM compositions WHERE user_id = $1"
+			text: "SELECT * FROM compositions WHERE user_id = $1 ORDER BY created_on DESC"
 		}
 		return db
 			.query(query,

@@ -97,9 +97,9 @@ export default class WorldMap {
 		
 
 		//This is to figure out the radius of the circles based on # of cases. Need to figure out how data is going to be coming in
-		const radiusValue = (d) => d.data.cases || 0;
+		const radiusValue = (d) => d.data.new_cases || 0;
 		const sizeScale = scaleSqrt()
-			.domain([0, max(data, (d) => d.data.cases), radiusValue])
+			.domain([0, max(data, (d) => d.data.new_cases), radiusValue])
 			.range([0, 20]);
 
 		
