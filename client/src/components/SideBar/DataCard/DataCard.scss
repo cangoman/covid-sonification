@@ -4,10 +4,11 @@
 	background: rgb(33, 96, 168);
 	background: linear-gradient(
 		135deg,
-		rgba(33, 96, 168, 1) 0%,
-		rgba(23, 50, 122, 1) 55%,
-		rgba(15, 45, 92, 1) 100%
+		rgba(48, 48, 48, 1) 0%,
+		rgba(69, 69, 69, 1) 50%,
+		rgba(48, 48, 48, 1) 100%
 	);
+
 	margin-bottom: 1rem;
 	border-radius: 4px;
 	padding: 0.5rem 0.6rem;
@@ -24,7 +25,7 @@
 
 		&-left {
 			width: 10%;
-			font-size: 0.7rem;
+			font-size: 0.65rem;
 			font-weight: bold;
 			align-self: center;
 			text-orientation: upright;
@@ -36,7 +37,7 @@
 			justify-content: space-evenly;
 
 			span {
-				font-size: 1rem;
+				font-size: 0.95rem;
 				font-weight: bold;
 			}
 		}
@@ -44,11 +45,11 @@
 		&-left,
 		&-right {
 			&-case {
-				color: rgb(238, 238, 0);
+				color: rgb(207, 207, 5);
 			}
 
 			&-death {
-				color: rgb(255, 6, 6);
+				color: rgb(236, 62, 62);
 			}
 
 			&-recover {
