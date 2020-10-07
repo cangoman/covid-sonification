@@ -1,20 +1,28 @@
 .about {
 	&__container {
 		height: 100%;
-		background-color: #272727;
+		// background-color: #313131;
+		background: radial-gradient(
+			circle,
+			rgba(92, 92, 92, 1) 0%,
+			rgba(60, 60, 60, 1) 55%,
+			rgba(29, 29, 29, 1) 100%
+		);
+
 		color: white;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		overflow: scroll;
+		// overflow: scroll;
 	}
 
 	&-cards__container {
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-evenly;
-		height: 80%;
+		height: 100%;
 		width: 80%;
+		padding-top: 2rem;
 		// overflow: scroll;
 	}
 }
