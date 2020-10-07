@@ -18,8 +18,8 @@ function TechStack() {
 				<span>Front End - React</span>
 				<span>Back End - Node, Express</span>
 				<span>
-					Libraries & Packages - React Router, SASS, Bootstrap, Axios, Moment,
-					Topojson
+					Libraries &amp; Packages - React Router, SASS, Bootstrap, Axios,
+					Moment, Topojson
 				</span>
 
 				<span>Data Visualization - D3.js</span>

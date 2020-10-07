@@ -6,6 +6,11 @@
 	color: white;
 	margin: 2rem 2rem 0.5rem 2rem;
 
+	&:hover {
+		transform: translateY(-3px);
+		transition: all 0.2s linear;
+	}
+
 	&-title {
 		height: 15%;
 		margin-bottom: 1rem;
