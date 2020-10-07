@@ -39,8 +39,12 @@ function Sidebar(props) {
 				frequency: 750,
 				type: 'highpass',
 			});
+			const distortion = new Tone.Distortion({
+				distortion: 0.3,
+				wet: 1,
+			});
 			const volume = new Tone.Volume(-18);
-			synth.chain(filter,delay, volume, Tone.Destination);
+			synth.chain(filter,distortion, delay, volume, Tone.Destination);
 			setSynthGroup((previous) => [
 				...previous,
 				{

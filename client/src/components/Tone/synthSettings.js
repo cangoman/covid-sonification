@@ -10,7 +10,7 @@ const notes = [
 ]
 
 
-const volume = [ -24, -20, -16, -14, -12, -10, -8, -6 ]
+const volume = [ -20, -16, -12, -10, -8, -6, -4, -4 ]
 
 
 export default function setSettings(synthGroup, index, new_deaths, new_cases) {
