@@ -15,15 +15,15 @@ function TechStack() {
 				</h1>
 			</div>
 			<div className='about--card-body'>
-				<span>Front End: React</span>
-				<span>Back End: Node, Express</span>
+				<span>Front End - React</span>
+				<span>Back End - Node, Express</span>
 				<span>
-					Libraries & Packages: React Router, SASS, Bootstrap, Axios, Moment,
+					Libraries & Packages - React Router, SASS, Bootstrap, Axios, Moment,
 					Topojson
 				</span>
 
-				<span>Data Visualization: D3.js</span>
-				<span>Data Sonification: Tone.js</span>
+				<span>Data Visualization - D3.js</span>
+				<span>Data Sonification - Tone.js</span>
 			</div>
 		</div>
 	);
