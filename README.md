@@ -40,7 +40,7 @@
 
 - Front End - React
 - Back End - Node, Express
-- Libraries/Dependencies - React Router, SASS, Bootstrap, Axios, Moment, Topojson
+- Libraries/Dependencies - React Router, SASS, Bootstrap, Axios, Moment, Topojson, bcrypt
 - Data Visualization - D3.js
 - Data Sonification - Tone.js
 
