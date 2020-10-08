@@ -48,7 +48,7 @@
 
 !["screenshot of homepage"](https://github.com/cangoman/covid-sonification/blob/master/client/src/assets/screenshots/01_home.png?raw=true)
 
-!["screenshot of dashboard"](https://github.com/cangoman/covid-sonification/blob/master/client/src/assets/screenshots/01_home.png?raw=true)
+!["screenshot of dashboard"](https://github.com/cangoman/covid-sonification/blob/master/client/src/assets/screenshots/02_dashboard.png?raw=true)
 
 ## Demo
 
