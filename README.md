@@ -10,8 +10,8 @@
 
 ## Features
 
-- User can see and hear the data of selected countries for their reported cases, deaths and recoveries
 - User can see and hear data for selected dates
+- User can see and hear the data of selected countries for their reported cases, deaths and recoveries
 - User can register and log in to save their selected settings such as countries, date range and day interval as compositions
 
 ## Composition
